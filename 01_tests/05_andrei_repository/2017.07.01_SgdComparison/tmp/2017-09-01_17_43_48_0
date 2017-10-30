@@ -1,0 +1,52 @@
+[2017.09.01-17:43:48] Fetch MNIST Data Set
+[2017.09.01-17:43:48] Finished fetching MNIST Data Set
+[2017.09.01-17:43:48] Initialize data preprocessor
+[2017.09.01-17:43:48] Start preprocessing data
+[2017.09.01-17:43:49] Normalize data
+[2017.09.01-17:43:49] Finished normalizing data
+[2017.09.01-17:43:49] Split in train set and test set by 14.000000000000002
+[2017.09.01-17:43:49] Finished splitting data
+[2017.09.01-17:43:49] Initialize simple gradient descendent logisitic regression solver
+[2017.09.01-17:43:49] Computing theta for target = 0
+[2017.09.01-17:43:49] Start simple without reg training: alpha=0.01, batchSz=10, beta=0
+[2017.09.01-17:43:51] eph#1, cost decreased by 0.0020 ==> increasing alpha to 0.0105
+[2017.09.01-17:43:52] eph#2, cost decreased by 0.0009 ==> increasing alpha to 0.0110
+[2017.09.01-17:43:53] eph#3, cost decreased by 0.0006 ==> increasing alpha to 0.0116
+[2017.09.01-17:43:53] cost_eph# 3 = 0.0048; abs diff between current and last eph = 0.0006
+[2017.09.01-17:43:53] eph# 3, gradient[380:385] = [[ -2.605702e-03   2.605702e-03]
+ [ -2.232138e-04   2.232138e-04]
+ [ -2.451628e-04   2.451628e-04]
+ [ -3.475086e-04   3.475086e-04]
+ [  7.277369e-05  -7.277369e-05]]
+[2017.09.01-17:43:54] eph#4, cost decreased by 0.0005 ==> increasing alpha to 0.0122
+[2017.09.01-17:43:54] eph#5, cost decreased by 0.0004 ==> increasing alpha to 0.0128
+[2017.09.01-17:43:55] eph#6, cost decreased by 0.0003 ==> increasing alpha to 0.0134
+[2017.09.01-17:43:55] cost_eph# 6 = 0.0036; abs diff between current and last eph = 0.0003
+[2017.09.01-17:43:55] eph# 6, gradient[380:385] = [[ -2.024366e-03   2.024366e-03]
+ [ -1.619922e-04   1.619922e-04]
+ [ -1.824552e-04   1.824552e-04]
+ [ -2.342722e-04   2.342722e-04]
+ [  9.897176e-05  -9.897176e-05]]
+[2017.09.01-17:43:56] eph#7, cost decreased by 0.0003 ==> increasing alpha to 0.0141
+[2017.09.01-17:43:57] eph#8, cost decreased by 0.0002 ==> increasing alpha to 0.0148
+[2017.09.01-17:43:58] eph#9, cost decreased by 0.0002 ==> increasing alpha to 0.0155
+[2017.09.01-17:43:58] cost_eph# 9 = 0.0030; abs diff between current and last eph = 0.0002
+[2017.09.01-17:43:58] eph# 9, gradient[380:385] = [[-0.001686  0.001686]
+ [-0.00013   0.00013 ]
+ [-0.000145  0.000145]
+ [-0.000176  0.000176]
+ [ 0.000102 -0.000102]]
+[2017.09.01-17:43:59] eph#10, cost decreased by 0.0002 ==> increasing alpha to 0.0163
+[2017.09.01-17:43:59] eph#11, cost decreased by 0.0001 ==> increasing alpha to 0.0171
+[2017.09.01-17:44:00] eph#12, cost decreased by 0.0001 ==> increasing alpha to 0.0180
+[2017.09.01-17:44:00] cost_eph#12 = 0.0026; abs diff between current and last eph = 0.0001
+[2017.09.01-17:44:00] eph#12, gradient[380:385] = [[ -1.498276e-03   1.498276e-03]
+ [ -1.125073e-04   1.125073e-04]
+ [ -1.192529e-04   1.192529e-04]
+ [ -1.406999e-04   1.406999e-04]
+ [  9.224276e-05  -9.224276e-05]]
+[2017.09.01-17:44:01] eph#13, cost decreased by 0.0001 ==> increasing alpha to 0.0189
+[2017.09.01-17:44:01] eph#13, delta(cost) < epsilon ==> early stopping
+[2017.09.01-17:44:02] eph#14, cost decreased by 0.0001 ==> increasing alpha to 0.0198
+[2017.09.01-17:44:02] eph#14, delta(cost) < epsilon ==> early stopping
+[2017.09.01-17:44:02] Time for simple without reg training = 12.471s

@@ -1,0 +1,10 @@
+[2017.07.19-13:03:11] Fetch MNIST Data Set
+[2017.07.19-13:03:12] Finished fetching MNIST Data Set
+[2017.07.19-13:03:12] Initialize data preprocessor
+[2017.07.19-13:03:12] Start preprocessing data
+[2017.07.19-13:03:12] Split in train set and test set by 14.000000000000002
+[2017.07.19-13:03:13] Normalize data
+[2017.07.19-13:03:14] Finished normalizing data
+[2017.07.19-13:03:14] Finished splitting data
+[2017.07.19-13:03:14] Initialize simple gradient descendent softmax regression solver
+[2017.07.19-13:03:14] Start simple with reg training: alpha=0.01, batchSz=10, beta=0.001

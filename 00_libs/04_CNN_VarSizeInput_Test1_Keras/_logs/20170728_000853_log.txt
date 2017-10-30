@@ -1,0 +1,49 @@
+[FCNLIB][2017-07-28 00:08:53] Library [FCNLIB] initialized on machine [HPC]
+[FCNLIB][2017-07-28 00:08:53] Preparing FCN (1/1): 16_16_d_24_d_128n(1)_G_SM 
+[FCNLIB][2017-07-28 00:08:54] Short description:
+Input (None, None, 1)
+Conv2D  [depth:16 kernel:(4, 4) stride:(1, 1) pad:same init:he_normal activ:elu]
+Conv2D  [depth:16 kernel:(4, 4) stride:(1, 1) pad:same init:he_normal activ:elu]
+Dropout [rate: 0.50]
+Conv2D  [depth:24 kernel:(4, 4) stride:(1, 1) pad:same init:he_normal activ:elu]
+Dropout [rate: 0.50]
+Conv2D  [depth:128 kernel:(1, 1) stride:(1, 1) pad:same init:he_normal activ:None]
+GlobalMaxPooling2D
+Dense   [unit:10 activ:softmax init:he_normal]
+
+[FCNLIB][2017-07-28 00:08:54] Keras Neural Network Layout
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         (None, None, None, 1)     0         
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, None, None, 16)    272       
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, None, None, 16)    4112      
+_________________________________________________________________
+dropout_1 (Dropout)          (None, None, None, 16)    0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, None, None, 24)    6168      
+_________________________________________________________________
+dropout_2 (Dropout)          (None, None, None, 24)    0         
+_________________________________________________________________
+conv2d_4 (Conv2D)            (None, None, None, 128)   3200      
+_________________________________________________________________
+global_max_pooling2d_1 (Glob (None, 128)               0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 10)                1290      
+=================================================================
+Total params: 15,042.0
+Trainable params: 15,042.0
+Non-trainable params: 0.0
+_________________________________________________________________
+
+[FCNLIB][2017-07-28 00:08:54] Training network ...
+[FCNLIB][2017-07-28 00:11:09] Test score:0.112
+[FCNLIB][2017-07-28 00:11:09] Test accuracy:0.969
+[FCNLIB][2017-07-28 00:11:10] Label/Prediction: 9/5 Correct: False Imagesize: (1, 115, 89, 1)
+[FCNLIB][2017-07-28 00:11:10]   Prediction: [ 0.04  0.00  0.01  0.14  0.00  0.76  0.00  0.00  0.02  0.03]
+[FCNLIB][2017-07-28 00:11:10]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-07-28 00:11:10] Saving figure [_output\20170728_00111016_16_d_24_d_128n(1)_G_SM_WRONG_LABEL_9_5.png]
+[FCNLIB][2017-07-28 00:11:12] Variable size accuracy: 0.99 for 16_16_d_24_d_128n(1)_G_SM
+[FCNLIB][2017-07-28 00:11:12] Best accuracy 0.99 for model 16_16_d_24_d_128n(1)_G_SM with test acc: 0.97

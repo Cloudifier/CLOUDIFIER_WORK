@@ -1,0 +1,17 @@
+2017.08.24-13:43:38 Initialize the logger
+2017.08.24-13:43:38 Create log folder tmp
+2017.08.24-13:43:38 Create log file tmp/2017-08-24_13_43_38_0
+
+[2017.08.24-13:43:38] Finished fetching MNIST
+[2017.08.24-13:43:39] Finished normalizing data
+[2017.08.24-13:43:39] Finished spliting data into train (0.86) and test (0.14)
+[2017.08.24-13:43:39] Starting prediction using KNN with k = 5
+[2017.08.24-13:43:39] Splitting test data into 7 chunks
+[2017.08.24-13:43:39] Making prediction for each chunk...
+100%|█████████████████████████████████████████████| 7/7 [05:05<00:00, 38.23s/it]
+[2017.08.24-13:48:44] Finished prediction for all chunks
+[2017.08.24-13:48:44] Evaluating model...
+100%|███████████████████████████████████| 9801/9801 [00:00<00:00, 108808.44it/s]
+[2017.08.24-13:48:44] Corrects/Wrongs:9474/327
+[2017.08.24-13:48:44] Accuracy: 96.66%
+

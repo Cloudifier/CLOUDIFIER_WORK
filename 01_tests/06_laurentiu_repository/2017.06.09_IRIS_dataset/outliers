@@ -1,0 +1,24 @@
+An outlier is an observation that lies an abnormal distance from other values
+in a random sample from a population.
+
+The box plot uses the median and the lower and upper quartiles (defined as the
+25th and 75th percentiles). If the lower quartile is Q1 and the upper quartile
+is Q3, then the difference (Q3 - Q1) is called the interquartile range or IQ.
+
+A box plot is constructed by drawing a box between the upper and lower quartiles
+with a solid line drawn across the box to locate the median. The following
+quantities (called fences) are needed for identifying extreme values in the tails
+of the distribution:
+1) lower inner fence: Q1 - 1.5*IQ
+2) upper inner fence: Q3 + 1.5*IQ
+3) lower outer fence: Q1 - 3*IQ
+4) upper outer fence: Q3 + 3*IQ
+
+A point beyond an inner fence on either side is considered a mild outlier.
+A point beyond an outer fence is considered an extreme outlier.
+
+Outliers should be investigated carefully. Often they contain valuable information
+about the process under investigation or the data gathering and recording process.
+Before considering the possible elimination of these points from the data, one
+should try to understand why they appeared and whether it is likely similar values
+will continue to appear. Of course, outliers are often bad data points.

@@ -1,0 +1,1129 @@
+[FCNLIB][2017-09-01 19:18:13] Library [FCNLIB] initialized on machine [HPC.htss.ro]
+[FCNLIB][2017-09-01 19:18:13] Base data folder []
+[FCNLIB][2017-09-01 19:18:13] Found TF running on GPU
+[FCNLIB][2017-09-01 19:18:14] Models:
+[FCNLIB][2017-09-01 19:18:14]   B1_32x2->64x2->512(3)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 19:18:14]   B1_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 19:18:14]   B0_32x2->64x2->512(3)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 19:18:14]   B0_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 19:18:14]   B2_32x2->64x2->512(3)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 19:18:14]   B2_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 19:18:14] Training/testing a total of 6 models
+
+[FCNLIB][2017-09-01 19:18:14] Preparing FCN (1/6): B1_32x2->64x2->512(3)x2->GMP->512d->512d using model blocks definition 
+[FCNLIB][2017-09-01 19:18:15] Short description:
+Input (None, None, 1)
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:512 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:512 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+GlobalMaxPooling2D
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Readout [unit:10 activ:softmax init:he_normal]
+
+[FCNLIB][2017-09-01 19:18:15] Keras Neural Network Layout
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_16 (InputLayer)        (None, None, None, 1)     0         
+_________________________________________________________________
+CBLOCK1_CONV32_0 (Conv2D)    (None, None, None, 32)    320       
+_________________________________________________________________
+batch_normalization_87 (Batc (None, None, None, 32)    128       
+_________________________________________________________________
+activation_119 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK1_CONV32_1 (Conv2D)    (None, None, None, 32)    9248      
+_________________________________________________________________
+batch_normalization_88 (Batc (None, None, None, 32)    128       
+_________________________________________________________________
+activation_120 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK2_CONV64_0 (Conv2D)    (None, None, None, 64)    18496     
+_________________________________________________________________
+batch_normalization_89 (Batc (None, None, None, 64)    256       
+_________________________________________________________________
+activation_121 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK2_CONV64_1 (Conv2D)    (None, None, None, 64)    36928     
+_________________________________________________________________
+batch_normalization_90 (Batc (None, None, None, 64)    256       
+_________________________________________________________________
+activation_122 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK3_CONV512_0 (Conv2D)   (None, None, None, 512)   295424    
+_________________________________________________________________
+batch_normalization_91 (Batc (None, None, None, 512)   2048      
+_________________________________________________________________
+activation_123 (Activation)  (None, None, None, 512)   0         
+_________________________________________________________________
+CBLOCK3_CONV512_1 (Conv2D)   (None, None, None, 512)   2359808   
+_________________________________________________________________
+batch_normalization_92 (Batc (None, None, None, 512)   2048      
+_________________________________________________________________
+activation_124 (Activation)  (None, None, None, 512)   0         
+_________________________________________________________________
+global_max_pooling2d_16 (Glo (None, 512)               0         
+_________________________________________________________________
+dense_46 (Dense)             (None, 512)               262656    
+_________________________________________________________________
+dropout_31 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_47 (Dense)             (None, 512)               262656    
+_________________________________________________________________
+dropout_32 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_48 (Dense)             (None, 10)                5130      
+=================================================================
+Total params: 3,255,530.0
+Trainable params: 3,253,098.0
+Non-trainable params: 2,432.0
+_________________________________________________________________
+
+[FCNLIB][2017-09-01 19:18:15] Training FCN (1/6)for 20 epochs...
+[FCNLIB][2017-09-01 19:29:39] Test score:0.046
+[FCNLIB][2017-09-01 19:29:39] Test accuracy:0.985
+[FCNLIB][2017-09-01 19:29:50] Label/Prediction: 8/3 Correct: False Imagesize: (1, 119, 85, 1)
+[FCNLIB][2017-09-01 19:29:50]   Prediction: [ 0.00  0.00  0.00  0.75  0.00  0.00  0.00  0.00  0.25  0.00]
+[FCNLIB][2017-09-01 19:29:50]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:29:50] Saving figure [_output\20170901_192950_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_8_3.png]
+[FCNLIB][2017-09-01 19:29:50] Label/Prediction: 8/9 Correct: False Imagesize: (1, 106, 93, 1)
+[FCNLIB][2017-09-01 19:29:50]   Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.16  0.83]
+[FCNLIB][2017-09-01 19:29:50]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:29:50] Saving figure [_output\20170901_192950_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_8_9.png]
+[FCNLIB][2017-09-01 19:29:54] Label/Prediction: 6/1 Correct: False Imagesize: (1, 118, 125, 1)
+[FCNLIB][2017-09-01 19:29:54]   Prediction: [ 0.00  0.59  0.00  0.00  0.01  0.05  0.35  0.00  0.01  0.00]
+[FCNLIB][2017-09-01 19:29:54]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:29:54] Saving figure [_output\20170901_192954_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_1.png]
+[FCNLIB][2017-09-01 19:29:55] Label/Prediction: 2/7 Correct: False Imagesize: (1, 95, 79, 1)
+[FCNLIB][2017-09-01 19:29:55]   Prediction: [ 0.00  0.00  0.35  0.00  0.00  0.00  0.00  0.64  0.00  0.00]
+[FCNLIB][2017-09-01 19:29:55]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:29:55] Saving figure [_output\20170901_192955_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_2_7.png]
+[FCNLIB][2017-09-01 19:29:56] Label/Prediction: 2/5 Correct: False Imagesize: (1, 111, 103, 1)
+[FCNLIB][2017-09-01 19:29:56]   Prediction: [ 0.00  0.00  0.02  0.00  0.00  0.97  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:29:56]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:29:56] Saving figure [_output\20170901_192956_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_2_5.png]
+[FCNLIB][2017-09-01 19:30:00] Label/Prediction: 2/7 Correct: False Imagesize: (1, 90, 121, 1)
+[FCNLIB][2017-09-01 19:30:00]   Prediction: [ 0.00  0.00  0.14  0.02  0.00  0.00  0.00  0.84  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:00]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:00] Saving figure [_output\20170901_193000_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_2_7.png]
+[FCNLIB][2017-09-01 19:30:08] Label/Prediction: 2/9 Correct: False Imagesize: (1, 82, 95, 1)
+[FCNLIB][2017-09-01 19:30:08]   Prediction: [ 0.16  0.00  0.10  0.02  0.00  0.08  0.00  0.05  0.05  0.54]
+[FCNLIB][2017-09-01 19:30:08]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:08] Saving figure [_output\20170901_193008_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_2_9.png]
+[FCNLIB][2017-09-01 19:30:12] Label/Prediction: 2/5 Correct: False Imagesize: (1, 92, 92, 1)
+[FCNLIB][2017-09-01 19:30:12]   Prediction: [ 0.00  0.00  0.12  0.01  0.00  0.77  0.00  0.02  0.00  0.07]
+[FCNLIB][2017-09-01 19:30:12]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:12] Saving figure [_output\20170901_193012_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_2_5.png]
+[FCNLIB][2017-09-01 19:30:16] Label/Prediction: 9/4 Correct: False Imagesize: (1, 88, 109, 1)
+[FCNLIB][2017-09-01 19:30:16]   Prediction: [ 0.00  0.01  0.00  0.00  0.92  0.01  0.00  0.00  0.00  0.06]
+[FCNLIB][2017-09-01 19:30:16]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:30:16] Saving figure [_output\20170901_193016_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:30:34] Label/Prediction: 4/9 Correct: False Imagesize: (1, 80, 104, 1)
+[FCNLIB][2017-09-01 19:30:34]   Prediction: [ 0.00  0.00  0.00  0.00  0.07  0.00  0.00  0.00  0.03  0.90]
+[FCNLIB][2017-09-01 19:30:34]   y_test:     [ 0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:34] Saving figure [_output\20170901_193034_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_4_9.png]
+[FCNLIB][2017-09-01 19:30:39] Label/Prediction: 2/7 Correct: False Imagesize: (1, 122, 117, 1)
+[FCNLIB][2017-09-01 19:30:39]   Prediction: [ 0.00  0.00  0.09  0.00  0.00  0.00  0.00  0.91  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:39]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:39] Saving figure [_output\20170901_193039_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_2_7.png]
+[FCNLIB][2017-09-01 19:30:39] Label/Prediction: 4/6 Correct: False Imagesize: (1, 104, 102, 1)
+[FCNLIB][2017-09-01 19:30:39]   Prediction: [ 0.00  0.00  0.00  0.00  0.07  0.01  0.69  0.00  0.23  0.01]
+[FCNLIB][2017-09-01 19:30:39]   y_test:     [ 0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:39] Saving figure [_output\20170901_193039_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_4_6.png]
+[FCNLIB][2017-09-01 19:30:41] Label/Prediction: 4/9 Correct: False Imagesize: (1, 116, 123, 1)
+[FCNLIB][2017-09-01 19:30:41]   Prediction: [ 0.00  0.00  0.00  0.00  0.41  0.00  0.00  0.00  0.00  0.59]
+[FCNLIB][2017-09-01 19:30:41]   y_test:     [ 0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:41] Saving figure [_output\20170901_193041_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_4_9.png]
+[FCNLIB][2017-09-01 19:30:47] Label/Prediction: 6/5 Correct: False Imagesize: (1, 90, 103, 1)
+[FCNLIB][2017-09-01 19:30:47]   Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.51  0.39  0.00  0.09  0.00]
+[FCNLIB][2017-09-01 19:30:47]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:47] Saving figure [_output\20170901_193047_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_5.png]
+[FCNLIB][2017-09-01 19:30:51] Label/Prediction: 4/9 Correct: False Imagesize: (1, 85, 107, 1)
+[FCNLIB][2017-09-01 19:30:51]   Prediction: [ 0.00  0.01  0.01  0.01  0.08  0.02  0.00  0.03  0.03  0.79]
+[FCNLIB][2017-09-01 19:30:51]   y_test:     [ 0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:30:51] Saving figure [_output\20170901_193051_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_4_9.png]
+[FCNLIB][2017-09-01 19:30:51] Variable size accuracy: 0.970 (test 0.985)for B1_32x2->64x2->512(3)x2->GMP->512d->512d
+
+[FCNLIB][2017-09-01 19:30:51] Preparing FCN (2/6): B1_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d using model blocks definition 
+[FCNLIB][2017-09-01 19:30:53] Short description:
+Input (None, None, 1)
+Conv2D  [depth:16 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:16 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:128 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:128 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:256 kernel:(1, 1) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:256 kernel:(1, 1) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+GlobalMaxPooling2D
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Readout [unit:10 activ:softmax init:he_normal]
+
+[FCNLIB][2017-09-01 19:30:53] Keras Neural Network Layout
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_17 (InputLayer)        (None, None, None, 1)     0         
+_________________________________________________________________
+CBLOCK1_CONV16_0 (Conv2D)    (None, None, None, 16)    160       
+_________________________________________________________________
+batch_normalization_93 (Batc (None, None, None, 16)    64        
+_________________________________________________________________
+activation_125 (Activation)  (None, None, None, 16)    0         
+_________________________________________________________________
+CBLOCK1_CONV16_1 (Conv2D)    (None, None, None, 16)    2320      
+_________________________________________________________________
+batch_normalization_94 (Batc (None, None, None, 16)    64        
+_________________________________________________________________
+activation_126 (Activation)  (None, None, None, 16)    0         
+_________________________________________________________________
+CBLOCK2_CONV32_0 (Conv2D)    (None, None, None, 32)    4640      
+_________________________________________________________________
+batch_normalization_95 (Batc (None, None, None, 32)    128       
+_________________________________________________________________
+activation_127 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK2_CONV32_1 (Conv2D)    (None, None, None, 32)    9248      
+_________________________________________________________________
+batch_normalization_96 (Batc (None, None, None, 32)    128       
+_________________________________________________________________
+activation_128 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK3_CONV64_0 (Conv2D)    (None, None, None, 64)    18496     
+_________________________________________________________________
+batch_normalization_97 (Batc (None, None, None, 64)    256       
+_________________________________________________________________
+activation_129 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK3_CONV64_1 (Conv2D)    (None, None, None, 64)    36928     
+_________________________________________________________________
+batch_normalization_98 (Batc (None, None, None, 64)    256       
+_________________________________________________________________
+activation_130 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK4_CONV128_0 (Conv2D)   (None, None, None, 128)   73856     
+_________________________________________________________________
+batch_normalization_99 (Batc (None, None, None, 128)   512       
+_________________________________________________________________
+activation_131 (Activation)  (None, None, None, 128)   0         
+_________________________________________________________________
+CBLOCK4_CONV128_1 (Conv2D)   (None, None, None, 128)   147584    
+_________________________________________________________________
+batch_normalization_100 (Bat (None, None, None, 128)   512       
+_________________________________________________________________
+activation_132 (Activation)  (None, None, None, 128)   0         
+_________________________________________________________________
+CBLOCK5_CONV256_0 (Conv2D)   (None, None, None, 256)   33024     
+_________________________________________________________________
+batch_normalization_101 (Bat (None, None, None, 256)   1024      
+_________________________________________________________________
+activation_133 (Activation)  (None, None, None, 256)   0         
+_________________________________________________________________
+CBLOCK5_CONV256_1 (Conv2D)   (None, None, None, 256)   65792     
+_________________________________________________________________
+batch_normalization_102 (Bat (None, None, None, 256)   1024      
+_________________________________________________________________
+activation_134 (Activation)  (None, None, None, 256)   0         
+_________________________________________________________________
+global_max_pooling2d_17 (Glo (None, 256)               0         
+_________________________________________________________________
+dense_49 (Dense)             (None, 512)               131584    
+_________________________________________________________________
+dropout_33 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_50 (Dense)             (None, 512)               262656    
+_________________________________________________________________
+dropout_34 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_51 (Dense)             (None, 10)                5130      
+=================================================================
+Total params: 795,386.0
+Trainable params: 793,402.0
+Non-trainable params: 1,984.0
+_________________________________________________________________
+
+[FCNLIB][2017-09-01 19:30:53] Training FCN (2/6)for 20 epochs...
+[FCNLIB][2017-09-01 19:34:57] Test score:0.064
+[FCNLIB][2017-09-01 19:34:57] Test accuracy:0.983
+[FCNLIB][2017-09-01 19:35:05] Label/Prediction: 9/4 Correct: False Imagesize: (1, 81, 93, 1)
+[FCNLIB][2017-09-01 19:35:05]   Prediction: [ 0.00  0.00  0.00  0.00  0.50  0.00  0.00  0.00  0.00  0.49]
+[FCNLIB][2017-09-01 19:35:05]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:05] Saving figure [_output\20170901_193505_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:35:07] Label/Prediction: 2/5 Correct: False Imagesize: (1, 111, 103, 1)
+[FCNLIB][2017-09-01 19:35:07]   Prediction: [ 0.01  0.00  0.43  0.00  0.00  0.56  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:35:07]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:35:07] Saving figure [_output\20170901_193507_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_2_5.png]
+[FCNLIB][2017-09-01 19:35:12] Label/Prediction: 9/7 Correct: False Imagesize: (1, 100, 121, 1)
+[FCNLIB][2017-09-01 19:35:12]   Prediction: [ 0.00  0.00  0.10  0.00  0.06  0.00  0.00  0.52  0.01  0.31]
+[FCNLIB][2017-09-01 19:35:12]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:12] Saving figure [_output\20170901_193512_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_7.png]
+[FCNLIB][2017-09-01 19:35:12] Label/Prediction: 9/7 Correct: False Imagesize: (1, 99, 80, 1)
+[FCNLIB][2017-09-01 19:35:12]   Prediction: [ 0.01  0.00  0.04  0.00  0.00  0.00  0.00  0.59  0.00  0.36]
+[FCNLIB][2017-09-01 19:35:12]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:12] Saving figure [_output\20170901_193512_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_7.png]
+[FCNLIB][2017-09-01 19:35:12] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:35:14] Label/Prediction: 2/0 Correct: False Imagesize: (1, 82, 95, 1)
+[FCNLIB][2017-09-01 19:35:14]   Prediction: [ 0.79  0.00  0.19  0.00  0.00  0.00  0.00  0.01  0.00  0.01]
+[FCNLIB][2017-09-01 19:35:14]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:35:14] Saving figure [_output\20170901_193514_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_2_0.png]
+[FCNLIB][2017-09-01 19:35:15] Label/Prediction: 2/5 Correct: False Imagesize: (1, 92, 92, 1)
+[FCNLIB][2017-09-01 19:35:15]   Prediction: [ 0.14  0.00  0.24  0.00  0.01  0.51  0.00  0.06  0.00  0.04]
+[FCNLIB][2017-09-01 19:35:15]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:35:15] Saving figure [_output\20170901_193515_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_2_5.png]
+[FCNLIB][2017-09-01 19:35:18] Label/Prediction: 9/4 Correct: False Imagesize: (1, 88, 109, 1)
+[FCNLIB][2017-09-01 19:35:18]   Prediction: [ 0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:35:18]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:18] Saving figure [_output\20170901_193518_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:35:19] Label/Prediction: 9/4 Correct: False Imagesize: (1, 107, 89, 1)
+[FCNLIB][2017-09-01 19:35:19]   Prediction: [ 0.00  0.00  0.00  0.00  0.73  0.00  0.00  0.00  0.00  0.27]
+[FCNLIB][2017-09-01 19:35:19]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:19] Saving figure [_output\20170901_193519_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:35:20] Label/Prediction: 9/4 Correct: False Imagesize: (1, 104, 103, 1)
+[FCNLIB][2017-09-01 19:35:20]   Prediction: [ 0.00  0.00  0.01  0.00  0.88  0.00  0.00  0.00  0.01  0.10]
+[FCNLIB][2017-09-01 19:35:20]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:20] Saving figure [_output\20170901_193520_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:35:20] Label/Prediction: 9/4 Correct: False Imagesize: (1, 83, 127, 1)
+[FCNLIB][2017-09-01 19:35:20]   Prediction: [ 0.00  0.00  0.00  0.00  0.77  0.00  0.00  0.00  0.09  0.13]
+[FCNLIB][2017-09-01 19:35:20]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:20] Saving figure [_output\20170901_193520_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:35:20] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:35:23] Label/Prediction: 1/5 Correct: False Imagesize: (1, 115, 93, 1)
+[FCNLIB][2017-09-01 19:35:23]   Prediction: [ 0.06  0.14  0.02  0.05  0.01  0.34  0.23  0.00  0.15  0.00]
+[FCNLIB][2017-09-01 19:35:23]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:35:23] Saving figure [_output\20170901_193523_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_1_5.png]
+[FCNLIB][2017-09-01 19:35:28] Label/Prediction: 1/6 Correct: False Imagesize: (1, 88, 103, 1)
+[FCNLIB][2017-09-01 19:35:28]   Prediction: [ 0.01  0.10  0.00  0.00  0.00  0.01  0.88  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:35:28]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:35:28] Saving figure [_output\20170901_193528_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_1_6.png]
+[FCNLIB][2017-09-01 19:35:29] Label/Prediction: 9/4 Correct: False Imagesize: (1, 103, 107, 1)
+[FCNLIB][2017-09-01 19:35:29]   Prediction: [ 0.00  0.00  0.00  0.00  0.58  0.00  0.00  0.00  0.00  0.41]
+[FCNLIB][2017-09-01 19:35:29]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:29] Saving figure [_output\20170901_193529_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:35:32] Label/Prediction: 9/4 Correct: False Imagesize: (1, 86, 99, 1)
+[FCNLIB][2017-09-01 19:35:32]   Prediction: [ 0.00  0.00  0.02  0.00  0.78  0.00  0.00  0.00  0.00  0.20]
+[FCNLIB][2017-09-01 19:35:32]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:32] Saving figure [_output\20170901_193532_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:35:34] Label/Prediction: 9/4 Correct: False Imagesize: (1, 127, 126, 1)
+[FCNLIB][2017-09-01 19:35:34]   Prediction: [ 0.00  0.00  0.02  0.00  0.58  0.00  0.00  0.00  0.23  0.16]
+[FCNLIB][2017-09-01 19:35:34]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:34] Saving figure [_output\20170901_193534_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:35:35] Label/Prediction: 9/4 Correct: False Imagesize: (1, 112, 78, 1)
+[FCNLIB][2017-09-01 19:35:35]   Prediction: [ 0.00  0.00  0.01  0.00  0.57  0.00  0.00  0.00  0.01  0.41]
+[FCNLIB][2017-09-01 19:35:35]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:35:35] Saving figure [_output\20170901_193535_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:35:37] Label/Prediction: 3/5 Correct: False Imagesize: (1, 102, 121, 1)
+[FCNLIB][2017-09-01 19:35:37]   Prediction: [ 0.00  0.00  0.01  0.04  0.00  0.94  0.00  0.01  0.00  0.00]
+[FCNLIB][2017-09-01 19:35:37]   y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:35:37] Saving figure [_output\20170901_193537_B1_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_3_5.png]
+[FCNLIB][2017-09-01 19:35:37] Variable size accuracy: 0.966 (test 0.983)for B1_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+
+[FCNLIB][2017-09-01 19:35:37] Preparing FCN (3/6): B0_32x2->64x2->512(3)x2->GMP->512d->512d using model blocks definition 
+[FCNLIB][2017-09-01 19:35:37] Short description:
+Input (None, None, 1)
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:512 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:512 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+GlobalMaxPooling2D
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Readout [unit:10 activ:softmax init:he_normal]
+
+[FCNLIB][2017-09-01 19:35:37] Keras Neural Network Layout
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_18 (InputLayer)        (None, None, None, 1)     0         
+_________________________________________________________________
+CBLOCK1_CONV32_0 (Conv2D)    (None, None, None, 32)    320       
+_________________________________________________________________
+activation_135 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK1_CONV32_1 (Conv2D)    (None, None, None, 32)    9248      
+_________________________________________________________________
+activation_136 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK2_CONV64_0 (Conv2D)    (None, None, None, 64)    18496     
+_________________________________________________________________
+activation_137 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK2_CONV64_1 (Conv2D)    (None, None, None, 64)    36928     
+_________________________________________________________________
+activation_138 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK3_CONV512_0 (Conv2D)   (None, None, None, 512)   295424    
+_________________________________________________________________
+activation_139 (Activation)  (None, None, None, 512)   0         
+_________________________________________________________________
+CBLOCK3_CONV512_1 (Conv2D)   (None, None, None, 512)   2359808   
+_________________________________________________________________
+activation_140 (Activation)  (None, None, None, 512)   0         
+_________________________________________________________________
+global_max_pooling2d_18 (Glo (None, 512)               0         
+_________________________________________________________________
+dense_52 (Dense)             (None, 512)               262656    
+_________________________________________________________________
+dropout_35 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_53 (Dense)             (None, 512)               262656    
+_________________________________________________________________
+dropout_36 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_54 (Dense)             (None, 10)                5130      
+=================================================================
+Total params: 3,250,666.0
+Trainable params: 3,250,666.0
+Non-trainable params: 0.0
+_________________________________________________________________
+
+[FCNLIB][2017-09-01 19:35:37] Training FCN (3/6)for 20 epochs...
+[FCNLIB][2017-09-01 19:46:47] Test score:0.056
+[FCNLIB][2017-09-01 19:46:47] Test accuracy:0.987
+[FCNLIB][2017-09-01 19:46:49] Label/Prediction: 1/7 Correct: False Imagesize: (1, 110, 118, 1)
+[FCNLIB][2017-09-01 19:46:49]   Prediction: [ 0.00  0.16  0.00  0.00  0.00  0.00  0.00  0.84  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:49]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:49] Saving figure [_output\20170901_194649_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:49] Label/Prediction: 1/7 Correct: False Imagesize: (1, 106, 91, 1)
+[FCNLIB][2017-09-01 19:46:49]   Prediction: [ 0.00  0.17  0.00  0.00  0.00  0.00  0.00  0.83  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:49]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:49] Saving figure [_output\20170901_194649_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:49] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:49] Label/Prediction: 1/0 Correct: False Imagesize: (1, 111, 96, 1)
+[FCNLIB][2017-09-01 19:46:49]   Prediction: [ 0.91  0.05  0.00  0.00  0.00  0.00  0.00  0.04  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:49]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:49] Saving figure [_output\20170901_194649_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_0.png]
+[FCNLIB][2017-09-01 19:46:49] Label/Prediction: 8/9 Correct: False Imagesize: (1, 106, 93, 1)
+[FCNLIB][2017-09-01 19:46:49]   Prediction: [ 0.01  0.01  0.07  0.01  0.07  0.02  0.01  0.02  0.23  0.54]
+[FCNLIB][2017-09-01 19:46:49]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:46:49] Saving figure [_output\20170901_194649_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_8_9.png]
+[FCNLIB][2017-09-01 19:46:49] Label/Prediction: 1/7 Correct: False Imagesize: (1, 120, 79, 1)
+[FCNLIB][2017-09-01 19:46:49]   Prediction: [ 0.00  0.16  0.00  0.00  0.00  0.00  0.00  0.84  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:49]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:49] Saving figure [_output\20170901_194649_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:49] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:50] Label/Prediction: 1/7 Correct: False Imagesize: (1, 114, 94, 1)
+[FCNLIB][2017-09-01 19:46:50]   Prediction: [ 0.00  0.27  0.00  0.00  0.00  0.00  0.00  0.73  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:50]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:50] Saving figure [_output\20170901_194650_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:50] Label/Prediction: 1/7 Correct: False Imagesize: (1, 110, 87, 1)
+[FCNLIB][2017-09-01 19:46:50]   Prediction: [ 0.00  0.50  0.00  0.00  0.00  0.00  0.00  0.50  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:50]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:50] Saving figure [_output\20170901_194650_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:50] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:50] Label/Prediction: 1/7 Correct: False Imagesize: (1, 123, 93, 1)
+[FCNLIB][2017-09-01 19:46:50]   Prediction: [ 0.00  0.36  0.00  0.00  0.00  0.00  0.00  0.64  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:50]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:50] Saving figure [_output\20170901_194650_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:50] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:50] Label/Prediction: 1/7 Correct: False Imagesize: (1, 83, 103, 1)
+[FCNLIB][2017-09-01 19:46:50]   Prediction: [ 0.00  0.27  0.00  0.00  0.00  0.00  0.00  0.72  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:50]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:50] Saving figure [_output\20170901_194650_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:50] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:50] Label/Prediction: 1/7 Correct: False Imagesize: (1, 91, 79, 1)
+[FCNLIB][2017-09-01 19:46:50]   Prediction: [ 0.00  0.45  0.02  0.00  0.08  0.00  0.00  0.45  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:50]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:50] Saving figure [_output\20170901_194650_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:50] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:51] Label/Prediction: 1/7 Correct: False Imagesize: (1, 127, 119, 1)
+[FCNLIB][2017-09-01 19:46:51]   Prediction: [ 0.00  0.37  0.00  0.00  0.01  0.00  0.00  0.63  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51] Saving figure [_output\20170901_194651_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:51] Label/Prediction: 8/0 Correct: False Imagesize: (1, 101, 103, 1)
+[FCNLIB][2017-09-01 19:46:51]   Prediction: [ 0.94  0.00  0.00  0.00  0.00  0.00  0.01  0.00  0.05  0.00]
+[FCNLIB][2017-09-01 19:46:51]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:46:51] Saving figure [_output\20170901_194651_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_8_0.png]
+[FCNLIB][2017-09-01 19:46:51] Label/Prediction: 8/9 Correct: False Imagesize: (1, 78, 108, 1)
+[FCNLIB][2017-09-01 19:46:51]   Prediction: [ 0.00  0.00  0.02  0.00  0.09  0.03  0.01  0.00  0.35  0.50]
+[FCNLIB][2017-09-01 19:46:51]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:46:51] Saving figure [_output\20170901_194651_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_8_9.png]
+[FCNLIB][2017-09-01 19:46:51] Label/Prediction: 9/7 Correct: False Imagesize: (1, 99, 80, 1)
+[FCNLIB][2017-09-01 19:46:51]   Prediction: [ 0.00  0.01  0.01  0.00  0.04  0.01  0.00  0.80  0.00  0.13]
+[FCNLIB][2017-09-01 19:46:51]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:46:51] Saving figure [_output\20170901_194651_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_9_7.png]
+[FCNLIB][2017-09-01 19:46:51] Label/Prediction: 1/7 Correct: False Imagesize: (1, 78, 116, 1)
+[FCNLIB][2017-09-01 19:46:51]   Prediction: [ 0.00  0.16  0.00  0.00  0.00  0.00  0.00  0.84  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51] Saving figure [_output\20170901_194651_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:51] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:51] Label/Prediction: 1/7 Correct: False Imagesize: (1, 89, 106, 1)
+[FCNLIB][2017-09-01 19:46:51]   Prediction: [ 0.00  0.49  0.00  0.00  0.01  0.00  0.00  0.50  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51] Saving figure [_output\20170901_194651_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:51] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:51] Label/Prediction: 1/7 Correct: False Imagesize: (1, 93, 102, 1)
+[FCNLIB][2017-09-01 19:46:51]   Prediction: [ 0.00  0.35  0.00  0.00  0.00  0.00  0.00  0.65  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51] Saving figure [_output\20170901_194651_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:51] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:51] Label/Prediction: 2/0 Correct: False Imagesize: (1, 82, 95, 1)
+[FCNLIB][2017-09-01 19:46:51]   Prediction: [ 1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51] Saving figure [_output\20170901_194651_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_2_0.png]
+[FCNLIB][2017-09-01 19:46:51] Label/Prediction: 6/4 Correct: False Imagesize: (1, 104, 106, 1)
+[FCNLIB][2017-09-01 19:46:51]   Prediction: [ 0.00  0.00  0.00  0.00  0.96  0.00  0.01  0.00  0.00  0.03]
+[FCNLIB][2017-09-01 19:46:51]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51] Saving figure [_output\20170901_194651_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_4.png]
+[FCNLIB][2017-09-01 19:46:51] Label/Prediction: 6/0 Correct: False Imagesize: (1, 83, 122, 1)
+[FCNLIB][2017-09-01 19:46:51]   Prediction: [ 0.55  0.00  0.00  0.00  0.00  0.00  0.45  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:51] Saving figure [_output\20170901_194651_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_0.png]
+[FCNLIB][2017-09-01 19:46:52] Label/Prediction: 1/7 Correct: False Imagesize: (1, 122, 92, 1)
+[FCNLIB][2017-09-01 19:46:52]   Prediction: [ 0.00  0.33  0.00  0.00  0.00  0.00  0.00  0.67  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:52]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:52] Saving figure [_output\20170901_194652_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:52] Label/Prediction: 6/0 Correct: False Imagesize: (1, 85, 95, 1)
+[FCNLIB][2017-09-01 19:46:52]   Prediction: [ 0.99  0.00  0.00  0.00  0.00  0.00  0.01  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:52]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:52] Saving figure [_output\20170901_194652_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_0.png]
+[FCNLIB][2017-09-01 19:46:52] Label/Prediction: 1/7 Correct: False Imagesize: (1, 117, 80, 1)
+[FCNLIB][2017-09-01 19:46:52]   Prediction: [ 0.00  0.16  0.00  0.00  0.00  0.00  0.00  0.84  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:52]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:52] Saving figure [_output\20170901_194652_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:52] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:52] Label/Prediction: 9/4 Correct: False Imagesize: (1, 88, 109, 1)
+[FCNLIB][2017-09-01 19:46:52]   Prediction: [ 0.00  0.00  0.00  0.00  0.89  0.00  0.00  0.00  0.00  0.10]
+[FCNLIB][2017-09-01 19:46:52]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:46:52] Saving figure [_output\20170901_194652_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:46:52] Label/Prediction: 1/7 Correct: False Imagesize: (1, 123, 110, 1)
+[FCNLIB][2017-09-01 19:46:52]   Prediction: [ 0.00  0.20  0.00  0.00  0.00  0.00  0.00  0.80  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:52]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:52] Saving figure [_output\20170901_194652_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:52] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:52] Label/Prediction: 1/7 Correct: False Imagesize: (1, 117, 83, 1)
+[FCNLIB][2017-09-01 19:46:52]   Prediction: [ 0.00  0.24  0.00  0.00  0.00  0.00  0.00  0.76  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:52]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:52] Saving figure [_output\20170901_194652_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:52] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:52] Label/Prediction: 1/7 Correct: False Imagesize: (1, 107, 116, 1)
+[FCNLIB][2017-09-01 19:46:53]   Prediction: [ 0.00  0.27  0.00  0.00  0.26  0.00  0.00  0.45  0.00  0.01]
+[FCNLIB][2017-09-01 19:46:53]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53] Saving figure [_output\20170901_194653_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:53] Label/Prediction: 1/7 Correct: False Imagesize: (1, 114, 90, 1)
+[FCNLIB][2017-09-01 19:46:53]   Prediction: [ 0.00  0.23  0.00  0.00  0.00  0.00  0.00  0.77  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53] Saving figure [_output\20170901_194653_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:53] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:53] Label/Prediction: 1/7 Correct: False Imagesize: (1, 87, 90, 1)
+[FCNLIB][2017-09-01 19:46:53]   Prediction: [ 0.00  0.45  0.00  0.00  0.00  0.00  0.00  0.54  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53] Saving figure [_output\20170901_194653_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:53] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:53] Label/Prediction: 1/7 Correct: False Imagesize: (1, 83, 100, 1)
+[FCNLIB][2017-09-01 19:46:53]   Prediction: [ 0.00  0.35  0.00  0.00  0.00  0.00  0.00  0.65  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53] Saving figure [_output\20170901_194653_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:53] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:53] Label/Prediction: 1/7 Correct: False Imagesize: (1, 98, 125, 1)
+[FCNLIB][2017-09-01 19:46:53]   Prediction: [ 0.00  0.22  0.08  0.00  0.00  0.00  0.00  0.70  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53] Saving figure [_output\20170901_194653_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:53] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:53] Label/Prediction: 1/7 Correct: False Imagesize: (1, 115, 93, 1)
+[FCNLIB][2017-09-01 19:46:53]   Prediction: [ 0.01  0.08  0.26  0.04  0.06  0.01  0.00  0.46  0.02  0.05]
+[FCNLIB][2017-09-01 19:46:53]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53] Saving figure [_output\20170901_194653_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:53] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:53] Label/Prediction: 6/0 Correct: False Imagesize: (1, 81, 100, 1)
+[FCNLIB][2017-09-01 19:46:53]   Prediction: [ 0.76  0.00  0.00  0.00  0.00  0.01  0.22  0.00  0.01  0.00]
+[FCNLIB][2017-09-01 19:46:53]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53] Saving figure [_output\20170901_194653_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_0.png]
+[FCNLIB][2017-09-01 19:46:53] Label/Prediction: 6/4 Correct: False Imagesize: (1, 109, 110, 1)
+[FCNLIB][2017-09-01 19:46:53]   Prediction: [ 0.01  0.00  0.00  0.00  0.97  0.00  0.01  0.00  0.00  0.01]
+[FCNLIB][2017-09-01 19:46:53]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:53] Saving figure [_output\20170901_194653_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_4.png]
+[FCNLIB][2017-09-01 19:46:53] Label/Prediction: 8/0 Correct: False Imagesize: (1, 123, 114, 1)
+[FCNLIB][2017-09-01 19:46:53]   Prediction: [ 0.84  0.00  0.00  0.00  0.00  0.01  0.08  0.00  0.05  0.03]
+[FCNLIB][2017-09-01 19:46:53]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:46:53] Saving figure [_output\20170901_194653_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_8_0.png]
+[FCNLIB][2017-09-01 19:46:54] Label/Prediction: 1/2 Correct: False Imagesize: (1, 88, 103, 1)
+[FCNLIB][2017-09-01 19:46:54]   Prediction: [ 0.02  0.33  0.46  0.01  0.09  0.01  0.01  0.04  0.01  0.01]
+[FCNLIB][2017-09-01 19:46:54]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54] Saving figure [_output\20170901_194654_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_2.png]
+[FCNLIB][2017-09-01 19:46:54] Label/Prediction: 1/7 Correct: False Imagesize: (1, 100, 111, 1)
+[FCNLIB][2017-09-01 19:46:54]   Prediction: [ 0.00  0.05  0.00  0.00  0.00  0.00  0.00  0.95  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54] Saving figure [_output\20170901_194654_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:54] Label/Prediction: 1/7 Correct: False Imagesize: (1, 123, 121, 1)
+[FCNLIB][2017-09-01 19:46:54]   Prediction: [ 0.00  0.03  0.00  0.00  0.00  0.00  0.00  0.97  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54] Saving figure [_output\20170901_194654_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:54] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:54] Label/Prediction: 1/7 Correct: False Imagesize: (1, 106, 124, 1)
+[FCNLIB][2017-09-01 19:46:54]   Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54] Saving figure [_output\20170901_194654_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:54] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:54] Label/Prediction: 1/7 Correct: False Imagesize: (1, 86, 95, 1)
+[FCNLIB][2017-09-01 19:46:54]   Prediction: [ 0.00  0.41  0.00  0.00  0.00  0.00  0.00  0.59  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54] Saving figure [_output\20170901_194654_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:54] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:54] Label/Prediction: 1/7 Correct: False Imagesize: (1, 85, 87, 1)
+[FCNLIB][2017-09-01 19:46:54]   Prediction: [ 0.00  0.18  0.00  0.00  0.00  0.00  0.00  0.82  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54] Saving figure [_output\20170901_194654_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:54] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:54] Label/Prediction: 1/7 Correct: False Imagesize: (1, 119, 106, 1)
+[FCNLIB][2017-09-01 19:46:54]   Prediction: [ 0.01  0.09  0.02  0.00  0.01  0.00  0.00  0.84  0.00  0.01]
+[FCNLIB][2017-09-01 19:46:54]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54] Saving figure [_output\20170901_194654_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:54] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:54] Label/Prediction: 9/5 Correct: False Imagesize: (1, 92, 115, 1)
+[FCNLIB][2017-09-01 19:46:54]   Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.87  0.00  0.00  0.02  0.10]
+[FCNLIB][2017-09-01 19:46:54]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:46:54] Saving figure [_output\20170901_194654_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_9_5.png]
+[FCNLIB][2017-09-01 19:46:54] Label/Prediction: 1/7 Correct: False Imagesize: (1, 94, 113, 1)
+[FCNLIB][2017-09-01 19:46:54]   Prediction: [ 0.00  0.15  0.02  0.00  0.01  0.00  0.00  0.83  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:54] Saving figure [_output\20170901_194654_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:54] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:55] Label/Prediction: 8/2 Correct: False Imagesize: (1, 113, 78, 1)
+[FCNLIB][2017-09-01 19:46:55]   Prediction: [ 0.01  0.01  0.59  0.01  0.01  0.01  0.01  0.01  0.31  0.03]
+[FCNLIB][2017-09-01 19:46:55]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:46:55] Saving figure [_output\20170901_194655_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_8_2.png]
+[FCNLIB][2017-09-01 19:46:55] Label/Prediction: 1/7 Correct: False Imagesize: (1, 81, 84, 1)
+[FCNLIB][2017-09-01 19:46:55]   Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:55]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:55] Saving figure [_output\20170901_194655_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:55] Label/Prediction: 1/7 Correct: False Imagesize: (1, 91, 127, 1)
+[FCNLIB][2017-09-01 19:46:55]   Prediction: [ 0.00  0.03  0.01  0.00  0.00  0.00  0.00  0.97  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:55]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:55] Saving figure [_output\20170901_194655_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:55] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:55] Label/Prediction: 1/7 Correct: False Imagesize: (1, 124, 125, 1)
+[FCNLIB][2017-09-01 19:46:55]   Prediction: [ 0.00  0.20  0.00  0.00  0.00  0.00  0.00  0.80  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:55]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:55] Saving figure [_output\20170901_194655_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:55] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:55] Label/Prediction: 6/0 Correct: False Imagesize: (1, 106, 79, 1)
+[FCNLIB][2017-09-01 19:46:55]   Prediction: [ 0.49  0.00  0.00  0.00  0.00  0.02  0.49  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:55]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:55] Saving figure [_output\20170901_194655_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_0.png]
+[FCNLIB][2017-09-01 19:46:55] Label/Prediction: 1/7 Correct: False Imagesize: (1, 107, 84, 1)
+[FCNLIB][2017-09-01 19:46:55]   Prediction: [ 0.00  0.50  0.00  0.00  0.00  0.00  0.00  0.50  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:55]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:55] Saving figure [_output\20170901_194655_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:55] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:55] Label/Prediction: 8/2 Correct: False Imagesize: (1, 91, 85, 1)
+[FCNLIB][2017-09-01 19:46:55]   Prediction: [ 0.00  0.00  0.84  0.00  0.01  0.00  0.01  0.00  0.12  0.01]
+[FCNLIB][2017-09-01 19:46:55]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:46:55] Saving figure [_output\20170901_194655_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_8_2.png]
+[FCNLIB][2017-09-01 19:46:56] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:56] Label/Prediction: 1/7 Correct: False Imagesize: (1, 112, 113, 1)
+[FCNLIB][2017-09-01 19:46:56]   Prediction: [ 0.00  0.06  0.00  0.00  0.00  0.00  0.00  0.94  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:56]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:56] Saving figure [_output\20170901_194656_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:56] Label/Prediction: 6/0 Correct: False Imagesize: (1, 122, 115, 1)
+[FCNLIB][2017-09-01 19:46:56]   Prediction: [ 0.70  0.00  0.02  0.00  0.01  0.12  0.13  0.00  0.01  0.02]
+[FCNLIB][2017-09-01 19:46:56]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:56] Saving figure [_output\20170901_194656_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_0.png]
+[FCNLIB][2017-09-01 19:46:56] Label/Prediction: 8/0 Correct: False Imagesize: (1, 118, 95, 1)
+[FCNLIB][2017-09-01 19:46:56]   Prediction: [ 0.48  0.01  0.04  0.02  0.01  0.07  0.08  0.00  0.26  0.05]
+[FCNLIB][2017-09-01 19:46:56]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:46:56] Saving figure [_output\20170901_194656_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_8_0.png]
+[FCNLIB][2017-09-01 19:46:56] Label/Prediction: 1/7 Correct: False Imagesize: (1, 100, 84, 1)
+[FCNLIB][2017-09-01 19:46:56]   Prediction: [ 0.00  0.16  0.00  0.00  0.00  0.00  0.00  0.84  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:56]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:56] Saving figure [_output\20170901_194656_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:46:56] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:56] Label/Prediction: 6/0 Correct: False Imagesize: (1, 119, 127, 1)
+[FCNLIB][2017-09-01 19:46:56]   Prediction: [ 0.73  0.00  0.00  0.00  0.00  0.00  0.27  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:56]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:56] Saving figure [_output\20170901_194656_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_0.png]
+[FCNLIB][2017-09-01 19:46:56] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:46:56] Label/Prediction: 4/9 Correct: False Imagesize: (1, 85, 107, 1)
+[FCNLIB][2017-09-01 19:46:56]   Prediction: [ 0.00  0.06  0.08  0.01  0.29  0.04  0.01  0.08  0.04  0.39]
+[FCNLIB][2017-09-01 19:46:56]   y_test:     [ 0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:46:56] Saving figure [_output\20170901_194656_B0_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_4_9.png]
+[FCNLIB][2017-09-01 19:46:56] Variable size accuracy: 0.886 (test 0.987)for B0_32x2->64x2->512(3)x2->GMP->512d->512d
+
+[FCNLIB][2017-09-01 19:46:56] Preparing FCN (4/6): B0_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d using model blocks definition 
+[FCNLIB][2017-09-01 19:46:56] Short description:
+Input (None, None, 1)
+Conv2D  [depth:16 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:16 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:128 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:128 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:256 kernel:(1, 1) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+Conv2D  [depth:256 kernel:(1, 1) stride:(1, 1) pad:same init:he_normal batchnorm:0 activ:elu]
+GlobalMaxPooling2D
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Readout [unit:10 activ:softmax init:he_normal]
+
+[FCNLIB][2017-09-01 19:46:56] Keras Neural Network Layout
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_19 (InputLayer)        (None, None, None, 1)     0         
+_________________________________________________________________
+CBLOCK1_CONV16_0 (Conv2D)    (None, None, None, 16)    160       
+_________________________________________________________________
+activation_141 (Activation)  (None, None, None, 16)    0         
+_________________________________________________________________
+CBLOCK1_CONV16_1 (Conv2D)    (None, None, None, 16)    2320      
+_________________________________________________________________
+activation_142 (Activation)  (None, None, None, 16)    0         
+_________________________________________________________________
+CBLOCK2_CONV32_0 (Conv2D)    (None, None, None, 32)    4640      
+_________________________________________________________________
+activation_143 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK2_CONV32_1 (Conv2D)    (None, None, None, 32)    9248      
+_________________________________________________________________
+activation_144 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK3_CONV64_0 (Conv2D)    (None, None, None, 64)    18496     
+_________________________________________________________________
+activation_145 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK3_CONV64_1 (Conv2D)    (None, None, None, 64)    36928     
+_________________________________________________________________
+activation_146 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK4_CONV128_0 (Conv2D)   (None, None, None, 128)   73856     
+_________________________________________________________________
+activation_147 (Activation)  (None, None, None, 128)   0         
+_________________________________________________________________
+CBLOCK4_CONV128_1 (Conv2D)   (None, None, None, 128)   147584    
+_________________________________________________________________
+activation_148 (Activation)  (None, None, None, 128)   0         
+_________________________________________________________________
+CBLOCK5_CONV256_0 (Conv2D)   (None, None, None, 256)   33024     
+_________________________________________________________________
+activation_149 (Activation)  (None, None, None, 256)   0         
+_________________________________________________________________
+CBLOCK5_CONV256_1 (Conv2D)   (None, None, None, 256)   65792     
+_________________________________________________________________
+activation_150 (Activation)  (None, None, None, 256)   0         
+_________________________________________________________________
+global_max_pooling2d_19 (Glo (None, 256)               0         
+_________________________________________________________________
+dense_55 (Dense)             (None, 512)               131584    
+_________________________________________________________________
+dropout_37 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_56 (Dense)             (None, 512)               262656    
+_________________________________________________________________
+dropout_38 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_57 (Dense)             (None, 10)                5130      
+=================================================================
+Total params: 791,418.0
+Trainable params: 791,418.0
+Non-trainable params: 0.0
+_________________________________________________________________
+
+[FCNLIB][2017-09-01 19:46:56] Training FCN (4/6)for 20 epochs...
+[FCNLIB][2017-09-01 19:51:07] Test score:0.055
+[FCNLIB][2017-09-01 19:51:07] Test accuracy:0.984
+[FCNLIB][2017-09-01 19:51:09] Label/Prediction: 0/2 Correct: False Imagesize: (1, 112, 125, 1)
+[FCNLIB][2017-09-01 19:51:09]   Prediction: [ 0.18  0.00  0.51  0.02  0.04  0.03  0.08  0.05  0.01  0.07]
+[FCNLIB][2017-09-01 19:51:09]   y_test:     [ 1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:09] Saving figure [_output\20170901_195109_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_0_2.png]
+[FCNLIB][2017-09-01 19:51:09] Label/Prediction: 0/2 Correct: False Imagesize: (1, 122, 101, 1)
+[FCNLIB][2017-09-01 19:51:09]   Prediction: [ 0.33  0.00  0.56  0.00  0.01  0.00  0.01  0.02  0.00  0.07]
+[FCNLIB][2017-09-01 19:51:09]   y_test:     [ 1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:09] Saving figure [_output\20170901_195109_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_0_2.png]
+[FCNLIB][2017-09-01 19:51:09] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:51:10] Label/Prediction: 9/2 Correct: False Imagesize: (1, 96, 118, 1)
+[FCNLIB][2017-09-01 19:51:10]   Prediction: [ 0.00  0.00  0.72  0.00  0.00  0.00  0.00  0.00  0.00  0.28]
+[FCNLIB][2017-09-01 19:51:10]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:51:10] Saving figure [_output\20170901_195110_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_2.png]
+[FCNLIB][2017-09-01 19:51:10] Label/Prediction: 8/9 Correct: False Imagesize: (1, 106, 93, 1)
+[FCNLIB][2017-09-01 19:51:10]   Prediction: [ 0.02  0.00  0.25  0.06  0.14  0.02  0.09  0.03  0.11  0.29]
+[FCNLIB][2017-09-01 19:51:10]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:51:10] Saving figure [_output\20170901_195110_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_8_9.png]
+[FCNLIB][2017-09-01 19:51:10] Label/Prediction: 6/4 Correct: False Imagesize: (1, 118, 125, 1)
+[FCNLIB][2017-09-01 19:51:10]   Prediction: [ 0.00  0.01  0.01  0.00  0.63  0.12  0.04  0.00  0.05  0.14]
+[FCNLIB][2017-09-01 19:51:10]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:10] Saving figure [_output\20170901_195110_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_6_4.png]
+[FCNLIB][2017-09-01 19:51:10] Label/Prediction: 0/2 Correct: False Imagesize: (1, 104, 78, 1)
+[FCNLIB][2017-09-01 19:51:10]   Prediction: [ 0.22  0.00  0.43  0.01  0.02  0.01  0.11  0.02  0.01  0.16]
+[FCNLIB][2017-09-01 19:51:10]   y_test:     [ 1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:10] Saving figure [_output\20170901_195110_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_0_2.png]
+[FCNLIB][2017-09-01 19:51:10] Label/Prediction: 8/9 Correct: False Imagesize: (1, 78, 108, 1)
+[FCNLIB][2017-09-01 19:51:11]   Prediction: [ 0.00  0.00  0.06  0.00  0.00  0.00  0.00  0.00  0.04  0.88]
+[FCNLIB][2017-09-01 19:51:11]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:51:11] Saving figure [_output\20170901_195111_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_8_9.png]
+[FCNLIB][2017-09-01 19:51:11] Label/Prediction: 9/2 Correct: False Imagesize: (1, 99, 80, 1)
+[FCNLIB][2017-09-01 19:51:11]   Prediction: [ 0.00  0.00  0.93  0.00  0.00  0.00  0.00  0.02  0.00  0.03]
+[FCNLIB][2017-09-01 19:51:11]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:51:11] Saving figure [_output\20170901_195111_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_2.png]
+[FCNLIB][2017-09-01 19:51:11] Label/Prediction: 6/5 Correct: False Imagesize: (1, 85, 95, 1)
+[FCNLIB][2017-09-01 19:51:11]   Prediction: [ 0.01  0.00  0.01  0.01  0.00  0.71  0.23  0.00  0.03  0.00]
+[FCNLIB][2017-09-01 19:51:11]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:11] Saving figure [_output\20170901_195111_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_6_5.png]
+[FCNLIB][2017-09-01 19:51:11] Label/Prediction: 9/2 Correct: False Imagesize: (1, 101, 122, 1)
+[FCNLIB][2017-09-01 19:51:11]   Prediction: [ 0.00  0.00  0.45  0.00  0.26  0.00  0.00  0.00  0.00  0.29]
+[FCNLIB][2017-09-01 19:51:11]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:51:11] Saving figure [_output\20170901_195111_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_2.png]
+[FCNLIB][2017-09-01 19:51:11] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:51:11] Label/Prediction: 6/5 Correct: False Imagesize: (1, 100, 106, 1)
+[FCNLIB][2017-09-01 19:51:11]   Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.91  0.08  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:11]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:11] Saving figure [_output\20170901_195111_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_6_5.png]
+[FCNLIB][2017-09-01 19:51:11] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:51:11] Label/Prediction: 9/4 Correct: False Imagesize: (1, 88, 109, 1)
+[FCNLIB][2017-09-01 19:51:11]   Prediction: [ 0.00  0.00  0.00  0.00  0.99  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:11]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:51:11] Saving figure [_output\20170901_195111_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:51:11] Label/Prediction: 9/4 Correct: False Imagesize: (1, 104, 103, 1)
+[FCNLIB][2017-09-01 19:51:11]   Prediction: [ 0.00  0.00  0.00  0.00  0.96  0.00  0.00  0.00  0.00  0.03]
+[FCNLIB][2017-09-01 19:51:11]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:51:11] Saving figure [_output\20170901_195111_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 19:51:11] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:51:12] Label/Prediction: 1/2 Correct: False Imagesize: (1, 115, 93, 1)
+[FCNLIB][2017-09-01 19:51:12]   Prediction: [ 0.02  0.03  0.29  0.08  0.22  0.13  0.11  0.03  0.08  0.02]
+[FCNLIB][2017-09-01 19:51:12]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:12] Saving figure [_output\20170901_195112_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_1_2.png]
+[FCNLIB][2017-09-01 19:51:12] Label/Prediction: 8/6 Correct: False Imagesize: (1, 123, 114, 1)
+[FCNLIB][2017-09-01 19:51:12]   Prediction: [ 0.03  0.00  0.03  0.02  0.00  0.02  0.71  0.00  0.09  0.12]
+[FCNLIB][2017-09-01 19:51:12]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:51:12] Saving figure [_output\20170901_195112_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_8_6.png]
+[FCNLIB][2017-09-01 19:51:12] Label/Prediction: 4/9 Correct: False Imagesize: (1, 80, 104, 1)
+[FCNLIB][2017-09-01 19:51:12]   Prediction: [ 0.00  0.00  0.04  0.00  0.37  0.00  0.00  0.01  0.00  0.57]
+[FCNLIB][2017-09-01 19:51:12]   y_test:     [ 0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:12] Saving figure [_output\20170901_195112_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_4_9.png]
+[FCNLIB][2017-09-01 19:51:12] Label/Prediction: 1/2 Correct: False Imagesize: (1, 88, 103, 1)
+[FCNLIB][2017-09-01 19:51:12]   Prediction: [ 0.01  0.15  0.30  0.00  0.23  0.00  0.28  0.01  0.01  0.01]
+[FCNLIB][2017-09-01 19:51:12]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:12] Saving figure [_output\20170901_195112_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_1_2.png]
+[FCNLIB][2017-09-01 19:51:12] Aborting image saving. File already exists.
+[FCNLIB][2017-09-01 19:51:12] Label/Prediction: 9/5 Correct: False Imagesize: (1, 103, 107, 1)
+[FCNLIB][2017-09-01 19:51:12]   Prediction: [ 0.00  0.00  0.02  0.02  0.01  0.53  0.03  0.00  0.06  0.32]
+[FCNLIB][2017-09-01 19:51:12]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:51:12] Saving figure [_output\20170901_195112_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_5.png]
+[FCNLIB][2017-09-01 19:51:13] Label/Prediction: 1/7 Correct: False Imagesize: (1, 119, 106, 1)
+[FCNLIB][2017-09-01 19:51:13]   Prediction: [ 0.00  0.41  0.02  0.00  0.00  0.01  0.00  0.56  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:13]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:13] Saving figure [_output\20170901_195113_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 19:51:13] Label/Prediction: 9/5 Correct: False Imagesize: (1, 92, 115, 1)
+[FCNLIB][2017-09-01 19:51:13]   Prediction: [ 0.00  0.00  0.01  0.00  0.01  0.54  0.04  0.00  0.15  0.26]
+[FCNLIB][2017-09-01 19:51:13]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 19:51:13] Saving figure [_output\20170901_195113_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_5.png]
+[FCNLIB][2017-09-01 19:51:13] Label/Prediction: 6/5 Correct: False Imagesize: (1, 90, 103, 1)
+[FCNLIB][2017-09-01 19:51:13]   Prediction: [ 0.00  0.00  0.01  0.01  0.00  0.90  0.06  0.00  0.01  0.01]
+[FCNLIB][2017-09-01 19:51:13]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:13] Saving figure [_output\20170901_195113_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_6_5.png]
+[FCNLIB][2017-09-01 19:51:13] Label/Prediction: 3/5 Correct: False Imagesize: (1, 117, 79, 1)
+[FCNLIB][2017-09-01 19:51:13]   Prediction: [ 0.00  0.00  0.01  0.11  0.00  0.88  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:13]   y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:13] Saving figure [_output\20170901_195113_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_3_5.png]
+[FCNLIB][2017-09-01 19:51:13] Label/Prediction: 8/2 Correct: False Imagesize: (1, 91, 85, 1)
+[FCNLIB][2017-09-01 19:51:13]   Prediction: [ 0.01  0.00  0.90  0.01  0.01  0.00  0.00  0.01  0.07  0.00]
+[FCNLIB][2017-09-01 19:51:13]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 19:51:13] Saving figure [_output\20170901_195113_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_8_2.png]
+[FCNLIB][2017-09-01 19:51:13] Label/Prediction: 6/2 Correct: False Imagesize: (1, 122, 115, 1)
+[FCNLIB][2017-09-01 19:51:13]   Prediction: [ 0.00  0.01  0.76  0.00  0.00  0.23  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:13]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 19:51:13] Saving figure [_output\20170901_195113_B0_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_6_2.png]
+[FCNLIB][2017-09-01 19:51:13] Variable size accuracy: 0.952 (test 0.984)for B0_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+
+[FCNLIB][2017-09-01 19:51:13] Preparing FCN (5/6): B2_32x2->64x2->512(3)x2->GMP->512d->512d using model blocks definition 
+[FCNLIB][2017-09-01 19:51:14] Short description:
+Input (None, None, 1)
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:512 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:512 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+GlobalMaxPooling2D
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Readout [unit:10 activ:softmax init:he_normal]
+
+[FCNLIB][2017-09-01 19:51:14] Keras Neural Network Layout
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_20 (InputLayer)        (None, None, None, 1)     0         
+_________________________________________________________________
+CBLOCK1_CONV32_0 (Conv2D)    (None, None, None, 32)    320       
+_________________________________________________________________
+activation_151 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+batch_normalization_103 (Bat (None, None, None, 32)    128       
+_________________________________________________________________
+CBLOCK1_CONV32_1 (Conv2D)    (None, None, None, 32)    9248      
+_________________________________________________________________
+activation_152 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+batch_normalization_104 (Bat (None, None, None, 32)    128       
+_________________________________________________________________
+CBLOCK2_CONV64_0 (Conv2D)    (None, None, None, 64)    18496     
+_________________________________________________________________
+activation_153 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+batch_normalization_105 (Bat (None, None, None, 64)    256       
+_________________________________________________________________
+CBLOCK2_CONV64_1 (Conv2D)    (None, None, None, 64)    36928     
+_________________________________________________________________
+activation_154 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+batch_normalization_106 (Bat (None, None, None, 64)    256       
+_________________________________________________________________
+CBLOCK3_CONV512_0 (Conv2D)   (None, None, None, 512)   295424    
+_________________________________________________________________
+activation_155 (Activation)  (None, None, None, 512)   0         
+_________________________________________________________________
+batch_normalization_107 (Bat (None, None, None, 512)   2048      
+_________________________________________________________________
+CBLOCK3_CONV512_1 (Conv2D)   (None, None, None, 512)   2359808   
+_________________________________________________________________
+activation_156 (Activation)  (None, None, None, 512)   0         
+_________________________________________________________________
+batch_normalization_108 (Bat (None, None, None, 512)   2048      
+_________________________________________________________________
+global_max_pooling2d_20 (Glo (None, 512)               0         
+_________________________________________________________________
+dense_58 (Dense)             (None, 512)               262656    
+_________________________________________________________________
+dropout_39 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_59 (Dense)             (None, 512)               262656    
+_________________________________________________________________
+dropout_40 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_60 (Dense)             (None, 10)                5130      
+=================================================================
+Total params: 3,255,530.0
+Trainable params: 3,253,098.0
+Non-trainable params: 2,432.0
+_________________________________________________________________
+
+[FCNLIB][2017-09-01 19:51:14] Training FCN (5/6)for 20 epochs...
+[FCNLIB][2017-09-01 20:00:31] Test score:0.051
+[FCNLIB][2017-09-01 20:00:31] Test accuracy:0.984
+[FCNLIB][2017-09-01 20:00:34] Label/Prediction: 9/8 Correct: False Imagesize: (1, 125, 113, 1)
+[FCNLIB][2017-09-01 20:00:34]   Prediction: [ 0.00  0.00  0.06  0.00  0.01  0.00  0.00  0.00  0.47  0.46]
+[FCNLIB][2017-09-01 20:00:34]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 20:00:34] Saving figure [_output\20170901_200034_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_9_8.png]
+[FCNLIB][2017-09-01 20:00:35] Label/Prediction: 2/5 Correct: False Imagesize: (1, 111, 103, 1)
+[FCNLIB][2017-09-01 20:00:35]   Prediction: [ 0.00  0.00  0.03  0.00  0.00  0.96  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:00:35]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:00:35] Saving figure [_output\20170901_200035_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_2_5.png]
+[FCNLIB][2017-09-01 20:00:37] Label/Prediction: 3/5 Correct: False Imagesize: (1, 98, 96, 1)
+[FCNLIB][2017-09-01 20:00:37]   Prediction: [ 0.00  0.00  0.00  0.46  0.00  0.54  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:00:37]   y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:00:37] Saving figure [_output\20170901_200037_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_3_5.png]
+[FCNLIB][2017-09-01 20:00:37] Label/Prediction: 9/4 Correct: False Imagesize: (1, 88, 109, 1)
+[FCNLIB][2017-09-01 20:00:37]   Prediction: [ 0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:00:37]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 20:00:37] Saving figure [_output\20170901_200037_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 20:00:38] Label/Prediction: 9/4 Correct: False Imagesize: (1, 104, 103, 1)
+[FCNLIB][2017-09-01 20:00:38]   Prediction: [ 0.00  0.00  0.00  0.00  0.96  0.00  0.00  0.00  0.00  0.04]
+[FCNLIB][2017-09-01 20:00:38]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 20:00:38] Saving figure [_output\20170901_200038_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 20:00:38] Label/Prediction: 5/6 Correct: False Imagesize: (1, 103, 97, 1)
+[FCNLIB][2017-09-01 20:00:38]   Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.36  0.57  0.00  0.06  0.00]
+[FCNLIB][2017-09-01 20:00:38]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:00:38] Saving figure [_output\20170901_200038_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_5_6.png]
+[FCNLIB][2017-09-01 20:00:38] Label/Prediction: 1/8 Correct: False Imagesize: (1, 115, 93, 1)
+[FCNLIB][2017-09-01 20:00:38]   Prediction: [ 0.01  0.27  0.06  0.01  0.23  0.01  0.02  0.03  0.32  0.04]
+[FCNLIB][2017-09-01 20:00:38]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:00:38] Saving figure [_output\20170901_200038_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_1_8.png]
+[FCNLIB][2017-09-01 20:00:39] Label/Prediction: 3/2 Correct: False Imagesize: (1, 82, 117, 1)
+[FCNLIB][2017-09-01 20:00:39]   Prediction: [ 0.00  0.01  0.86  0.11  0.00  0.00  0.00  0.00  0.02  0.00]
+[FCNLIB][2017-09-01 20:00:39]   y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:00:39] Saving figure [_output\20170901_200039_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_3_2.png]
+[FCNLIB][2017-09-01 20:00:40] Label/Prediction: 9/5 Correct: False Imagesize: (1, 92, 115, 1)
+[FCNLIB][2017-09-01 20:00:40]   Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.51  0.00  0.00  0.01  0.48]
+[FCNLIB][2017-09-01 20:00:40]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 20:00:40] Saving figure [_output\20170901_200040_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_9_5.png]
+[FCNLIB][2017-09-01 20:00:40] Label/Prediction: 9/4 Correct: False Imagesize: (1, 86, 99, 1)
+[FCNLIB][2017-09-01 20:00:40]   Prediction: [ 0.00  0.00  0.00  0.00  0.67  0.00  0.00  0.00  0.00  0.33]
+[FCNLIB][2017-09-01 20:00:40]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 20:00:40] Saving figure [_output\20170901_200040_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 20:00:41] Label/Prediction: 3/5 Correct: False Imagesize: (1, 117, 79, 1)
+[FCNLIB][2017-09-01 20:00:41]   Prediction: [ 0.00  0.00  0.00  0.41  0.00  0.59  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:00:41]   y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:00:41] Saving figure [_output\20170901_200041_B2_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_3_5.png]
+[FCNLIB][2017-09-01 20:00:42] Variable size accuracy: 0.978 (test 0.984)for B2_32x2->64x2->512(3)x2->GMP->512d->512d
+
+[FCNLIB][2017-09-01 20:00:42] Preparing FCN (6/6): B2_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d using model blocks definition 
+[FCNLIB][2017-09-01 20:00:43] Short description:
+Input (None, None, 1)
+Conv2D  [depth:16 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:16 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:128 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:128 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:256 kernel:(1, 1) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+Conv2D  [depth:256 kernel:(1, 1) stride:(1, 1) pad:same init:he_normal batchnorm:2 activ:elu]
+GlobalMaxPooling2D
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Readout [unit:10 activ:softmax init:he_normal]
+
+[FCNLIB][2017-09-01 20:00:43] Keras Neural Network Layout
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_21 (InputLayer)        (None, None, None, 1)     0         
+_________________________________________________________________
+CBLOCK1_CONV16_0 (Conv2D)    (None, None, None, 16)    160       
+_________________________________________________________________
+activation_157 (Activation)  (None, None, None, 16)    0         
+_________________________________________________________________
+batch_normalization_109 (Bat (None, None, None, 16)    64        
+_________________________________________________________________
+CBLOCK1_CONV16_1 (Conv2D)    (None, None, None, 16)    2320      
+_________________________________________________________________
+activation_158 (Activation)  (None, None, None, 16)    0         
+_________________________________________________________________
+batch_normalization_110 (Bat (None, None, None, 16)    64        
+_________________________________________________________________
+CBLOCK2_CONV32_0 (Conv2D)    (None, None, None, 32)    4640      
+_________________________________________________________________
+activation_159 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+batch_normalization_111 (Bat (None, None, None, 32)    128       
+_________________________________________________________________
+CBLOCK2_CONV32_1 (Conv2D)    (None, None, None, 32)    9248      
+_________________________________________________________________
+activation_160 (Activation)  (None, None, None, 32)    0         
+_________________________________________________________________
+batch_normalization_112 (Bat (None, None, None, 32)    128       
+_________________________________________________________________
+CBLOCK3_CONV64_0 (Conv2D)    (None, None, None, 64)    18496     
+_________________________________________________________________
+activation_161 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+batch_normalization_113 (Bat (None, None, None, 64)    256       
+_________________________________________________________________
+CBLOCK3_CONV64_1 (Conv2D)    (None, None, None, 64)    36928     
+_________________________________________________________________
+activation_162 (Activation)  (None, None, None, 64)    0         
+_________________________________________________________________
+batch_normalization_114 (Bat (None, None, None, 64)    256       
+_________________________________________________________________
+CBLOCK4_CONV128_0 (Conv2D)   (None, None, None, 128)   73856     
+_________________________________________________________________
+activation_163 (Activation)  (None, None, None, 128)   0         
+_________________________________________________________________
+batch_normalization_115 (Bat (None, None, None, 128)   512       
+_________________________________________________________________
+CBLOCK4_CONV128_1 (Conv2D)   (None, None, None, 128)   147584    
+_________________________________________________________________
+activation_164 (Activation)  (None, None, None, 128)   0         
+_________________________________________________________________
+batch_normalization_116 (Bat (None, None, None, 128)   512       
+_________________________________________________________________
+CBLOCK5_CONV256_0 (Conv2D)   (None, None, None, 256)   33024     
+_________________________________________________________________
+activation_165 (Activation)  (None, None, None, 256)   0         
+_________________________________________________________________
+batch_normalization_117 (Bat (None, None, None, 256)   1024      
+_________________________________________________________________
+CBLOCK5_CONV256_1 (Conv2D)   (None, None, None, 256)   65792     
+_________________________________________________________________
+activation_166 (Activation)  (None, None, None, 256)   0         
+_________________________________________________________________
+batch_normalization_118 (Bat (None, None, None, 256)   1024      
+_________________________________________________________________
+global_max_pooling2d_21 (Glo (None, 256)               0         
+_________________________________________________________________
+dense_61 (Dense)             (None, 512)               131584    
+_________________________________________________________________
+dropout_41 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_62 (Dense)             (None, 512)               262656    
+_________________________________________________________________
+dropout_42 (Dropout)         (None, 512)               0         
+_________________________________________________________________
+dense_63 (Dense)             (None, 10)                5130      
+=================================================================
+Total params: 795,386.0
+Trainable params: 793,402.0
+Non-trainable params: 1,984.0
+_________________________________________________________________
+
+[FCNLIB][2017-09-01 20:00:43] Training FCN (6/6)for 20 epochs...
+[FCNLIB][2017-09-01 20:08:40] Test score:0.051
+[FCNLIB][2017-09-01 20:08:40] Test accuracy:0.987
+[FCNLIB][2017-09-01 20:08:42] Label/Prediction: 0/6 Correct: False Imagesize: (1, 112, 125, 1)
+[FCNLIB][2017-09-01 20:08:42]   Prediction: [ 0.18  0.00  0.03  0.00  0.03  0.00  0.75  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:42]   y_test:     [ 1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:42] Saving figure [_output\20170901_200842_B2_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_0_6.png]
+[FCNLIB][2017-09-01 20:08:43] Label/Prediction: 8/9 Correct: False Imagesize: (1, 106, 93, 1)
+[FCNLIB][2017-09-01 20:08:43]   Prediction: [ 0.00  0.00  0.00  0.00  0.07  0.00  0.00  0.01  0.10  0.82]
+[FCNLIB][2017-09-01 20:08:43]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-09-01 20:08:43] Saving figure [_output\20170901_200843_B2_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_8_9.png]
+[FCNLIB][2017-09-01 20:08:43] Label/Prediction: 6/1 Correct: False Imagesize: (1, 118, 125, 1)
+[FCNLIB][2017-09-01 20:08:43]   Prediction: [ 0.00  0.90  0.00  0.00  0.09  0.00  0.01  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:43]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:43] Saving figure [_output\20170901_200843_B2_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_6_1.png]
+[FCNLIB][2017-09-01 20:08:43] Label/Prediction: 2/7 Correct: False Imagesize: (1, 95, 79, 1)
+[FCNLIB][2017-09-01 20:08:43]   Prediction: [ 0.00  0.00  0.01  0.00  0.00  0.00  0.00  0.99  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:43]   y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:43] Saving figure [_output\20170901_200843_B2_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_2_7.png]
+[FCNLIB][2017-09-01 20:08:44] Label/Prediction: 0/7 Correct: False Imagesize: (1, 119, 115, 1)
+[FCNLIB][2017-09-01 20:08:44]   Prediction: [ 0.20  0.00  0.00  0.00  0.00  0.00  0.00  0.79  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:44]   y_test:     [ 1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:44] Saving figure [_output\20170901_200844_B2_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_0_7.png]
+[FCNLIB][2017-09-01 20:08:45] Label/Prediction: 9/4 Correct: False Imagesize: (1, 88, 109, 1)
+[FCNLIB][2017-09-01 20:08:45]   Prediction: [ 0.00  0.00  0.00  0.00  0.99  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:45]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+[FCNLIB][2017-09-01 20:08:45] Saving figure [_output\20170901_200845_B2_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_9_4.png]
+[FCNLIB][2017-09-01 20:08:46] Label/Prediction: 1/7 Correct: False Imagesize: (1, 115, 93, 1)
+[FCNLIB][2017-09-01 20:08:46]   Prediction: [ 0.00  0.41  0.00  0.00  0.00  0.00  0.00  0.58  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:46]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:46] Saving figure [_output\20170901_200846_B2_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_1_7.png]
+[FCNLIB][2017-09-01 20:08:48] Label/Prediction: 6/4 Correct: False Imagesize: (1, 122, 115, 1)
+[FCNLIB][2017-09-01 20:08:48]   Prediction: [ 0.00  0.00  0.16  0.00  0.56  0.00  0.28  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:48]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:48] Saving figure [_output\20170901_200848_B2_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_6_4.png]
+[FCNLIB][2017-09-01 20:08:48] Label/Prediction: 4/7 Correct: False Imagesize: (1, 85, 107, 1)
+[FCNLIB][2017-09-01 20:08:48]   Prediction: [ 0.00  0.04  0.01  0.00  0.11  0.00  0.00  0.60  0.01  0.23]
+[FCNLIB][2017-09-01 20:08:48]   y_test:     [ 0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-09-01 20:08:48] Saving figure [_output\20170901_200848_B2_16x2-_32x2-_64x2-_128x2-_256(1)x2-_GMP-_512d-_512d_WRONG_LABEL_4_7.png]
+[FCNLIB][2017-09-01 20:08:48] Variable size accuracy: 0.982 (test 0.987)for B2_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+
+[FCNLIB][2017-09-01 20:08:48] Final results:
+[FCNLIB][2017-09-01 19:30:51] Variable size accuracy: 0.970 (test 0.985)for B1_32x2->64x2->512(3)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 19:35:37] Variable size accuracy: 0.966 (test 0.983)for B1_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 19:46:56] Variable size accuracy: 0.886 (test 0.987)for B0_32x2->64x2->512(3)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 19:51:13] Variable size accuracy: 0.952 (test 0.984)for B0_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 20:00:42] Variable size accuracy: 0.978 (test 0.984)for B2_32x2->64x2->512(3)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 20:08:48] Variable size accuracy: 0.982 (test 0.987)for B2_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+[FCNLIB][2017-09-01 20:08:49] Results table:
+                                              Layout  Model  TestAcc  VarAcc
+2           B0_32x2->64x2->512(3)x2->GMP->512d->512d      2    0.987   0.886
+3  B0_16x2->32x2->64x2->128x2->256(1)x2->GMP->512...      3    0.984   0.952
+1  B1_16x2->32x2->64x2->128x2->256(1)x2->GMP->512...      1    0.983   0.966
+0           B1_32x2->64x2->512(3)x2->GMP->512d->512d      0    0.985   0.970
+4           B2_32x2->64x2->512(3)x2->GMP->512d->512d      4    0.984   0.978
+5  B2_16x2->32x2->64x2->128x2->256(1)x2->GMP->512...      5    0.987   0.982
+
+[FCNLIB][2017-09-01 20:08:49] Best accuracy 0.982 for model B2_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d with test acc: 0.987

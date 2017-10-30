@@ -1,0 +1,1 @@
+[FCNLIB][2017-07-27 23:50:12] Library [FCNLIB] initialized on machine [HPC]

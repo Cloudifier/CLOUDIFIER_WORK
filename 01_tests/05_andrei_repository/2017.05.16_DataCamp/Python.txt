@@ -1,0 +1,196 @@
+train.head(n)
+len(DataFrame) 
+DataFrame.columns
+
+dataframe.describe()
+df[column_name].value_counts()
+df.column_name.value_counts()
+
+train.boxplot(column='ApplicantIncome', by='Gender')
+train.boxplot(column='ApplicantIncome')
+train.ApplicantIncome.hist(bins=50)
+train['ApplicantIncome'].hist(bins=50)
+
+import matplotlib.pyplot as plt
+plt.show()
+
+pd.crosstab( train ['Gender'], train ["Loan_Status"], margins=True)
+
+
+def percentageConvert(ser):
+  return ser/float(ser[-1])
+
+pd.crosstab(train ["Gender"], train ["Loan_Status"], margins=True).apply(percentageConvert, axis=1)
+axis = 0 apply per column
+axis = 1       per row
+
+train['Loan_Status'].value_counts()['Y']
+
+train['Credit_History'].isnull().sum()
+LoanAmount_have_missing_value = train['LoanAmount'].isnull().sum() > 0
+train.isnull().sum()
+
+test['LoanAmount'].fillna(168, inplace=True)
+
+
+import numpy as np
+train ['LoanAmount_log'] = np.log(train['LoanAmount'])
+train ['LoanAmount_log'].hist(bins=20)
+
+from sklearn.preprocessing import LabelEncoder
+
+number = LabelEncoder()
+
+train['Gender'] = number.fit_transform(train['Gender'].astype(str))
+
+https://www.analyticsvidhya.com/blog/2015/10/basics-logistic-regression/
+
+# Import linear model of sklearn
+import sklearn.linear_model
+
+# Create object of Logistic Regression
+model=sklearn.linear_model.LogisticRegression()
+
+
+
+import sklearn.linear_model
+
+# Select three predictors Credit_History, Education and Gender
+predictors =[Credit_History, Education, Gender]
+
+# Converting predictors and outcome to numpy array
+x_train = train_modified[predictors].values
+y_train = train_modified['Loan_Status'].values
+
+
+# Model Building
+model = sklearn.linear_model.LogisticRegression()
+model.fit(x_train, y_train)
+
+
+
+
+#test_modified already loaded in the workspace
+
+
+# Select three predictors Credit_History, Education and Gender
+
+predictors =['Credit_History', 'Education', 'Gender']
+
+
+
+# Converting predictors and outcome to numpy array
+
+x_test = test_modified[predictors].values
+
+
+
+#Predict Output
+
+predicted= model.predict(x_test)
+
+
+
+#Reverse encoding for predicted outcome
+
+predicted = number.inverse_transform(predicted)
+
+
+
+#Store it to test dataset
+
+test_modified['Loan_Status']=predicted
+
+
+
+#Output file to make submission
+
+test_modified.to_csv("Submission1.csv",columns=['Loan_ID','Loan_Status'])
+
+
+https://www.analyticsvidhya.com/blog/2016/04/complete-tutorial-tree-based-modeling-scratch-in-python/
+https://www.analyticsvidhya.com/blog/2015/11/beginners-guide-on-logistic-regression-in-r/
+https://www.analyticsvidhya.com/blog/2015/10/basics-logistic-regression/
+http://www.analyticsvidhya.com/blog/2015/09/random-forest-algorithm-multiple-challenges/
+
+#train_modified and test_modified already loaded in the workspace
+
+#Import module for Decision tree
+
+import sklearn.tree
+
+
+
+# Select three predictors Credit_History, Education and Gender
+
+predictors =['Credit_History', 'Education', 'Gender']
+
+
+
+# Converting predictors and outcome to numpy array
+
+x_train = train_modified[predictors].values
+
+y_train = train_modified['Loan_Status'].values
+
+
+
+# Model Building
+
+model = sklearn.tree.DecisionTreeClassifier()
+
+model.fit(x_train, y_train)
+
+
+
+# Converting predictors and outcome to numpy array
+
+x_test = test_modified[predictors].values
+
+
+
+#Predict Output
+
+predicted= model.predict(x_test)
+
+
+
+
+#Reverse encoding for predicted outcome
+
+predicted = number.inverse_transform(predicted)
+
+
+
+#Store it to test dataset
+
+test_modified['Loan_Status']=predicted
+
+
+
+#Output file to make submission
+
+test_modified.to_csv("Submission1.csv",columns=['Loan_ID','Loan_Status'])
+
+featimp = pd.Series(model.feature_importances_, index=predictors).sort_values(ascending=False)
+print (featimp)
+
+https://discuss.analyticsvidhya.com/t/why-and-when-is-hypothesis-generation-important/2109
+
+https://www.analyticsvidhya.com/blog/2015/08/introduction-ensemble-learning/
+
+http://www.analyticsvidhya.com/blog/2015/11/improve-model-performance-cross-validation-in-python-r/
+
+https://www.analyticsvidhya.com/blog/2015/08/common-machine-learning-algorithms/
+
+https://www.analyticsvidhya.com/blog/2016/01/12-pandas-techniques-python-data-manipulation/
+
+
+
+
+
+
+
+
+
+

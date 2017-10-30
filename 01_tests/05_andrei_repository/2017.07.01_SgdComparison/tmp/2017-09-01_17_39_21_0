@@ -1,0 +1,11 @@
+[2017.09.01-17:39:21] Fetch MNIST Data Set
+[2017.09.01-17:39:21] Finished fetching MNIST Data Set
+[2017.09.01-17:39:21] Initialize data preprocessor
+[2017.09.01-17:39:21] Start preprocessing data
+[2017.09.01-17:39:21] Normalize data
+[2017.09.01-17:39:22] Finished normalizing data
+[2017.09.01-17:39:22] Split in train set and test set by 14.000000000000002
+[2017.09.01-17:39:22] Finished splitting data
+[2017.09.01-17:39:22] Initialize simple gradient descendent logisitic regression solver
+[2017.09.01-17:39:22] Computing theta for target = 0
+[2017.09.01-17:39:22] Start simple without reg training: alpha=0.01, batchSz=10, beta=0

@@ -1,0 +1,7 @@
+Download: http://eigen.tuxfamily.org/index.php?title=Main_Page#Download
+Extract archive
+Move folder Eigen from the extracted files into /usr/local/include
+Compile test.cpp from this folder: g++ -std=c++11 Eigen_Test/test.cpp -o test
+
+Tutorial: https://eigen.tuxfamily.org/dox/GettingStarted.html, https://eigen.tuxfamily.org/dox/group__TutorialMatrixClass.html
+Cheatsheet: https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#QuickRef_Types

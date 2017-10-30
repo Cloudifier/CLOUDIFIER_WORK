@@ -1,0 +1,237 @@
+[FCNLIB][2017-07-27 17:18:02] Preparing FCN (1/1): 16_16_d_24_d_128n(1)_G_SM 
+[FCNLIB][2017-07-27 17:18:03] Short description:
+Input (None, None, 1)
+Conv2D  [depth:16 kernel:(4, 4) stride:(1, 1) pad:same init:he_normal activ:elu]
+Conv2D  [depth:16 kernel:(4, 4) stride:(1, 1) pad:same init:he_normal activ:elu]
+Dropout [rate: 0.50]
+Conv2D  [depth:24 kernel:(4, 4) stride:(1, 1) pad:same init:he_normal activ:elu]
+Dropout [rate: 0.50]
+Conv2D  [depth:128 kernel:(1, 1) stride:(1, 1) pad:same init:he_normal activ:None]
+GlobalMaxPoolind2D
+Dense   [unit:10 activ:softmax init:he_normal]
+
+[FCNLIB][2017-07-27 17:18:03] Keras Neural Network Layout
+backend: tensorflow
+class_name: Model
+config:
+  input_layers:
+  - [input_2, 0, 0]
+  layers:
+  - class_name: InputLayer
+    config:
+      batch_input_shape: !!python/tuple [null, null, null, 1]
+      dtype: float32
+      name: input_2
+      sparse: false
+    inbound_nodes: []
+    name: input_2
+  - class_name: Conv2D
+    config:
+      activation: elu
+      activity_regularizer: null
+      bias_constraint: null
+      bias_initializer:
+        class_name: Zeros
+        config: {}
+      bias_regularizer: null
+      data_format: channels_last
+      dilation_rate: &id001 !!python/tuple [1, 1]
+      filters: 16
+      kernel_constraint: null
+      kernel_initializer:
+        class_name: VarianceScaling
+        config: {distribution: normal, mode: fan_in, scale: 2.0, seed: null}
+      kernel_regularizer: null
+      kernel_size: !!python/tuple [4, 4]
+      name: conv2d_5
+      padding: same
+      strides: &id002 !!python/tuple [1, 1]
+      trainable: true
+      use_bias: true
+    inbound_nodes:
+    - - - input_2
+        - 0
+        - 0
+        - {}
+    name: conv2d_5
+  - class_name: Conv2D
+    config:
+      activation: elu
+      activity_regularizer: null
+      bias_constraint: null
+      bias_initializer:
+        class_name: Zeros
+        config: {}
+      bias_regularizer: null
+      data_format: channels_last
+      dilation_rate: *id001
+      filters: 16
+      kernel_constraint: null
+      kernel_initializer:
+        class_name: VarianceScaling
+        config: {distribution: normal, mode: fan_in, scale: 2.0, seed: null}
+      kernel_regularizer: null
+      kernel_size: !!python/tuple [4, 4]
+      name: conv2d_6
+      padding: same
+      strides: *id002
+      trainable: true
+      use_bias: true
+    inbound_nodes:
+    - - - conv2d_5
+        - 0
+        - 0
+        - {}
+    name: conv2d_6
+  - class_name: Dropout
+    config: {name: dropout_3, rate: 0.5, trainable: true}
+    inbound_nodes:
+    - - - conv2d_6
+        - 0
+        - 0
+        - {}
+    name: dropout_3
+  - class_name: Conv2D
+    config:
+      activation: elu
+      activity_regularizer: null
+      bias_constraint: null
+      bias_initializer:
+        class_name: Zeros
+        config: {}
+      bias_regularizer: null
+      data_format: channels_last
+      dilation_rate: *id001
+      filters: 24
+      kernel_constraint: null
+      kernel_initializer:
+        class_name: VarianceScaling
+        config: {distribution: normal, mode: fan_in, scale: 2.0, seed: null}
+      kernel_regularizer: null
+      kernel_size: !!python/tuple [4, 4]
+      name: conv2d_7
+      padding: same
+      strides: *id002
+      trainable: true
+      use_bias: true
+    inbound_nodes:
+    - - - dropout_3
+        - 0
+        - 0
+        - {}
+    name: conv2d_7
+  - class_name: Dropout
+    config: {name: dropout_4, rate: 0.5, trainable: true}
+    inbound_nodes:
+    - - - conv2d_7
+        - 0
+        - 0
+        - {}
+    name: dropout_4
+  - class_name: Conv2D
+    config:
+      activation: linear
+      activity_regularizer: null
+      bias_constraint: null
+      bias_initializer:
+        class_name: Zeros
+        config: {}
+      bias_regularizer: null
+      data_format: channels_last
+      dilation_rate: *id001
+      filters: 128
+      kernel_constraint: null
+      kernel_initializer:
+        class_name: VarianceScaling
+        config: {distribution: normal, mode: fan_in, scale: 2.0, seed: null}
+      kernel_regularizer: null
+      kernel_size: !!python/tuple [1, 1]
+      name: conv2d_8
+      padding: same
+      strides: *id002
+      trainable: true
+      use_bias: true
+    inbound_nodes:
+    - - - dropout_4
+        - 0
+        - 0
+        - {}
+    name: conv2d_8
+  - class_name: GlobalMaxPooling2D
+    config: {data_format: channels_last, name: global_max_pooling2d_2, trainable: true}
+    inbound_nodes:
+    - - - conv2d_8
+        - 0
+        - 0
+        - {}
+    name: global_max_pooling2d_2
+  - class_name: Dense
+    config:
+      activation: softmax
+      activity_regularizer: null
+      bias_constraint: null
+      bias_initializer:
+        class_name: Zeros
+        config: {}
+      bias_regularizer: null
+      kernel_constraint: null
+      kernel_initializer:
+        class_name: VarianceScaling
+        config: {distribution: normal, mode: fan_in, scale: 2.0, seed: null}
+      kernel_regularizer: null
+      name: dense_2
+      trainable: true
+      units: 10
+      use_bias: true
+    inbound_nodes:
+    - - - global_max_pooling2d_2
+        - 0
+        - 0
+        - {}
+    name: dense_2
+  name: model_2
+  output_layers:
+  - [dense_2, 0, 0]
+keras_version: 2.0.2
+
+[FCNLIB][2017-07-27 17:18:03] Training network ...
+[FCNLIB][2017-07-27 17:31:40] Test score:0.104
+[FCNLIB][2017-07-27 17:31:40] Test accuracy:0.969
+[FCNLIB][2017-07-27 17:31:40] Preparing random sized images/tests...
+[FCNLIB][2017-07-27 17:31:45] Label/Prediction: 3/5 Correct: False Imagesize: (1, 80, 124, 1)
+[FCNLIB][2017-07-27 17:31:45]   Prediction: [ 0.00  0.00  0.14  0.26  0.00  0.34  0.00  0.21  0.03  0.01]
+[FCNLIB][2017-07-27 17:31:45]   y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-07-27 17:35:45] Label/Prediction: 3/5 Correct: False Imagesize: (1, 80, 124, 1)
+[FCNLIB][2017-07-27 17:35:45]   Prediction: [ 0.00007268  0.00009858  0.13877913  0.26193455  0.00008183  0.34495592  0.00001122  0.21494305
+  0.02537384  0.01374918]
+[FCNLIB][2017-07-27 17:35:45]   y_test:     [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+[FCNLIB][2017-07-27 17:36:44] Label/Prediction: 3/5 Correct: False Imagesize: (1, 80, 124, 1)
+[FCNLIB][2017-07-27 17:36:44]   Prediction: [ 0.00007268  0.00009858  0.13877913  0.26193455  0.00008183  0.34495592  0.00001122  0.21494305
+  0.02537384  0.01374918]
+[FCNLIB][2017-07-27 17:36:44]   y_test:     [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+[FCNLIB][2017-07-27 17:36:44] Saving figure [_output\20170727_17364416_16_d_24_d_128n(1)_G_SM_WRONG_LABEL_3_5.png]
+[FCNLIB][2017-07-27 17:36:52] Label/Prediction: 1/5 Correct: False Imagesize: (1, 96, 111, 1)
+[FCNLIB][2017-07-27 17:36:52]   Prediction: [ 0.01441852  0.29438874  0.01455001  0.06374849  0.00011943  0.34044433  0.00585102  0.03231087
+  0.2159562   0.01821249]
+[FCNLIB][2017-07-27 17:36:52]   y_test:     [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+[FCNLIB][2017-07-27 17:36:52] Saving figure [_output\20170727_17365216_16_d_24_d_128n(1)_G_SM_WRONG_LABEL_1_5.png]
+[FCNLIB][2017-07-27 17:36:53] Label/Prediction: 7/9 Correct: False Imagesize: (1, 85, 114, 1)
+[FCNLIB][2017-07-27 17:36:53]   Prediction: [ 0.00047586  0.00160442  0.00113486  0.00107875  0.00153263  0.0024684   0.00016629  0.33023766
+  0.0042503   0.65705079]
+[FCNLIB][2017-07-27 17:36:53]   y_test:     [ 0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+[FCNLIB][2017-07-27 17:36:53] Saving figure [_output\20170727_17365316_16_d_24_d_128n(1)_G_SM_WRONG_LABEL_7_9.png]
+[FCNLIB][2017-07-27 17:36:54] Variable size accuracy: 0.97 for 16_16_d_24_d_128n(1)_G_SM
+[FCNLIB][2017-07-27 17:37:12] Best accuracy 0.97 for model 16_16_d_24_d_128n(1)_G_SM with test acc: 0.97
+[FCNLIB][2017-07-27 18:01:55] Label/Prediction: 3/5 Correct: False Imagesize: (1, 80, 124, 1)
+[FCNLIB][2017-07-27 18:01:55]   Prediction: [ 0.00  0.00  0.14  0.26  0.00  0.34  0.00  0.21  0.03  0.01]
+[FCNLIB][2017-07-27 18:01:55]   y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-07-27 18:01:55] Saving figure [_output\20170727_18015516_16_d_24_d_128n(1)_G_SM_WRONG_LABEL_3_5.png]
+[FCNLIB][2017-07-27 18:01:55] Label/Prediction: 1/5 Correct: False Imagesize: (1, 96, 111, 1)
+[FCNLIB][2017-07-27 18:01:55]   Prediction: [ 0.01  0.29  0.01  0.06  0.00  0.34  0.01  0.03  0.22  0.02]
+[FCNLIB][2017-07-27 18:01:55]   y_test:     [ 0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+[FCNLIB][2017-07-27 18:01:55] Saving figure [_output\20170727_18015516_16_d_24_d_128n(1)_G_SM_WRONG_LABEL_1_5.png]
+[FCNLIB][2017-07-27 18:01:55] Label/Prediction: 7/9 Correct: False Imagesize: (1, 85, 114, 1)
+[FCNLIB][2017-07-27 18:01:55]   Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.33  0.00  0.66]
+[FCNLIB][2017-07-27 18:01:55]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+[FCNLIB][2017-07-27 18:01:55] Saving figure [_output\20170727_18015516_16_d_24_d_128n(1)_G_SM_WRONG_LABEL_7_9.png]
+[FCNLIB][2017-07-27 18:01:55] Variable size accuracy: 0.97 for 16_16_d_24_d_128n(1)_G_SM

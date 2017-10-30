@@ -1,0 +1,251 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Cautare...</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,500,500i">
+        <link rel="stylesheet" href="{% static 'core/home_assets/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'core/home_assets/font-awesome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'core/home_assets/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'core/home_assets/css/style.css' %}">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="{% static 'core/home_assets/ico/favicon.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'core/home_assets/ico/apple-touch-icon-144-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'core/home_assets/ico/apple-touch-icon-114-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'core/home_assets/ico/apple-touch-icon-72-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" href="{% static 'core/home_assets/ico/apple-touch-icon-57-precomposed.png' %}">
+        <link rel="stylesheet" href="{% static 'core/css/dataTables.bootstrap.min.css' %}">
+
+    </head>
+
+    <body>
+    
+    <!-- Top menu -->
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header wow fadeIn">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!--<a class="navbar-brand" href="index.html">Bootstrap Search Template</a>--> <!-- LOGO -->
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'index' %}">Revenire la prima pagina</a></li>
+            <li><a href="{% url 'home' %}">Revenire la formularul de cautare</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right navbar-menu-items wow fadeIn pull-left">
+            <li><a><font color="#ffffff">Sunteti logat ca </font><font color="#22C4EA">{{ user.username }}</font></a></li>
+            <li><a href="{% url 'logout' %}">Delogare</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <br><br>
+        <div class="row">
+    <div class="col-md-12 col-xs-12 text-center">
+      <a href="http://www.fonduri-ue.ro" target="_blank" title="Ministerul Fondurilor Europene"><img src="{% static 'core/brmcons_assets/img/logo-ue.png' %}" class="logo-ue" /></a>
+      <p class="text-black m-t-20 m-b-5">Programul Operational Sectorial "Cresterea Competitivitatii Economice" - <strong class="italic">Investitii pentru viitorul dumneavoastra</strong></p>
+      <p class="text-black m-b-5"><strong>Sistem Alternativ de Licitatii Electronice SALE - SMIS 46690</strong> - Proiect cofinantat prin Fondul European de Dezvoltare Regionala</p>
+      <br><br>
+    </div>
+  </div>
+
+        <!-- Top content -->
+        <div class>
+            <div class="container">
+              
+                <div class="row">
+                    <div class="col-sm-12 text wow fadeInLeft">
+                      <h1><font color="#444444">Rezultatul cautarii</font></h1>
+                        <table id="mytable" class="table table-bordered table-striped table-hover">
+                          <thead>
+                            <tr>
+                              <th><font color="#444444">Nume</font></th>
+                              <th><font color="#444444">Industrie</font></th>
+                              <th><font color="#444444">Data adaugare</font></th>
+                              <th><font color="#444444">Tara</font></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                             {% for index, row in df.iterrows %}
+                                <tr>
+                                   <td><font color="#444444">{{ row.3 }}</font></td>
+                                   <td><font color="#444444">{{ row.2 }}</font></td>
+                                   <td><font color="#444444">{{ row.1 }}</font></td>
+                                   <td><font color="#444444">{{ row.0 }}</font></td>
+                               </tr>
+                            {% endfor %}
+                           </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            <hr>
+            <div class="container">
+              
+                <div class="row">
+                    <div class="col-sm-12 text wow fadeInLeft">
+                        <h1><font color="#444444">Selectati</font> <strong><font color="#444444">graficul</font></strong> <font color="#444444">dorit</font></h1>
+                        <div>
+                      <small><font color="#444444"><i><b>Meniul de mai jos va da posibilitatea <br>sa vizualizati in forma grafica datele asa cum sunt
+  ele structurate <br> in baza de date de firme la momentul apelarii functionalitatii. Pentru<br>
+  vizualizare folosim 2 metode bazate pe grafice de tip "pie" si grafice<br> de tip "bara" necesare in analiza distributiilor.</b></i></font></small>
+</div>
+                        <!--<div class="description">
+                          <p class="medium-paragraph">
+                          This is a free "search box / form / bar" made with the Bootstrap framework.
+                          Download it on <a href="http://azmind.com">AZMIND</a> and enjoy!
+                          </p>
+                        </div>-->
+                        <br>
+
+
+            <div class="list-group">
+            <a href="/piechart/" class="list-group-item list-group-item-action" target="_blank"><i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i>
+ <font size="6">Vizualizare date sub forma de Pie Chart</font></a>
+            <a href="/barchart/" class="list-group-item list-group-item-action" target="_blank"><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
+ <font size="6">Vizualizare date sub forma de Bar Chart</font></a>
+          </div>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Features -->
+        <!--
+        <div class="features-container section-container">
+          <div class="container">
+              
+              <div class="row">
+                  <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                      <div class="col-sm-3 features-box-icon">
+                        <i class="fa fa-cloud"></i>
+                      </div>
+                      <div class="col-sm-9">
+                        <h3>ut wisi enim ad minim</h3>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+                            Ut wisi enim ad minim veniam, quis nostrud.
+                          </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                      <div class="col-sm-3 features-box-icon">
+                        <i class="fa fa-instagram"></i>
+                      </div>
+                      <div class="col-sm-9">
+                        <h3>sed do eiusmod tempor</h3>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+                            Ut wisi enim ad minim veniam, quis nostrud.
+                          </p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              
+              <div class="row">
+                  <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                      <div class="col-sm-3 features-box-icon">
+                        <i class="fa fa-paperclip"></i>
+                      </div>
+                      <div class="col-sm-9">
+                        <h3>quis nostrud exerci tat</h3>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+                            Ut wisi enim ad minim veniam, quis nostrud.
+                          </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                      <div class="col-sm-3 features-box-icon">
+                        <i class="fa fa-twitter"></i>
+                      </div>
+                      <div class="col-sm-9">
+                        <h3>minim veniam quis nostrud</h3>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+                            Ut wisi enim ad minim veniam, quis nostrud.
+                          </p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+          </div>
+        </div>-->
+        <footer>
+          <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-xs-12 text-center">
+      <p class="m-t-20 m-b-10">Pentru informatii detaliate despre celelalte programe operationale cofinantate de Uniunea Europeana va invitam sa vizitati <a class="underline" href="http://www.fonduri-ue.ro/" target="_blank" title="Ministerul Fondurilor Europene">www.fonduri-ue.ro</p>
+      <p class="m-b-20">Continutul acestui material nu reprezinta în mod obligatoriu pozitia oficiala a Uniunii Europene sau a Guvernului României.</p>
+    </div>
+  </div>
+  <div class="container m-t-10 m-b-20">
+        <div class="col-md-12 col-xs-12 text-right"><img src="{% static 'core/brmcons_assets/img/4esoft.png' %}" /></div>
+      </div>
+</footer>
+
+        <!-- Javascript -->
+        <script src="{% static 'core/home_assets/js/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static 'core/home_assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'core/home_assets/js/jquery.backstretch.min.js' %}"></script>
+        <script src="{% static 'core/home_assets/js/wow.min.js' %}"></script>
+        <script src="{% static 'core/home_assets/js/scripts.js' %}"></script>
+        <script src="{% static 'core/js/jquery.js' %}"></script>
+        <script src="{% static 'core/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'core/js/dataTables.bootstrap.min.js' %}"></script>
+
+        <script>
+        $('#mytable').dataTable({
+          "searching": false,
+         "scrollY":        "400px",
+        "scrollCollapse": true,
+        "paging":         false,
+        "oLanguage": {
+         "sInfo": "_TOTAL_ de rezultate gasite",
+         "sInfoEmpty": "Niciun rezultat gasit",
+         "sEmptyTable": "Tabela rezultatelor este goala!"
+      }
+        });
+        </script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>

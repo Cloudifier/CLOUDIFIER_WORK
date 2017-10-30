@@ -1,0 +1,165 @@
+Label/Prediction: 3/4 Correct: False Imagesize: (1, 102, 119, 1)
+  Prediction: [ 0.00  0.00  0.01  0.00  0.95  0.00  0.00  0.00  0.00  0.03]
+  y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 8/6 Correct: False Imagesize: (1, 123, 123, 1)
+  Prediction: [ 0.21  0.00  0.00  0.00  0.00  0.00  0.79  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 7/1 Correct: False Imagesize: (1, 111, 118, 1)
+  Prediction: [ 0.00  0.95  0.01  0.00  0.00  0.00  0.00  0.04  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+Label/Prediction: 7/2 Correct: False Imagesize: (1, 100, 96, 1)
+  Prediction: [ 0.03  0.18  0.74  0.01  0.01  0.00  0.00  0.03  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+Label/Prediction: 2/0 Correct: False Imagesize: (1, 126, 92, 1)
+  Prediction: [ 0.92  0.01  0.01  0.00  0.02  0.00  0.03  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 8/6 Correct: False Imagesize: (1, 112, 81, 1)
+  Prediction: [ 0.07  0.00  0.00  0.00  0.00  0.00  0.93  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 7/1 Correct: False Imagesize: (1, 118, 96, 1)
+  Prediction: [ 0.01  0.99  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+Label/Prediction: 7/0 Correct: False Imagesize: (1, 85, 118, 1)
+  Prediction: [ 1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+Label/Prediction: 8/6 Correct: False Imagesize: (1, 99, 95, 1)
+  Prediction: [ 0.03  0.00  0.00  0.00  0.00  0.00  0.94  0.00  0.03  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 9/4 Correct: False Imagesize: (1, 82, 84, 1)
+  Prediction: [ 0.00  0.00  0.00  0.00  0.91  0.00  0.00  0.00  0.00  0.08]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 8/6 Correct: False Imagesize: (1, 106, 98, 1)
+  Prediction: [ 0.10  0.00  0.00  0.00  0.21  0.00  0.69  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 3/0 Correct: False Imagesize: (1, 108, 114, 1)
+  Prediction: [ 0.48  0.00  0.22  0.24  0.00  0.06  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 8/6 Correct: False Imagesize: (1, 100, 82, 1)
+  Prediction: [ 0.01  0.00  0.00  0.00  0.00  0.00  0.93  0.00  0.06  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 7/2 Correct: False Imagesize: (1, 126, 89, 1)
+  Prediction: [ 0.01  0.03  0.82  0.00  0.00  0.00  0.00  0.13  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+Label/Prediction: 9/6 Correct: False Imagesize: (1, 93, 79, 1)
+  Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 9/0 Correct: False Imagesize: (1, 106, 126, 1)
+  Prediction: [ 0.50  0.00  0.00  0.00  0.00  0.00  0.34  0.00  0.00  0.16]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 9/6 Correct: False Imagesize: (1, 93, 97, 1)
+  Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.00  0.58  0.00  0.42  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 5/1 Correct: False Imagesize: (1, 90, 109, 1)
+  Prediction: [ 0.10  0.70  0.00  0.00  0.00  0.20  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 9/6 Correct: False Imagesize: (1, 94, 97, 1)
+  Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.00  0.73  0.00  0.21  0.05]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 3/8 Correct: False Imagesize: (1, 86, 98, 1)
+  Prediction: [ 0.00  0.00  0.25  0.03  0.06  0.00  0.13  0.00  0.53  0.00]
+  y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 8/0 Correct: False Imagesize: (1, 81, 124, 1)
+  Prediction: [ 0.99  0.00  0.00  0.00  0.00  0.00  0.01  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 9/2 Correct: False Imagesize: (1, 86, 107, 1)
+  Prediction: [ 0.00  0.00  0.92  0.00  0.00  0.00  0.00  0.00  0.00  0.08]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 9/0 Correct: False Imagesize: (1, 121, 103, 1)
+  Prediction: [ 1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 8/6 Correct: False Imagesize: (1, 118, 99, 1)
+  Prediction: [ 0.01  0.00  0.00  0.00  0.00  0.00  0.62  0.00  0.37  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 3/2 Correct: False Imagesize: (1, 103, 111, 1)
+  Prediction: [ 0.00  0.00  0.51  0.49  0.00  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 7/1 Correct: False Imagesize: (1, 78, 105, 1)
+  Prediction: [ 0.02  0.96  0.02  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+Label/Prediction: 2/0 Correct: False Imagesize: (1, 85, 81, 1)
+  Prediction: [ 0.72  0.00  0.27  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 3/5 Correct: False Imagesize: (1, 89, 114, 1)
+  Prediction: [ 0.00  0.00  0.00  0.49  0.00  0.50  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 7/1 Correct: False Imagesize: (1, 118, 115, 1)
+  Prediction: [ 0.46  0.54  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+Label/Prediction: 7/1 Correct: False Imagesize: (1, 82, 108, 1)
+  Prediction: [ 0.00  0.99  0.00  0.00  0.01  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+Label/Prediction: 9/2 Correct: False Imagesize: (1, 117, 79, 1)
+  Prediction: [ 0.00  0.00  0.80  0.00  0.00  0.00  0.01  0.00  0.00  0.19]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 9/0 Correct: False Imagesize: (1, 93, 111, 1)
+  Prediction: [ 0.95  0.00  0.00  0.00  0.00  0.00  0.05  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 5/0 Correct: False Imagesize: (1, 107, 115, 1)
+  Prediction: [ 0.99  0.00  0.00  0.00  0.00  0.01  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 3/6 Correct: False Imagesize: (1, 118, 106, 1)
+  Prediction: [ 0.09  0.00  0.01  0.00  0.00  0.00  0.88  0.00  0.00  0.02]
+  y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 7/1 Correct: False Imagesize: (1, 105, 92, 1)
+  Prediction: [ 0.00  0.66  0.00  0.00  0.00  0.00  0.00  0.33  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+Label/Prediction: 2/6 Correct: False Imagesize: (1, 120, 82, 1)
+  Prediction: [ 0.07  0.00  0.06  0.00  0.00  0.00  0.86  0.00  0.00  0.01]
+  y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 9/4 Correct: False Imagesize: (1, 80, 97, 1)
+  Prediction: [ 0.00  0.00  0.00  0.00  0.89  0.00  0.03  0.00  0.00  0.08]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 5/6 Correct: False Imagesize: (1, 108, 84, 1)
+  Prediction: [ 0.07  0.00  0.00  0.00  0.00  0.03  0.90  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 8/6 Correct: False Imagesize: (1, 121, 85, 1)
+  Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.00  0.98  0.00  0.01  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 9/0 Correct: False Imagesize: (1, 107, 114, 1)
+  Prediction: [ 0.69  0.00  0.30  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 8/6 Correct: False Imagesize: (1, 105, 94, 1)
+  Prediction: [ 0.01  0.00  0.00  0.00  0.00  0.00  0.97  0.00  0.02  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 8/0 Correct: False Imagesize: (1, 102, 95, 1)
+  Prediction: [ 0.46  0.00  0.00  0.00  0.00  0.00  0.09  0.00  0.44  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 9/0 Correct: False Imagesize: (1, 106, 89, 1)
+  Prediction: [ 0.68  0.00  0.00  0.00  0.00  0.00  0.01  0.00  0.00  0.30]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 8/6 Correct: False Imagesize: (1, 101, 95, 1)
+  Prediction: [ 0.03  0.00  0.00  0.00  0.00  0.00  0.97  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 8/6 Correct: False Imagesize: (1, 96, 127, 1)
+  Prediction: [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+Label/Prediction: 3/0 Correct: False Imagesize: (1, 111, 90, 1)
+  Prediction: [ 0.41  0.00  0.00  0.31  0.00  0.27  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 9/6 Correct: False Imagesize: (1, 125, 98, 1)
+  Prediction: [ 0.11  0.00  0.00  0.00  0.01  0.00  0.49  0.00  0.00  0.39]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 5/0 Correct: False Imagesize: (1, 92, 90, 1)
+  Prediction: [ 0.95  0.00  0.00  0.00  0.00  0.05  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 9/0 Correct: False Imagesize: (1, 104, 110, 1)
+  Prediction: [ 0.97  0.00  0.01  0.00  0.00  0.01  0.00  0.00  0.00  0.01]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00]
+Label/Prediction: 2/0 Correct: False Imagesize: (1, 109, 119, 1)
+  Prediction: [ 1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 7/2 Correct: False Imagesize: (1, 120, 120, 1)
+  Prediction: [ 0.01  0.03  0.95  0.00  0.00  0.00  0.00  0.01  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+Label/Prediction: 2/0 Correct: False Imagesize: (1, 119, 110, 1)
+  Prediction: [ 0.90  0.00  0.00  0.00  0.00  0.00  0.09  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 6/0 Correct: False Imagesize: (1, 107, 84, 1)
+  Prediction: [ 0.72  0.00  0.00  0.00  0.00  0.00  0.28  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+Label/Prediction: 2/0 Correct: False Imagesize: (1, 88, 81, 1)
+  Prediction: [ 0.99  0.00  0.01  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+  y_test:     [ 0.00  0.00  1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]
+Label/Prediction: 0/6 Correct: False Imagesize: (1, 105, 112, 1)
+  Prediction: [ 0.32  0.00  0.00  0.00  0.00  0.00  0.68  0.00  0.00  0.00]
+  y_test:     [ 1.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00]

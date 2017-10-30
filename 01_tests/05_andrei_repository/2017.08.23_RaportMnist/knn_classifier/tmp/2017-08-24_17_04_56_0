@@ -1,0 +1,10 @@
+[2017.08.24-17:04:56] Finished fetching MNIST
+[2017.08.24-17:04:57] Finished normalizing data
+[2017.08.24-17:04:57] Finished spliting data into train (0.86) and test (0.14)
+[2017.08.24-17:04:57] Starting prediction using KNN with k = 5
+[2017.08.24-17:04:57] Splitting test data into 7 chunks
+[2017.08.24-17:04:57] Making prediction for each chunk...
+[2017.08.24-17:09:38] Finished prediction for all chunks in 280.89s
+[2017.08.24-17:09:38] Evaluating model...
+[2017.08.24-17:09:38] Corrects/Wrongs:9474/327
+[2017.08.24-17:09:38] Accuracy: 96.66%

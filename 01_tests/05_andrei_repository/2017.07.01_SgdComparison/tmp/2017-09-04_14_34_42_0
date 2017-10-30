@@ -1,0 +1,82 @@
+[2017.09.04-14:34:42] Fetch MNIST Data Set
+[2017.09.04-14:34:42] Finished fetching MNIST Data Set
+[2017.09.04-14:34:42] Initialize data preprocessor
+[2017.09.04-14:34:42] Start preprocessing data
+[2017.09.04-14:34:42] Normalize data
+[2017.09.04-14:34:43] Finished normalizing data
+[2017.09.04-14:34:43] Split in train set and test set by 14.000000000000002
+[2017.09.04-14:34:43] Finished splitting data
+[2017.09.04-14:34:43] Initialize simple gradient descendent logisitic regression solver
+[2017.09.04-14:34:43] Computing theta for target = 0
+[2017.09.04-14:34:43] Start simple without reg training: alpha=0.01, batchSz=10, beta=0
+[2017.09.04-14:34:44] eph#1, cost decreased by 0.0020 ==> increasing alpha to 0.0105
+[2017.09.04-14:34:44] eph#2, cost decreased by 0.0009 ==> increasing alpha to 0.0110
+[2017.09.04-14:34:44] eph#2, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:45] eph#3, cost decreased by 0.0005 ==> increasing alpha to 0.0116
+[2017.09.04-14:34:45] eph#3, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:45] cost_eph# 3 = 0.0059; abs diff between current and last eph = 0.0005
+[2017.09.04-14:34:45] eph# 3, gradient[380:385] = [  5.127481e-04   5.515747e-05   2.289789e-05   6.997275e-05  -7.513948e-05]
+[2017.09.04-14:34:45] eph#4, cost decreased by 0.0004 ==> increasing alpha to 0.0122
+[2017.09.04-14:34:45] eph#4, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:45] eph#5, cost decreased by 0.0003 ==> increasing alpha to 0.0128
+[2017.09.04-14:34:45] eph#5, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:46] eph#6, cost decreased by 0.0002 ==> increasing alpha to 0.0134
+[2017.09.04-14:34:46] eph#6, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:46] cost_eph# 6 = 0.0050; abs diff between current and last eph = 0.0002
+[2017.09.04-14:34:46] eph# 6, gradient[380:385] = [  3.486774e-04   3.065220e-05   1.432152e-05   3.369497e-05  -3.524249e-05]
+[2017.09.04-14:34:46] eph#7, cost decreased by 0.0002 ==> increasing alpha to 0.0141
+[2017.09.04-14:34:46] eph#7, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:46] eph#8, cost decreased by 0.0002 ==> increasing alpha to 0.0148
+[2017.09.04-14:34:46] eph#8, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:47] eph#9, cost decreased by 0.0001 ==> increasing alpha to 0.0155
+[2017.09.04-14:34:47] eph#9, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:47] cost_eph# 9 = 0.0046; abs diff between current and last eph = 0.0001
+[2017.09.04-14:34:47] eph# 9, gradient[380:385] = [  2.613689e-04   2.076472e-05   1.014052e-05   2.045298e-05  -2.401938e-05]
+[2017.09.04-14:34:47] eph#10, cost decreased by 0.0001 ==> increasing alpha to 0.0163
+[2017.09.04-14:34:47] eph#10, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:48] eph#11, cost decreased by 0.0001 ==> increasing alpha to 0.0171
+[2017.09.04-14:34:48] eph#11, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:48] eph#12, cost decreased by 0.0001 ==> increasing alpha to 0.0180
+[2017.09.04-14:34:48] eph#12, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:48] cost_eph#12 = 0.0043; abs diff between current and last eph = 0.0001
+[2017.09.04-14:34:48] eph#12, gradient[380:385] = [  2.031496e-04   1.524295e-05   7.476230e-06   1.362804e-05  -1.837905e-05]
+[2017.09.04-14:34:48] eph#13, cost decreased by 0.0001 ==> increasing alpha to 0.0189
+[2017.09.04-14:34:48] eph#13, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:49] eph#14, cost decreased by 0.0001 ==> increasing alpha to 0.0198
+[2017.09.04-14:34:49] eph#14, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:49] Time for simple without reg training = 5.692s
+[2017.09.04-14:34:49] Computing theta for target = 1
+[2017.09.04-14:34:49] Start simple without reg training: alpha=0.01, batchSz=10, beta=0
+[2017.09.04-14:34:50] eph#1, cost decreased by 0.0018 ==> increasing alpha to 0.0105
+[2017.09.04-14:34:50] eph#2, cost decreased by 0.0008 ==> increasing alpha to 0.0110
+[2017.09.04-14:34:50] eph#2, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:50] eph#3, cost decreased by 0.0005 ==> increasing alpha to 0.0116
+[2017.09.04-14:34:50] eph#3, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:50] cost_eph# 3 = 0.0058; abs diff between current and last eph = 0.0005
+[2017.09.04-14:34:50] eph# 3, gradient[380:385] = [  3.531432e-03  -9.426236e-04   2.009642e-05   2.323680e-05   1.880532e-05]
+[2017.09.04-14:34:51] eph#4, cost decreased by 0.0003 ==> increasing alpha to 0.0122
+[2017.09.04-14:34:51] eph#4, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:51] eph#5, cost decreased by 0.0002 ==> increasing alpha to 0.0128
+[2017.09.04-14:34:51] eph#5, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:51] eph#6, cost decreased by 0.0002 ==> increasing alpha to 0.0134
+[2017.09.04-14:34:51] eph#6, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:51] cost_eph# 6 = 0.0050; abs diff between current and last eph = 0.0002
+[2017.09.04-14:34:51] eph# 6, gradient[380:385] = [  2.997976e-03  -7.377432e-04   6.256870e-06   6.889115e-06   5.484582e-06]
+[2017.09.04-14:34:52] eph#7, cost decreased by 0.0002 ==> increasing alpha to 0.0141
+[2017.09.04-14:34:52] eph#7, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:52] eph#8, cost decreased by 0.0001 ==> increasing alpha to 0.0148
+[2017.09.04-14:34:52] eph#8, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:53] eph#9, cost decreased by 0.0001 ==> increasing alpha to 0.0155
+[2017.09.04-14:34:53] eph#9, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:53] cost_eph# 9 = 0.0046; abs diff between current and last eph = 0.0001
+[2017.09.04-14:34:53] eph# 9, gradient[380:385] = [  2.470679e-03  -6.666956e-04   2.772331e-06   2.963282e-06   2.338794e-06]
+[2017.09.04-14:34:53] eph#10, cost decreased by 0.0001 ==> increasing alpha to 0.0163
+[2017.09.04-14:34:53] eph#10, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:53] eph#11, cost decreased by 0.0001 ==> increasing alpha to 0.0171
+[2017.09.04-14:34:53] eph#11, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:54] eph#12, cost decreased by 0.0001 ==> increasing alpha to 0.0180
+[2017.09.04-14:34:54] eph#12, delta(cost) < epsilon ==> early stopping
+[2017.09.04-14:34:54] cost_eph#12 = 0.0043; abs diff between current and last eph = 0.0001
+[2017.09.04-14:34:54] eph#12, gradient[380:385] = [  2.015646e-03  -6.438101e-04   1.433426e-06   1.503968e-06   1.180955e-06]
+[2017.09.04-14:34:54] eph#13, cost decreased by 0.0001 ==> increasing alpha to 0.0189
+[2017.09.04-14:34:54] eph#13, delta(cost) < epsilon ==> early stopping

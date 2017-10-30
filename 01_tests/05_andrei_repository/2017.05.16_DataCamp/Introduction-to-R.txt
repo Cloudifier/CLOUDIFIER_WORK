@@ -1,0 +1,86 @@
+conversii
+- class(variabila)
+- is.character/logical/numeric
+- as.character/logical/numeric
+
+vectori
+- array <- c(1:9)
+- array[c(1,3)]
+- array[c(TRUE, FALSE, TRUE)]
+- 1 based
+
+matrici
+- matrix(values, byrow = TRUE/FALSE, nrow = value, ncol = value)
+- m[row, col]
+
+dataframe-uri
+- head, tail, str, dim
+- data.frame(vectori_componenti)
+- planet_df[1,2]
+- plaet_df$planets
+- planet_df[1, 2:3]
+- my_df <- mtcars[1:10,]
+
+liste
+- list()
+- my_list <- list(my_vector, my_matrix, my_df)
+- my_list[[1]]
+- my_list[["my_vector"]]
+- my_list$my_df
+
+functii
+- help(mean) sau ?mean
+- args(mean)
+- mean(x, trim = 0, na.rm = FALSE, ...)
+# make a function called multiply_a_b
+
+multiply_a_b <- function(a, b) {
+  
+	return (a * b);
+
+}
+
+read.table: Reads in tabular data such as txt files
+read.csv: Read in data from a comma-separated file format : sep = ';' 
+readWorksheetFromFile : Reads in an excel worksheet
+read.spss: Reads in data from .sav SPSS format.
+
+getwd(): This function will retrieve the current working directory for the user
+setwd(): This functions allows the user to set her own working directory
+
+list.files()
+install.packages("ggplot2")
+library(ggplot2) or require(ggplot2)
+
+pooled = (p1+p2) / (n1 + n2)
+
+ggplot(mtcars, aes(x=wt, y=mpg)) +
+  geom_point(size=2, shape=23)
+
+
+ggplot(data = ncbirths, aes(x = cut(weeks, breaks = 5), y = weight)) + geom_point(size=2, shape=23) + geom_boxplot()
+
+
+# Scatterplot with coord_trans()
+
+ggplot(data = mammals, aes(x = BodyWt, y = BrainWt)) +
+  geom_point() + coord_trans(x = "log10", y = "log10")
+
+
+
+# Scatterplot with scale_x_log10() and scale_y_log10()
+
+ggplot(data = mammals, aes(x = BodyWt, y = BrainWt)) +
+  geom_point() +
+  scale_x_log10() + scale_y_log10()
+
+# Scatterplot of SLG vs. OBP
+mlbBat10 %>%
+
+ggplot(filter(mlbBat10, AB >= 200), aes(x = OBP, y = SLG)) + geom_point()
+
+
+# Identify the outlying player
+
+mlbBat10 %>%
+  filter(mlbBat10, AB >= 200 | OBP < 0.2)

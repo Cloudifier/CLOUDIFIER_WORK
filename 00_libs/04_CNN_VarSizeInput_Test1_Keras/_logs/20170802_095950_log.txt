@@ -1,0 +1,2 @@
+[FCNLIB][2017-08-02 09:59:50] Library [FCNLIB] initialized on machine [DAMIAN]
+[FCNLIB][2017-08-02 09:59:50] Preparing FCN (1/1): 16x2_32x2_64x2_GMP_512d_512d using model blocks definition 

@@ -1,0 +1,190 @@
+[2017.07.17-17:46:34] Fetch MNIST Data Set
+[2017.07.17-17:46:35] Finished fetching MNIST Data Set
+[2017.07.17-17:46:35] Initialize data preprocessor
+[2017.07.17-17:46:35] Start preprocessing data
+[2017.07.17-17:46:35] Normalize data
+[2017.07.17-17:46:37] Finished normalizing data
+[2017.07.17-17:46:37] Split in train set and test set by 14.000000000000002
+[2017.07.17-17:46:37] Finished splitting data
+[2017.07.17-17:46:37] Initialize simple gradient descendent logisitic regression solver
+[2017.07.17-17:46:37] Computing theta for target = 0
+[2017.07.17-17:46:37] Start simple with reg training: alpha=0.01, batchSz=10, beta=0.001
+[2017.07.17-17:46:38] eph#1, cost decreased by 0.0066 ==> increasing alpha to 0.0105
+[2017.07.17-17:46:38] eph#2, cost decreased by 0.0029 ==> increasing alpha to 0.0110
+[2017.07.17-17:46:38] eph#3, cost decreased by 0.0017 ==> increasing alpha to 0.0116
+[2017.07.17-17:46:38] cost_eph# 3 = 0.0362; abs diff between current and last eph = 0.0017
+[2017.07.17-17:46:38] eph# 3, gradient[380:385] = [  3.896082e-03   3.460749e-04   3.286499e-04   6.631957e-04   7.945273e-05]
+[2017.07.17-17:46:39] eph#4, cost decreased by 0.0012 ==> increasing alpha to 0.0122
+[2017.07.17-17:46:39] eph#5, cost decreased by 0.0009 ==> increasing alpha to 0.0128
+[2017.07.17-17:46:39] eph#6, cost decreased by 0.0007 ==> increasing alpha to 0.0134
+[2017.07.17-17:46:39] cost_eph# 6 = 0.0335; abs diff between current and last eph = 0.0007
+[2017.07.17-17:46:39] eph# 6, gradient[380:385] = [  3.675900e-03   2.760534e-04   2.791462e-04   5.127655e-04   7.156122e-05]
+[2017.07.17-17:46:39] eph#7, cost decreased by 0.0006 ==> increasing alpha to 0.0141
+[2017.07.17-17:46:39] eph#8, cost decreased by 0.0005 ==> increasing alpha to 0.0148
+[2017.07.17-17:46:40] eph#9, cost decreased by 0.0004 ==> increasing alpha to 0.0155
+[2017.07.17-17:46:40] cost_eph# 9 = 0.0320; abs diff between current and last eph = 0.0004
+[2017.07.17-17:46:40] eph# 9, gradient[380:385] = [  3.555571e-03   2.426571e-04   2.494336e-04   4.367998e-04   5.421066e-05]
+[2017.07.17-17:46:40] eph#10, cost decreased by 0.0004 ==> increasing alpha to 0.0163
+[2017.07.17-17:46:40] eph#11, cost decreased by 0.0003 ==> increasing alpha to 0.0171
+[2017.07.17-17:46:40] eph#12, cost decreased by 0.0003 ==> increasing alpha to 0.0180
+[2017.07.17-17:46:40] cost_eph#12 = 0.0311; abs diff between current and last eph = 0.0003
+[2017.07.17-17:46:40] eph#12, gradient[380:385] = [  3.473182e-03   2.220194e-04   2.286311e-04   3.894353e-04   4.093191e-05]
+[2017.07.17-17:46:41] eph#13, cost decreased by 0.0003 ==> increasing alpha to 0.0189
+[2017.07.17-17:46:41] eph#14, cost decreased by 0.0002 ==> increasing alpha to 0.0198
+[2017.07.17-17:46:41] Time for simple with reg training = 3.614s
+[2017.07.17-17:46:41] Computing theta for target = 1
+[2017.07.17-17:46:41] Start simple with reg training: alpha=0.01, batchSz=10, beta=0.001
+[2017.07.17-17:46:41] eph#1, cost decreased by 0.0051 ==> increasing alpha to 0.0105
+[2017.07.17-17:46:42] eph#2, cost decreased by 0.0023 ==> increasing alpha to 0.0110
+[2017.07.17-17:46:42] eph#3, cost decreased by 0.0014 ==> increasing alpha to 0.0116
+[2017.07.17-17:46:42] cost_eph# 3 = 0.0349; abs diff between current and last eph = 0.0014
+[2017.07.17-17:46:42] eph# 3, gradient[380:385] = [  1.461028e-02  -2.708339e-03   7.746309e-05   8.634310e-05   6.957054e-05]
+[2017.07.17-17:46:42] eph#4, cost decreased by 0.0010 ==> increasing alpha to 0.0122
+[2017.07.17-17:46:42] eph#5, cost decreased by 0.0008 ==> increasing alpha to 0.0128
+[2017.07.17-17:46:43] eph#6, cost decreased by 0.0007 ==> increasing alpha to 0.0134
+[2017.07.17-17:46:43] cost_eph# 6 = 0.0324; abs diff between current and last eph = 0.0007
+[2017.07.17-17:46:43] eph# 6, gradient[380:385] = [  1.578208e-02  -2.483624e-03   4.167439e-05   3.205652e-05   2.159375e-05]
+[2017.07.17-17:46:43] eph#7, cost decreased by 0.0005 ==> increasing alpha to 0.0141
+[2017.07.17-17:46:43] eph#8, cost decreased by 0.0005 ==> increasing alpha to 0.0148
+[2017.07.17-17:46:43] eph#9, cost decreased by 0.0004 ==> increasing alpha to 0.0155
+[2017.07.17-17:46:43] cost_eph# 9 = 0.0310; abs diff between current and last eph = 0.0004
+[2017.07.17-17:46:43] eph# 9, gradient[380:385] = [  1.717219e-02  -2.294137e-03   3.138424e-05   1.065640e-05   7.801103e-07]
+[2017.07.17-17:46:44] eph#10, cost decreased by 0.0004 ==> increasing alpha to 0.0163
+[2017.07.17-17:46:44] eph#11, cost decreased by 0.0003 ==> increasing alpha to 0.0171
+[2017.07.17-17:46:44] eph#12, cost decreased by 0.0003 ==> increasing alpha to 0.0180
+[2017.07.17-17:46:44] cost_eph#12 = 0.0300; abs diff between current and last eph = 0.0003
+[2017.07.17-17:46:44] eph#12, gradient[380:385] = [  1.831808e-02  -2.054328e-03   2.885536e-05  -3.096887e-07  -1.147404e-05]
+[2017.07.17-17:46:44] eph#13, cost decreased by 0.0003 ==> increasing alpha to 0.0189
+[2017.07.17-17:46:45] eph#14, cost decreased by 0.0003 ==> increasing alpha to 0.0198
+[2017.07.17-17:46:45] Time for simple with reg training = 3.605s
+[2017.07.17-17:46:45] Computing theta for target = 2
+[2017.07.17-17:46:45] Start simple with reg training: alpha=0.01, batchSz=10, beta=0.001
+[2017.07.17-17:46:45] eph#1, cost decreased by 0.0083 ==> increasing alpha to 0.0105
+[2017.07.17-17:46:45] eph#2, cost decreased by 0.0037 ==> increasing alpha to 0.0110
+[2017.07.17-17:46:45] eph#3, cost decreased by 0.0022 ==> increasing alpha to 0.0116
+[2017.07.17-17:46:45] cost_eph# 3 = 0.0825; abs diff between current and last eph = 0.0022
+[2017.07.17-17:46:45] eph# 3, gradient[380:385] = [-0.049536  0.008469  0.018364  0.034959  0.036095]
+[2017.07.17-17:46:46] eph#4, cost decreased by 0.0015 ==> increasing alpha to 0.0122
+[2017.07.17-17:46:46] eph#5, cost decreased by 0.0012 ==> increasing alpha to 0.0128
+[2017.07.17-17:46:46] eph#6, cost decreased by 0.0009 ==> increasing alpha to 0.0134
+[2017.07.17-17:46:46] cost_eph# 6 = 0.0789; abs diff between current and last eph = 0.0009
+[2017.07.17-17:46:46] eph# 6, gradient[380:385] = [-0.049152  0.00645   0.013895  0.030593  0.031617]
+[2017.07.17-17:46:46] eph#7, cost decreased by 0.0008 ==> increasing alpha to 0.0141
+[2017.07.17-17:46:47] eph#8, cost decreased by 0.0007 ==> increasing alpha to 0.0148
+[2017.07.17-17:46:47] eph#9, cost decreased by 0.0006 ==> increasing alpha to 0.0155
+[2017.07.17-17:46:47] cost_eph# 9 = 0.0769; abs diff between current and last eph = 0.0006
+[2017.07.17-17:46:47] eph# 9, gradient[380:385] = [-0.048734  0.005578  0.012182  0.02882   0.029811]
+[2017.07.17-17:46:47] eph#10, cost decreased by 0.0005 ==> increasing alpha to 0.0163
+[2017.07.17-17:46:47] eph#11, cost decreased by 0.0005 ==> increasing alpha to 0.0171
+[2017.07.17-17:46:48] eph#12, cost decreased by 0.0004 ==> increasing alpha to 0.0180
+[2017.07.17-17:46:48] cost_eph#12 = 0.0755; abs diff between current and last eph = 0.0004
+[2017.07.17-17:46:48] eph#12, gradient[380:385] = [-0.048546  0.005134  0.011375  0.027803  0.028758]
+[2017.07.17-17:46:48] eph#13, cost decreased by 0.0004 ==> increasing alpha to 0.0189
+[2017.07.17-17:46:48] eph#14, cost decreased by 0.0004 ==> increasing alpha to 0.0198
+[2017.07.17-17:46:48] Time for simple with reg training = 3.604s
+[2017.07.17-17:46:48] Computing theta for target = 3
+[2017.07.17-17:46:48] Start simple with reg training: alpha=0.01, batchSz=10, beta=0.001
+[2017.07.17-17:46:49] eph#1, cost decreased by 0.0072 ==> increasing alpha to 0.0105
+[2017.07.17-17:46:49] eph#2, cost decreased by 0.0033 ==> increasing alpha to 0.0110
+[2017.07.17-17:46:49] eph#3, cost decreased by 0.0020 ==> increasing alpha to 0.0116
+[2017.07.17-17:46:49] cost_eph# 3 = 0.0979; abs diff between current and last eph = 0.0020
+[2017.07.17-17:46:49] eph# 3, gradient[380:385] = [ 0.020028  0.009763  0.034521  0.036276  0.017615]
+[2017.07.17-17:46:49] eph#4, cost decreased by 0.0014 ==> increasing alpha to 0.0122
+[2017.07.17-17:46:50] eph#5, cost decreased by 0.0010 ==> increasing alpha to 0.0128
+[2017.07.17-17:46:50] eph#6, cost decreased by 0.0008 ==> increasing alpha to 0.0134
+[2017.07.17-17:46:50] cost_eph# 6 = 0.0946; abs diff between current and last eph = 0.0008
+[2017.07.17-17:46:50] eph# 6, gradient[380:385] = [ 0.019058  0.00844   0.027216  0.028644  0.013022]
+[2017.07.17-17:46:50] eph#7, cost decreased by 0.0007 ==> increasing alpha to 0.0141
+[2017.07.17-17:46:50] eph#8, cost decreased by 0.0006 ==> increasing alpha to 0.0148
+[2017.07.17-17:46:51] eph#9, cost decreased by 0.0005 ==> increasing alpha to 0.0155
+[2017.07.17-17:46:51] cost_eph# 9 = 0.0929; abs diff between current and last eph = 0.0005
+[2017.07.17-17:46:51] eph# 9, gradient[380:385] = [ 0.01901   0.00776   0.022581  0.023748  0.010899]
+[2017.07.17-17:46:51] eph#10, cost decreased by 0.0004 ==> increasing alpha to 0.0163
+[2017.07.17-17:46:51] eph#11, cost decreased by 0.0004 ==> increasing alpha to 0.0171
+[2017.07.17-17:46:51] eph#12, cost decreased by 0.0003 ==> increasing alpha to 0.0180
+[2017.07.17-17:46:51] cost_eph#12 = 0.0917; abs diff between current and last eph = 0.0003
+[2017.07.17-17:46:51] eph#12, gradient[380:385] = [ 0.019196  0.007335  0.019271  0.020226  0.00971 ]
+[2017.07.17-17:46:52] eph#13, cost decreased by 0.0003 ==> increasing alpha to 0.0189
+[2017.07.17-17:46:52] eph#14, cost decreased by 0.0003 ==> increasing alpha to 0.0198
+[2017.07.17-17:46:52] Time for simple with reg training = 3.596s
+[2017.07.17-17:46:52] Computing theta for target = 4
+[2017.07.17-17:46:52] Start simple with reg training: alpha=0.01, batchSz=10, beta=0.001
+[2017.07.17-17:46:52] eph#1, cost decreased by 0.0090 ==> increasing alpha to 0.0105
+[2017.07.17-17:46:53] eph#2, cost decreased by 0.0038 ==> increasing alpha to 0.0110
+[2017.07.17-17:46:53] eph#3, cost decreased by 0.0023 ==> increasing alpha to 0.0116
+[2017.07.17-17:46:53] cost_eph# 3 = 0.0651; abs diff between current and last eph = 0.0023
+[2017.07.17-17:46:53] eph# 3, gradient[380:385] = [ 0.040471  0.066695  0.066764  0.074438  0.059297]
+[2017.07.17-17:46:53] eph#4, cost decreased by 0.0016 ==> increasing alpha to 0.0122
+[2017.07.17-17:46:53] eph#5, cost decreased by 0.0012 ==> increasing alpha to 0.0128
+[2017.07.17-17:46:54] eph#6, cost decreased by 0.0010 ==> increasing alpha to 0.0134
+[2017.07.17-17:46:54] cost_eph# 6 = 0.0614; abs diff between current and last eph = 0.0010
+[2017.07.17-17:46:54] eph# 6, gradient[380:385] = [ 0.042362  0.069901  0.069988  0.076758  0.060913]
+[2017.07.17-17:46:54] eph#7, cost decreased by 0.0008 ==> increasing alpha to 0.0141
+[2017.07.17-17:46:54] eph#8, cost decreased by 0.0007 ==> increasing alpha to 0.0148
+[2017.07.17-17:46:54] eph#9, cost decreased by 0.0006 ==> increasing alpha to 0.0155
+[2017.07.17-17:46:54] cost_eph# 9 = 0.0592; abs diff between current and last eph = 0.0006
+[2017.07.17-17:46:54] eph# 9, gradient[380:385] = [ 0.041642  0.068536  0.068514  0.074679  0.059184]
+[2017.07.17-17:46:55] eph#10, cost decreased by 0.0006 ==> increasing alpha to 0.0163
+[2017.07.17-17:46:55] eph#11, cost decreased by 0.0005 ==> increasing alpha to 0.0171
+[2017.07.17-17:46:55] eph#12, cost decreased by 0.0005 ==> increasing alpha to 0.0180
+[2017.07.17-17:46:55] cost_eph#12 = 0.0577; abs diff between current and last eph = 0.0005
+[2017.07.17-17:46:55] eph#12, gradient[380:385] = [ 0.040051  0.065669  0.0655    0.071238  0.056434]
+[2017.07.17-17:46:55] eph#13, cost decreased by 0.0004 ==> increasing alpha to 0.0189
+[2017.07.17-17:46:56] eph#14, cost decreased by 0.0004 ==> increasing alpha to 0.0198
+[2017.07.17-17:46:56] Time for simple with reg training = 3.948s
+[2017.07.17-17:46:56] Computing theta for target = 5
+[2017.07.17-17:46:56] Start simple with reg training: alpha=0.01, batchSz=10, beta=0.001
+[2017.07.17-17:46:56] eph#1, cost decreased by 0.0106 ==> increasing alpha to 0.0105
+[2017.07.17-17:46:56] eph#2, cost decreased by 0.0050 ==> increasing alpha to 0.0110
+[2017.07.17-17:46:57] eph#3, cost decreased by 0.0031 ==> increasing alpha to 0.0116
+[2017.07.17-17:46:57] cost_eph# 3 = 0.1009; abs diff between current and last eph = 0.0031
+[2017.07.17-17:46:57] eph# 3, gradient[380:385] = [ 0.00292   0.00095   0.000107  0.000815  0.001597]
+[2017.07.17-17:46:57] eph#4, cost decreased by 0.0022 ==> increasing alpha to 0.0122
+[2017.07.17-17:46:57] eph#5, cost decreased by 0.0017 ==> increasing alpha to 0.0128
+[2017.07.17-17:46:58] eph#6, cost decreased by 0.0014 ==> increasing alpha to 0.0134
+[2017.07.17-17:46:58] cost_eph# 6 = 0.0956; abs diff between current and last eph = 0.0014
+[2017.07.17-17:46:58] eph# 6, gradient[380:385] = [  2.577074e-03   7.885725e-04   5.725322e-05   5.327317e-04   1.249444e-03]
+[2017.07.17-17:46:58] eph#7, cost decreased by 0.0011 ==> increasing alpha to 0.0141
+[2017.07.17-17:46:58] eph#8, cost decreased by 0.0010 ==> increasing alpha to 0.0148
+[2017.07.17-17:46:58] eph#9, cost decreased by 0.0008 ==> increasing alpha to 0.0155
+[2017.07.17-17:46:58] cost_eph# 9 = 0.0926; abs diff between current and last eph = 0.0008
+[2017.07.17-17:46:58] eph# 9, gradient[380:385] = [  2.457560e-03   7.253857e-04   3.796881e-05   4.316522e-04   1.065863e-03]
+[2017.07.17-17:46:59] eph#10, cost decreased by 0.0007 ==> increasing alpha to 0.0163
+[2017.07.17-17:46:59] eph#11, cost decreased by 0.0007 ==> increasing alpha to 0.0171
+[2017.07.17-17:46:59] eph#12, cost decreased by 0.0006 ==> increasing alpha to 0.0180
+[2017.07.17-17:46:59] cost_eph#12 = 0.0906; abs diff between current and last eph = 0.0006
+[2017.07.17-17:46:59] eph#12, gradient[380:385] = [  2.392801e-03   6.954319e-04   2.739988e-05   3.881820e-04   9.526877e-04]
+[2017.07.17-17:46:59] eph#13, cost decreased by 0.0005 ==> increasing alpha to 0.0189
+[2017.07.17-17:47:00] eph#14, cost decreased by 0.0005 ==> increasing alpha to 0.0198
+[2017.07.17-17:47:00] Time for simple with reg training = 3.929s
+[2017.07.17-17:47:00] Computing theta for target = 6
+[2017.07.17-17:47:00] Start simple with reg training: alpha=0.01, batchSz=10, beta=0.001
+[2017.07.17-17:47:00] eph#1, cost decreased by 0.0066 ==> increasing alpha to 0.0105
+[2017.07.17-17:47:00] eph#2, cost decreased by 0.0028 ==> increasing alpha to 0.0110
+[2017.07.17-17:47:01] eph#3, cost decreased by 0.0016 ==> increasing alpha to 0.0116
+[2017.07.17-17:47:01] cost_eph# 3 = 0.0498; abs diff between current and last eph = 0.0016
+[2017.07.17-17:47:01] eph# 3, gradient[380:385] = [-0.005596 -0.010471 -0.010942 -0.009184 -0.00695 ]
+[2017.07.17-17:47:01] eph#4, cost decreased by 0.0011 ==> increasing alpha to 0.0122
+[2017.07.17-17:47:01] eph#5, cost decreased by 0.0008 ==> increasing alpha to 0.0128
+[2017.07.17-17:47:02] eph#6, cost decreased by 0.0006 ==> increasing alpha to 0.0134
+[2017.07.17-17:47:02] cost_eph# 6 = 0.0472; abs diff between current and last eph = 0.0006
+[2017.07.17-17:47:02] eph# 6, gradient[380:385] = [-0.00454  -0.008483 -0.008959 -0.007457 -0.005566]
+[2017.07.17-17:47:02] eph#7, cost decreased by 0.0005 ==> increasing alpha to 0.0141
+[2017.07.17-17:47:02] eph#8, cost decreased by 0.0004 ==> increasing alpha to 0.0148
+[2017.07.17-17:47:03] eph#9, cost decreased by 0.0004 ==> increasing alpha to 0.0155
+[2017.07.17-17:47:03] cost_eph# 9 = 0.0459; abs diff between current and last eph = 0.0004
+[2017.07.17-17:47:03] eph# 9, gradient[380:385] = [-0.003888 -0.007286 -0.007739 -0.006308 -0.004658]
+[2017.07.17-17:47:03] eph#10, cost decreased by 0.0003 ==> increasing alpha to 0.0163
+[2017.07.17-17:47:03] eph#11, cost decreased by 0.0003 ==> increasing alpha to 0.0171
+[2017.07.17-17:47:04] eph#12, cost decreased by 0.0003 ==> increasing alpha to 0.0180
+[2017.07.17-17:47:04] cost_eph#12 = 0.0450; abs diff between current and last eph = 0.0003
+[2017.07.17-17:47:04] eph#12, gradient[380:385] = [-0.003466 -0.006518 -0.00695  -0.005553 -0.004067]
+[2017.07.17-17:47:04] eph#13, cost decreased by 0.0002 ==> increasing alpha to 0.0189
+[2017.07.17-17:47:05] eph#14, cost decreased by 0.0002 ==> increasing alpha to 0.0198
+[2017.07.17-17:47:05] Time for simple with reg training = 5.213s
+[2017.07.17-17:47:05] Computing theta for target = 7
+[2017.07.17-17:47:05] Start simple with reg training: alpha=0.01, batchSz=10, beta=0.001
+[2017.07.17-17:47:06] eph#1, cost decreased by 0.0063 ==> increasing alpha to 0.0105
+[2017.07.17-17:47:06] eph#2, cost decreased by 0.0028 ==> increasing alpha to 0.0110
+[2017.07.17-17:47:07] eph#3, cost decreased by 0.0016 ==> increasing alpha to 0.0116
+[2017.07.17-17:47:07] cost_eph# 3 = 0.0554; abs diff between current and last eph = 0.0016

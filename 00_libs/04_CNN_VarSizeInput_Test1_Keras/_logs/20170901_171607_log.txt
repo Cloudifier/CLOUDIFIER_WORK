@@ -1,0 +1,83 @@
+[FCNLIB][2017-09-01 17:16:07] Library [FCNLIB] initialized on machine [HPC.htss.ro]
+[FCNLIB][2017-09-01 17:16:07] Base data folder []
+[FCNLIB][2017-09-01 17:16:07] Found TF running on GPU
+[FCNLIB][2017-09-01 17:16:07] Models:
+['B1_32x2->64x2->512(3)x2->GMP->512d->512d\n', 'B1_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d\n', 'B0_32x2->64x2->512(3)x2->GMP->512d->512d\n', 'B0_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d\n', 'B2_32x2->64x2->512(3)x2->GMP->512d->512d\n', 'B2_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d\n']
+[FCNLIB][2017-09-01 17:16:07] Training/testing a total of 6 models
+
+[FCNLIB][2017-09-01 17:16:07] Preparing FCN (1/6): B1_32x2->64x2->512(3)x2->GMP->512d->512d using model blocks definition 
+[FCNLIB][2017-09-01 17:16:08] Short description:
+Input (None, None, 1)
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:512 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:512 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+GlobalMaxPooling2D
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Readout [unit:10 activ:softmax init:he_normal]
+
+[FCNLIB][2017-09-01 17:16:08] Keras Neural Network Layout
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_3 (InputLayer)         (None, None, None, 1)     0         
+_________________________________________________________________
+CBLOCK1_CONV32_0 (Conv2D)    (None, None, None, 32)    320       
+_________________________________________________________________
+batch_normalization_17 (Batc (None, None, None, 32)    128       
+_________________________________________________________________
+activation_17 (Activation)   (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK1_CONV32_1 (Conv2D)    (None, None, None, 32)    9248      
+_________________________________________________________________
+batch_normalization_18 (Batc (None, None, None, 32)    128       
+_________________________________________________________________
+activation_18 (Activation)   (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK2_CONV64_0 (Conv2D)    (None, None, None, 64)    18496     
+_________________________________________________________________
+batch_normalization_19 (Batc (None, None, None, 64)    256       
+_________________________________________________________________
+activation_19 (Activation)   (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK2_CONV64_1 (Conv2D)    (None, None, None, 64)    36928     
+_________________________________________________________________
+batch_normalization_20 (Batc (None, None, None, 64)    256       
+_________________________________________________________________
+activation_20 (Activation)   (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK3_CONV512_0 (Conv2D)   (None, None, None, 512)   295424    
+_________________________________________________________________
+batch_normalization_21 (Batc (None, None, None, 512)   2048      
+_________________________________________________________________
+activation_21 (Activation)   (None, None, None, 512)   0         
+_________________________________________________________________
+CBLOCK3_CONV512_1 (Conv2D)   (None, None, None, 512)   2359808   
+_________________________________________________________________
+batch_normalization_22 (Batc (None, None, None, 512)   2048      
+_________________________________________________________________
+activation_22 (Activation)   (None, None, None, 512)   0         
+_________________________________________________________________
+global_max_pooling2d_3 (Glob (None, 512)               0         
+_________________________________________________________________
+dense_7 (Dense)              (None, 512)               262656    
+_________________________________________________________________
+dropout_5 (Dropout)          (None, 512)               0         
+_________________________________________________________________
+dense_8 (Dense)              (None, 512)               262656    
+_________________________________________________________________
+dropout_6 (Dropout)          (None, 512)               0         
+_________________________________________________________________
+dense_9 (Dense)              (None, 10)                5130      
+=================================================================
+Total params: 3,255,530.0
+Trainable params: 3,253,098.0
+Non-trainable params: 2,432.0
+_________________________________________________________________
+
+[FCNLIB][2017-09-01 17:16:08] Training FCN (1/6)for 3 epochs...

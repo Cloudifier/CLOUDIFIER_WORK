@@ -1,0 +1,8 @@
+[2017.07.17-22:31:33] Fetch MNIST Data Set
+[2017.07.17-22:31:34] Finished fetching MNIST Data Set
+[2017.07.17-22:31:34] Initialize data preprocessor
+[2017.07.17-22:31:34] Start preprocessing data
+[2017.07.17-22:31:34] Normalize data
+[2017.07.17-22:31:36] Finished normalizing data
+[2017.07.17-22:31:36] Split in train set and test set by 14.000000000000002
+[2017.07.17-22:31:36] Finished splitting data

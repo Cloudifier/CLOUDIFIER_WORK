@@ -1,0 +1,3 @@
+call activate tf_no_gpu
+spyder --new-instance
+call deactivate tf_no_gpu

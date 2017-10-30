@@ -1,0 +1,123 @@
+[FCNLIB][2017-10-04 22:13:39] Library [FCNLIB] initialized on machine [HPC]
+[FCNLIB][2017-10-04 22:13:39] Base data folder []
+[FCNLIB][2017-10-04 22:13:39] Found TF running on GPU
+[FCNLIB][2017-10-04 22:13:39] Models:
+[FCNLIB][2017-10-04 22:13:39]   B1_32x2->64x2->512(3)x2->GMP->512d->512d
+[FCNLIB][2017-10-04 22:13:39]   B1_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+[FCNLIB][2017-10-04 22:13:39]   B0_32x2->64x2->512(3)x2->GMP->512d->512d
+[FCNLIB][2017-10-04 22:13:39]   B0_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+[FCNLIB][2017-10-04 22:13:39]   B2_32x2->64x2->512(3)x2->GMP->512d->512d
+[FCNLIB][2017-10-04 22:13:39]   B2_16x2->32x2->64x2->128x2->256(1)x2->GMP->512d->512d
+[FCNLIB][2017-10-04 22:13:40] Preparing test dataset...
+[FCNLIB][2017-10-04 22:13:40] Initial image with label 8,[ 0.  0.  0.  0.  0.  0.  0.  0.  1.  0.]
+[FCNLIB][2017-10-04 22:13:40] New image scaled with 2.8: on 173x151 scene
+[FCNLIB][2017-10-04 22:13:40] Initial image with label 7,[ 0.  0.  0.  0.  0.  0.  0.  1.  0.  0.]
+[FCNLIB][2017-10-04 22:13:41] New image scaled with 0.4: on 170x176 scene
+[FCNLIB][2017-10-04 22:13:41] Initial image with label 6,[ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.]
+[FCNLIB][2017-10-04 22:13:41] New image scaled with 0.8: on 171x199 scene
+[FCNLIB][2017-10-04 22:13:41] Initial image with label 1,[ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.]
+[FCNLIB][2017-10-04 22:13:41] New image scaled with 0.8: on 157x170 scene
+[FCNLIB][2017-10-04 22:13:41] Initial image with label 6,[ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.]
+[FCNLIB][2017-10-04 22:13:41] New image scaled with 2.0: on 168x187 scene
+[FCNLIB][2017-10-04 22:13:42] Done preparing test dataset.
+[FCNLIB][2017-10-04 22:13:42] Training/testing a total of 1 models
+
+[FCNLIB][2017-10-04 22:13:42] Preparing FCN (1/1): B1_32x2->64x2->512(3)x2->GMP->512d->512d using model blocks definition 
+[FCNLIB][2017-10-04 22:13:42] Short description:
+Input (None, None, 1)
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:32 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:64 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:512 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+Conv2D  [depth:512 kernel:(3, 3) stride:(1, 1) pad:same init:he_normal batchnorm:1 activ:elu]
+GlobalMaxPooling2D
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Dense   [unit:512 activ:elu init:he_normal]
+ Dropout [rate: 0.50]
+Readout [unit:10 activ:softmax init:he_normal]
+
+[FCNLIB][2017-10-04 22:13:42] Keras Neural Network Layout
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_2 (InputLayer)         (None, None, None, 1)     0         
+_________________________________________________________________
+CBLOCK1_CONV32_0 (Conv2D)    (None, None, None, 32)    320       
+_________________________________________________________________
+batch_normalization_7 (Batch (None, None, None, 32)    128       
+_________________________________________________________________
+activation_7 (Activation)    (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK1_CONV32_1 (Conv2D)    (None, None, None, 32)    9248      
+_________________________________________________________________
+batch_normalization_8 (Batch (None, None, None, 32)    128       
+_________________________________________________________________
+activation_8 (Activation)    (None, None, None, 32)    0         
+_________________________________________________________________
+CBLOCK2_CONV64_0 (Conv2D)    (None, None, None, 64)    18496     
+_________________________________________________________________
+batch_normalization_9 (Batch (None, None, None, 64)    256       
+_________________________________________________________________
+activation_9 (Activation)    (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK2_CONV64_1 (Conv2D)    (None, None, None, 64)    36928     
+_________________________________________________________________
+batch_normalization_10 (Batc (None, None, None, 64)    256       
+_________________________________________________________________
+activation_10 (Activation)   (None, None, None, 64)    0         
+_________________________________________________________________
+CBLOCK3_CONV512_0 (Conv2D)   (None, None, None, 512)   295424    
+_________________________________________________________________
+batch_normalization_11 (Batc (None, None, None, 512)   2048      
+_________________________________________________________________
+activation_11 (Activation)   (None, None, None, 512)   0         
+_________________________________________________________________
+CBLOCK3_CONV512_1 (Conv2D)   (None, None, None, 512)   2359808   
+_________________________________________________________________
+batch_normalization_12 (Batc (None, None, None, 512)   2048      
+_________________________________________________________________
+activation_12 (Activation)   (None, None, None, 512)   0         
+_________________________________________________________________
+global_max_pooling2d_2 (Glob (None, 512)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 512)               262656    
+_________________________________________________________________
+dropout_3 (Dropout)          (None, 512)               0         
+_________________________________________________________________
+dense_5 (Dense)              (None, 512)               262656    
+_________________________________________________________________
+dropout_4 (Dropout)          (None, 512)               0         
+_________________________________________________________________
+dense_6 (Dense)              (None, 10)                5130      
+=================================================================
+Total params: 3,255,530.0
+Trainable params: 3,253,098.0
+Non-trainable params: 2,432.0
+_________________________________________________________________
+
+[FCNLIB][2017-10-04 22:13:42] Training FCN (1/1)for 20 epochs...
+[FCNLIB][2017-10-04 22:57:58] Test score:0.029
+[FCNLIB][2017-10-04 22:57:58] Test accuracy:0.994
+[FCNLIB][2017-10-04 22:57:59] Label/Prediction: 8/4 Correct: False Imagesize: (1, 173, 151, 1)
+[FCNLIB][2017-10-04 22:57:59]   Prediction: [ 0.01  0.02  0.02  0.00  0.74  0.00  0.00  0.04  0.07  0.10]
+[FCNLIB][2017-10-04 22:57:59]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00]
+[FCNLIB][2017-10-04 22:57:59] Saving figure [_output\20171004_225759_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_8_4.png]
+[FCNLIB][2017-10-04 22:58:00] Label/Prediction: 7/1 Correct: False Imagesize: (1, 170, 176, 1)
+[FCNLIB][2017-10-04 22:58:00]   Prediction: [ 0.00  0.64  0.00  0.00  0.00  0.00  0.00  0.32  0.00  0.03]
+[FCNLIB][2017-10-04 22:58:00]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00]
+[FCNLIB][2017-10-04 22:58:00] Saving figure [_output\20171004_225800_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_7_1.png]
+[FCNLIB][2017-10-04 22:58:02] Label/Prediction: 6/2 Correct: False Imagesize: (1, 168, 187, 1)
+[FCNLIB][2017-10-04 22:58:03]   Prediction: [ 0.05  0.04  0.25  0.00  0.19  0.00  0.19  0.00  0.20  0.06]
+[FCNLIB][2017-10-04 22:58:03]   y_test:     [ 0.00  0.00  0.00  0.00  0.00  0.00  1.00  0.00  0.00  0.00]
+[FCNLIB][2017-10-04 22:58:03] Saving figure [_output\20171004_225803_B1_32x2-_64x2-_512(3)x2-_GMP-_512d-_512d_WRONG_LABEL_6_2.png]
+[FCNLIB][2017-10-04 22:58:03] Variable size accuracy: 0.400 (test 0.994)for B1_32x2->64x2->512(3)x2->GMP->512d->512d
+
+[FCNLIB][2017-10-04 22:58:03] Final results:
+[FCNLIB][2017-10-04 22:58:03] Variable size accuracy: 0.400 (test 0.994)for B1_32x2->64x2->512(3)x2->GMP->512d->512d
+[FCNLIB][2017-10-04 22:58:03] Results table:
+                                     Layout  Model  TestAcc  VarAcc
+0  B1_32x2->64x2->512(3)x2->GMP->512d->512d      0    0.994     0.4
+
+[FCNLIB][2017-10-04 22:58:03] Best accuracy 0.400 for model B1_32x2->64x2->512(3)x2->GMP->512d->512d with test acc: 0.994

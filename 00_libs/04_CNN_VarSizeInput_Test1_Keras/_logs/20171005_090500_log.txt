@@ -1,0 +1,3 @@
+[FCNLIB][2017-10-05 09:05:00] Library [FCNLIB] initialized on machine [HPC]
+[FCNLIB][2017-10-05 09:05:00] Logger ver: 3.2_tfg_pd_ker
+[FCNLIB][2017-10-05 09:05:00] Found TF running on GPU

@@ -1,0 +1,3 @@
+[FCNLIB][2017-10-05 08:58:32] Library [FCNLIB] initialized on machine [HPC]
+[FCNLIB][2017-10-05 08:58:32] Base data folder []
+[FCNLIB][2017-10-05 08:58:32] Found TF running on GPU

@@ -1,0 +1,15 @@
+The iris dataset is a classification task consisting in identifying 3 different
+types of irises (Setosa, Versicolour, and Virginica) from their petal and sepal
+length and width.
+
+Principal Component Analysis (PCA) is a dimensionality-reduction technique that 
+is often used to transform a high-dimensional dataset into a smaller-dimensional
+subspace prior to running a machine learning algorithm on the data.
+1. Reducing the dimensionality of the dataset reduces the size of the space on
+which k-nearest-neighbors (kNN) must calculate distance, which improve the performance of kNN.
+
+The simplest possible classifier is the nearest neighbor.
+The principle behind nearest neighbor methods is to find a predefined number of
+training samples closest in distance to the new point, and predict the label from these.
+
+Model Evaluation - how do we know that our predictor/prediction is good?

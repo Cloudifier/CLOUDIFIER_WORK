@@ -1,0 +1,58 @@
+[2017.07.19-13:21:12] Fetch MNIST Data Set
+[2017.07.19-13:21:12] Finished fetching MNIST Data Set
+[2017.07.19-13:21:12] Initialize data preprocessor
+[2017.07.19-13:21:12] Start preprocessing data
+[2017.07.19-13:21:13] Split in train set and test set by 14.000000000000002
+[2017.07.19-13:21:13] Normalize data
+[2017.07.19-13:21:14] Finished normalizing data
+[2017.07.19-13:21:14] Finished splitting data
+[2017.07.19-13:21:14] Initialize simple gradient descendent softmax regression solver
+[2017.07.19-13:21:14] Start simple with reg training: alpha=0.01, batchSz=10, beta=0.001
+[2017.07.19-13:21:18] eph#1, cost decreased by 0.0344 ==> increasing alpha to 0.0105
+[2017.07.19-13:21:20] eph#2, cost decreased by 0.0163 ==> increasing alpha to 0.0110
+[2017.07.19-13:21:22] eph#3, cost decreased by 0.0103 ==> increasing alpha to 0.0116
+[2017.07.19-13:21:22] cost_eph# 3 = 0.2373; abs diff between current and last eph = 0.0103
+[2017.07.19-13:21:22] eph# 3, gradient[380:385] = [[ 0.001044  0.01114  -0.050035 ...,  0.001872  0.021759  0.000741]
+ [ 0.000028 -0.003042 -0.001036 ...,  0.000189  0.002158  0.001798]
+ [-0.000012  0.000006 -0.000319 ..., -0.005436  0.000437  0.004603]
+ [ 0.000079  0.000008  0.003891 ...,  0.002114  0.00155  -0.014696]
+ [-0.000218  0.000007  0.005285 ...,  0.001844  0.001495 -0.014283]]
+[2017.07.19-13:21:25] eph#4, cost decreased by 0.0073 ==> increasing alpha to 0.0122
+[2017.07.19-13:21:27] eph#5, cost decreased by 0.0054 ==> increasing alpha to 0.0128
+[2017.07.19-13:21:29] eph#6, cost decreased by 0.0042 ==> increasing alpha to 0.0134
+[2017.07.19-13:21:29] cost_eph# 6 = 0.2204; abs diff between current and last eph = 0.0042
+[2017.07.19-13:21:29] eph# 6, gradient[380:385] = [[ 0.000811  0.01284  -0.049108 ...,  0.00194   0.019091  0.000467]
+ [ 0.000002 -0.00254  -0.00145  ...,  0.000539  0.001746  0.001196]
+ [-0.000017  0.000003 -0.000594 ..., -0.003893  0.000285  0.003298]
+ [ 0.000039 -0.000007  0.00378  ...,  0.00341   0.001103 -0.015057]
+ [-0.000169 -0.000008  0.004957 ...,  0.003154  0.001064 -0.01458 ]]
+[2017.07.19-13:21:31] eph#7, cost decreased by 0.0034 ==> increasing alpha to 0.0141
+[2017.07.19-13:21:33] eph#8, cost decreased by 0.0028 ==> increasing alpha to 0.0148
+[2017.07.19-13:21:35] eph#9, cost decreased by 0.0025 ==> increasing alpha to 0.0155
+[2017.07.19-13:21:35] cost_eph# 9 = 0.2118; abs diff between current and last eph = 0.0025
+[2017.07.19-13:21:35] eph# 9, gradient[380:385] = [[ 0.000681  0.01415  -0.048961 ...,  0.001866  0.017579  0.000352]
+ [-0.000012 -0.002147 -0.001677 ...,  0.000616  0.001538  0.000941]
+ [-0.000017  0.000007 -0.000608 ..., -0.003253  0.00022   0.002721]
+ [ 0.000025 -0.000012  0.004134 ...,  0.004063  0.000923 -0.015624]
+ [-0.000143 -0.000015  0.00513  ...,  0.003809  0.000889 -0.015109]]
+[2017.07.19-13:21:37] eph#10, cost decreased by 0.0022 ==> increasing alpha to 0.0163
+[2017.07.19-13:21:39] eph#11, cost decreased by 0.0020 ==> increasing alpha to 0.0171
+[2017.07.19-13:21:41] eph#12, cost decreased by 0.0019 ==> increasing alpha to 0.0180
+[2017.07.19-13:21:41] cost_eph#12 = 0.2056; abs diff between current and last eph = 0.0019
+[2017.07.19-13:21:41] eph#12, gradient[380:385] = [[ 0.0006    0.014955 -0.048797 ...,  0.001725  0.016716  0.000287]
+ [-0.000021 -0.0018   -0.001822 ...,  0.000603  0.001411  0.000791]
+ [-0.000017  0.000011 -0.00054  ..., -0.002843  0.00018   0.002347]
+ [ 0.000019 -0.000015  0.004557 ...,  0.00456   0.000834 -0.016197]
+ [-0.000127 -0.000019  0.005383 ...,  0.004303  0.000804 -0.015655]]
+[2017.07.19-13:21:43] eph#13, cost decreased by 0.0019 ==> increasing alpha to 0.0189
+[2017.07.19-13:21:45] eph#14, cost decreased by 0.0018 ==> increasing alpha to 0.0198
+[2017.07.19-13:21:45] Time for simple with reg training = 31.268s
+[2017.07.19-13:21:45] Total train time for simple with reg 31.268s
+[2017.07.19-13:21:45] Results using simple with reg solver -- test
+[2017.07.19-13:21:45] General accuracy result: accuracy=92.06%
+[2017.07.19-13:21:46] Results using simple with reg solver -- train
+[2017.07.19-13:21:46] General accuracy result: accuracy=92.70%
+[2017.07.19-13:21:46] Summary of general results:
+
+    Alg   Reg  TestAcc  TrainAcc  TotalTrainTime
+0  SGD  True    92.06      92.7          31.268
