@@ -1,0 +1,12 @@
+{
+  "BASE_FOLDER": "GoogleDrive",
+  "APP_FOLDER": "_cloudifier_data/11_cld_fast_obj_det",
+  "CLASSES" : "coco_classes.txt",
+  "ANCHORS" : "yolo_anchors.txt",
+  "MODEL" : "yolo.h5",
+  "MODEL_SIZE" : 608,
+
+  "DLIB_FACE_MODEL" : "shape_predictor_68_face_landmarks.dat",
+  "DLIB_FACE_MODEL_SMALL" : "shape_predictor_5_face_landmarks.dat",
+  "DLIB_FACE_NET" : "dlib_face_recognition_resnet_model_v1.dat"
+}

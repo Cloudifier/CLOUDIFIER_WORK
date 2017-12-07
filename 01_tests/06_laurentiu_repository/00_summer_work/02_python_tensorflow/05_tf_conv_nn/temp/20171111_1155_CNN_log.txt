@@ -1,0 +1,42 @@
+[CNN][2017-11-11 11:55:58] Layers:
+   Layer:[0] Type:[conv_relu] NumFilters:[64] FilterSize:[3]
+   Layer:[1] Type:[conv_relu] NumFilters:[256] FilterSize:[3]
+   Layer:[2] Type:[GMP layer] Units:[256]
+   Layer:[3] Type:[softmax layer] Units:[10] Act:[softmax]
+[CNN][2017-11-11 11:55:58] Training tf_cnn model... epochs=5, alpha=0.001, batch_sz=10, drop=0.7
+[CNN][2017-11-11 11:55:58] Model capacity: 150,922 weights, 0.58MB
+[CNN][2017-11-11 11:56:00] Epoch 1/5
+[CNN][2017-11-11 11:56:01]    [TRAIN Minibatch: 0] loss: 2.323
+[CNN][2017-11-11 11:56:01]         yTrue:[8 3 1 4 3 0 7 2 0 8]
+[CNN][2017-11-11 11:56:01]         yPred:[6 6 2 6 6 6 6 6 6 6]
+[CNN][2017-11-11 11:56:05]    [TRAIN Minibatch: 500] loss: 0.311
+[CNN][2017-11-11 11:56:05]         yTrue:[9 2 0 9 5 4 1 7 6 1]
+[CNN][2017-11-11 11:56:05]         yPred:[9 2 0 9 5 4 1 7 6 1]
+[CNN][2017-11-11 11:56:08]    [TRAIN Minibatch: 1000] loss: 0.232
+[CNN][2017-11-11 11:56:08]         yTrue:[7 8 9 7 3 1 0 7 8 8]
+[CNN][2017-11-11 11:56:08]         yPred:[7 8 9 7 6 1 0 7 8 8]
+[CNN][2017-11-11 11:56:11]    [TRAIN Minibatch: 1500] loss: 0.382
+[CNN][2017-11-11 11:56:11]         yTrue:[8 9 8 6 2 5 1 0 2 5]
+[CNN][2017-11-11 11:56:11]         yPred:[8 9 8 6 2 5 1 0 8 5]
+[CNN][2017-11-11 11:56:15]    [TRAIN Minibatch: 2000] loss: 0.167
+[CNN][2017-11-11 11:56:15]         yTrue:[1 2 8 4 8 1 3 4 0 6]
+[CNN][2017-11-11 11:56:15]         yPred:[1 2 8 4 8 1 3 4 0 6]
+[CNN][2017-11-11 11:56:18]    [TRAIN Minibatch: 2500] loss: 0.308
+[CNN][2017-11-11 11:56:18]         yTrue:[8 8 2 9 7 7 4 5 8 5]
+[CNN][2017-11-11 11:56:18]         yPred:[0 8 2 9 7 7 4 5 0 7]
+[CNN][2017-11-11 11:56:21]    [TRAIN Minibatch: 3000] loss: 0.051
+[CNN][2017-11-11 11:56:21]         yTrue:[1 3 7 4 1 0 8 7 9 9]
+[CNN][2017-11-11 11:56:21]         yPred:[1 3 7 4 1 0 8 7 9 9]
+[CNN][2017-11-11 11:56:25]    [TRAIN Minibatch: 3500] loss: 0.012
+[CNN][2017-11-11 11:56:25]         yTrue:[7 7 0 5 0 0 9 0 4 1]
+[CNN][2017-11-11 11:56:25]         yPred:[7 7 0 5 0 0 9 0 4 1]
+[CNN][2017-11-11 11:56:28]    [TRAIN Minibatch: 4000] loss: 0.012
+[CNN][2017-11-11 11:56:28]         yTrue:[0 8 1 1 4 4 2 6 5 3]
+[CNN][2017-11-11 11:56:28]         yPred:[0 8 1 1 4 4 2 6 5 3]
+[CNN][2017-11-11 11:56:31]    [TRAIN Minibatch: 4500] loss: 0.055
+[CNN][2017-11-11 11:56:31]         yTrue:[1 2 7 3 3 6 2 1 1 0]
+[CNN][2017-11-11 11:56:31]         yPred:[1 2 7 3 3 6 2 1 1 0]
+[CNN][2017-11-11 11:56:34] Epoch 2/5
+[CNN][2017-11-11 11:56:34]    [TRAIN Minibatch: 0] loss: 0.437
+[CNN][2017-11-11 11:56:34]         yTrue:[8 3 1 4 3 0 7 2 0 8]
+[CNN][2017-11-11 11:56:34]         yPred:[8 3 1 4 3 0 7 4 0 8]

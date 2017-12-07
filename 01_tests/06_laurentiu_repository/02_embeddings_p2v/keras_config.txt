@@ -1,0 +1,16 @@
+{
+  "BASE_FOLDER": "GoogleDrive",
+  "APP_FOLDER": "_hyperloop_data\\recom_compl",
+  "FRAMEWORK":
+  {
+     "NAME": "Keras",
+     "ARCHITECTURE": [
+	 ["input"],
+         ["embedding"],
+         ["conv1d", {"filters": -1, "kernel_size": -1, "strides": 1, "activation": "softmax"}]
+     ]
+  },
+  
+  "AUXILIARY_NAME": "",
+  "LOAD_MODEL": "_output\\20171124_115920_Keras_Emb_64_Window_6_Batch_1024_Ep_10"
+}

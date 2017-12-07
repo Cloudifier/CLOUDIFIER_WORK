@@ -1,0 +1,26 @@
+[23:04, 11/6/2017] Ionut Andrei Damian: 1. experiment 8 teste XOR
+[23:04, 11/6/2017] Ionut Andrei Damian: 2. Download dataset titanic si pregatit de train/test
+[23:05, 11/6/2017] Ionut Andrei Damian: (70% / 30%)
+[23:05, 11/6/2017] Ionut Andrei Damian: 3. Construit retea (plecand de la XOR)
+[23:05, 11/6/2017] Ionut Andrei Damian: 4. Accuracy min train 68% si test de 65%
+[23:06, 11/6/2017] Ionut Andrei Damian: np.sum(ypred == y) / y.shape[0]
+[23:07, 11/6/2017] Ionut Andrei Damian: Alex: 70/30
+[23:07, 11/6/2017] Ionut Andrei Damian: Mihai: Cross-validation
+[23:07, 11/6/2017] Ionut Andrei Damian: :)
+[23:08, 11/6/2017] Ionut Andrei Damian: 10 fold cross-validation
+[23:13, 11/6/2017] Ionut Andrei Damian: Titanic cu 2 nivele ascunse
+[23:13, 11/6/2017] Ionut Andrei Damian: input -> 10 ->4 -> sigmoid
+[23:14, 11/6/2017] Ionut Andrei Damian: subunitar* subunitar
+[23:14, 11/6/2017] Ionut Andrei Damian: sigmoid
+[23:14, 11/6/2017] Ionut Andrei Damian: sigmoid'
+[23:18, 11/6/2017] Ionut Andrei Damian: 1.1 de definit delta1 cine este
+[23:19, 11/6/2017] Ionut Andrei Damian: input -> 10 ->4 -> sigmoid
+[23:20, 11/6/2017] Ionut Andrei Damian: 2 ver: 10,4 sigmoid si 10,4 relu
+[23:20, 11/6/2017] Ionut Andrei Damian: input->liniar->sigmoid->liniar->sigmoid->liniar->readout(sigmoid)
+[23:21, 11/6/2017] Ionut Andrei Damian: input->lin->relu->lin->relu->lin->sigmoid
+[23:22, 11/6/2017] Ionut Andrei Damian: input->6->3->1
+[23:22, 11/6/2017] Ionut Andrei Damian: NU FULL BATCH
+[23:23, 11/6/2017] Ionut Andrei Damian: 8 obs / iteratie x nr_iteratii = 1 epoch
+[23:24, 11/6/2017] Ionut Andrei Damian: la fiecare 25 iteratii sa salvati loss-ul
+[23:25, 11/6/2017] Ionut Andrei Damian: folosim cross entropy binar
+[23:25, 11/6/2017] Ionut Andrei Damian: plotat loss in functie de epoca

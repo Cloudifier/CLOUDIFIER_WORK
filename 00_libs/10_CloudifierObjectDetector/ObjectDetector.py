@@ -98,6 +98,8 @@ class ObjectDetector:
      self.CLASSES_FILE, 
      self.DEFAULT_MODEL_NAME) = self.LoadModel(self.DEFAULT_MODEL)
     
+    self.USE_OBJECT_DETECTION_API = True # false for YOLO or other...
+    
     if self.CLASSES_FILE != '':
       self.CLASSES = self.LoadClasses()
     else:
@@ -141,7 +143,7 @@ class ObjectDetector:
     pd.options.display.width =  old
     return
   
-  def AnalyzeSingleImage(self, image_file):   
+  def tf_AnalizeSingleImage(self, image_file):
     l = self.log
     with self.LOADED_GRAPH.as_default():
       with tf.Session(graph=self.LOADED_GRAPH) as sess:
@@ -201,68 +203,17 @@ class ObjectDetector:
                          end_time - start_time, avg_acc, len(accuracy_list))
     return result_boxes,result_scores,result_classes
   
+  def AnalyzeSingleImage(self, image_file):   
+    if self.USE_OBJECT_DETECTION_API:
+      result_boxes,result_scores,result_classes = self.tf_AnalizeSingleImage(image_file)
+    return result_boxes,result_scores,result_classes
+  
 
 
 
   def AnalyzeImages(self, image_file_list):   
-    l = self.log
-    l.VerboseLog("Processing {} images...".format(len(image_file_list)))
-    with self.LOADED_GRAPH.as_default():
-      with tf.Session(graph=self.LOADED_GRAPH) as sess:
-        batch_start_time = time.time()
-        for image_file in image_file_list:
-          image = Image.open(image_file)
-          # the array based representation of the image will be used later in order to prepare the
-          # result image with boxes and labels on it.
-          image_np = self.load_image_into_numpy_array(image)
-          img_h = image_np.shape[0]
-          img_w = image_np.shape[1]
-          # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
-          image_np_expanded = np.expand_dims(image_np, axis=0)
-          image_tensor = self.LOADED_GRAPH.get_tensor_by_name('image_tensor:0')
-          # Each box represents a part of the image where a particular object was detected.
-          boxes = self.LOADED_GRAPH.get_tensor_by_name('detection_boxes:0')
-          # Each score represent how level of confidence for each of the objects.
-          # Score is shown on the result image, together with the class label.
-          scores = self.LOADED_GRAPH.get_tensor_by_name('detection_scores:0')
-          classes = self.LOADED_GRAPH.get_tensor_by_name('detection_classes:0')
-          num_detections = self.LOADED_GRAPH.get_tensor_by_name('num_detections:0')
-          # Actual detection.
-          l.VerboseLog("Running session...") 
-          start_time = time.time()
-          (boxes, scores, classes, num_detections) = sess.run(
-              [boxes, scores, classes, num_detections],
-              feed_dict={image_tensor: image_np_expanded})
-          end_time = time.time()        
-          l.VerboseLog("Done running session in {:.2f}s.".format(end_time-start_time))
-        batch_end_time = time.time()
-        # end batch
-      # end session
-    # end graph
-    
-    l.VerboseLog("Done batch images in {:.2f}s.".format(batch_end_time-batch_start_time))
-    
-    
-    NowProcessListsOfResults() 
-    
-    nr_detections = 0
-    result_boxes = []
-    result_scores = []
-    result_classes = []
-    for i in range(boxes.shape[1]):
-      if scores[0,i] >= self.detection_threshold:
-        coords = boxes[0,i,:]
-        ymin = coords[0] * img_h
-        xmin = coords[1] * img_w
-        ymax = coords[2] * img_h
-        xmax = coords[3] * img_w   
-        det_class = classes[0,i]
-        det_score = scores[0,i]
-        nr_detections += 1
-        result_boxes.append((xmin,ymin,xmax,ymax))
-        result_scores.append(det_score)
-        result_classes.append(det_class)        
-    return result_boxes,result_scores,result_classes
+    return
+
   
   
   def ShowLastDetectionClasses(self):

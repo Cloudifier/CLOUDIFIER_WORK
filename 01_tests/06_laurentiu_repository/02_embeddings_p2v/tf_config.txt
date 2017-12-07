@@ -1,0 +1,12 @@
+{
+  "BASE_FOLDER": "GoogleDrive",
+  "APP_FOLDER": "_hyperloop_data\\recom_compl",
+  "FRAMEWORK":
+  {
+     "NAME": "Tensorflow",
+     "EMBEDDINGS_CONTEXT": "flatten"
+  },
+  
+  "AUXILIARY_NAME": "",
+  "LOAD_MODEL": "_output/20171119_185255_Tensorflow_Emb_64_Window_6_Batch_128_flatten_hotseason_Ep_15.h5"
+}

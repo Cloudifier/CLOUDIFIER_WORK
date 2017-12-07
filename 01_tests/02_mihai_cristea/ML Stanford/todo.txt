@@ -1,0 +1,22 @@
+        if(((yhat > 0.5).astype(int)) == y).sum() == 4:
+            print('Convergenta la iteratia: ' + str(i))
+            min_convergence.append(i)
+            break
+
+def relu(z):
+ return np.min(0,z)
+
+def reluPrime(z):
+	if z > 0 :
+		return 1
+
+	return 0
+
+
+4 versiuni in care a1 foloseste relu
+
+benchmark cu 8 max
+
+peste 68%
+1. experiment 8 teste XOR
+2. download dataset Titanic pregatit de antrenament Neural 
