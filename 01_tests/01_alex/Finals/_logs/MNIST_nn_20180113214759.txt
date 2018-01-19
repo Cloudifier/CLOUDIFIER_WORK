@@ -1,0 +1,4 @@
+Start NN
+Best train acc: 0.00%, best test acc: 0.00%, best alpha: None, best batch size: None, best lmbd: None
+Total execution time: 0:00:14.444165
+End NN

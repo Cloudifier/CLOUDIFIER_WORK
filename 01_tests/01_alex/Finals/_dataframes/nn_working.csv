@@ -1,0 +1,22 @@
+%s
+ alpha= 0.001;batch_size= 8; lmbd= 0.0%s
+ alpha= 0.001;batch_size= 8; lmbd= 0.1%s
+ alpha= 0.001;batch_size= 8; lmbd= 0.2%s
+ alpha= 0.001;batch_size= 8; lmbd= 0.30000000000000004%s
+ alpha= 0.001;batch_size= 8; lmbd= 0.4%s
+ alpha= 0.001;batch_size= 8; lmbd= 0.5%s
+ alpha= 0.001;batch_size= 8; lmbd= 0.6000000000000001%s
+ alpha= 0.001;batch_size= 8; lmbd= 0.7000000000000001%s
+ alpha= 0.001;batch_size= 8; lmbd= 0.8%s
+ alpha= 0.001;batch_size= 8; lmbd= 0.9%s
+ alpha= 0.001;batch_size= 16; lmbd= 0.0%s
+ alpha= 0.001;batch_size= 16; lmbd= 0.1%s
+ alpha= 0.001;batch_size= 16; lmbd= 0.2%s
+ alpha= 0.001;batch_size= 16; lmbd= 0.30000000000000004%s
+ alpha= 0.001;batch_size= 16; lmbd= 0.4%s
+ alpha= 0.001;batch_size= 16; lmbd= 0.5%s
+ alpha= 0.001;batch_size= 16; lmbd= 0.6000000000000001%s
+ alpha= 0.001;batch_size= 16; lmbd= 0.7000000000000001%s
+ alpha= 0.001;batch_size= 16; lmbd= 0.8%s
+ alpha= 0.001;batch_size= 16; lmbd= 0.9%s
+ alpha= 0.031;batch_size= 16; lmbd= 0.2

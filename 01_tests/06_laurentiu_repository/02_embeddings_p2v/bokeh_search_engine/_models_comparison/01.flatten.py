@@ -1,17 +1,15 @@
-from lib_server import Server
-import os
+from lib_server_v2 import Server
 from bokeh.io import curdoc
 
-prods_filename = os.path.join("D:\\", "Google Drive\\_hyperloop_data\\recom_compl\\_data\\PROD.csv")
-np_path = os.path.join("D:\\", "Google Drive\\_hyperloop_data\\recom_compl\\models_comparison")
-server = Server(prods_filename, os.path.join(np_path, '01.flatten'))
+server = Server()
 
-server.create_plot('map', 800, 1500, 'cosine')
-server.create_plot('map', 500, 1000, 'cosine')
-server.create_plot('top_k', 650, 650, 'cosine')
-server.create_plot('top_k', 650, 650, 'euclidean')
+server.CreatePlot('map', 500, 1000)
+server.CreatePlot('map', 500, 700)
+server.CreatePlot('topk', 550, 550)
+server.CreatePlot('topk', 550, 550)
+server.CreatePlot('topk', 550, 550)
 
-server.draw_products()  # initial load of the data
+server.DrawProducts()  # initial load of the data
 
-curdoc().add_root(server.create_layout())
-curdoc().title = "FLATTEN"
+curdoc().add_root(server.CreateLayout())
+curdoc().title = "2014-2017"

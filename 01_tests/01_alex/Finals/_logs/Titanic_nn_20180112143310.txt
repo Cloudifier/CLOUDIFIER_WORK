@@ -1,0 +1,21 @@
+Start NN
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Test acc: 71.43%, Train acc: 65.62%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1, Test acc: 71.43%, Train acc: 65.75%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2, Test acc: 71.43%, Train acc: 65.62%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004, Test acc: 71.43%, Train acc: 66.00%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4, Test acc: 72.53%, Train acc: 66.38%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5, Test acc: 72.53%, Train acc: 66.38%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001, Test acc: 72.53%, Train acc: 66.38%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001, Test acc: 71.43%, Train acc: 66.75%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8, Test acc: 70.33%, Train acc: 66.88%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9, Test acc: 70.33%, Train acc: 67.00%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0, Test acc: 70.33%, Train acc: 67.00%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1, Test acc: 70.33%, Train acc: 67.12%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2, Test acc: 70.33%, Train acc: 67.12%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004, Test acc: 70.33%, Train acc: 67.12%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4, Test acc: 70.33%, Train acc: 67.00%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5, Test acc: 70.33%, Train acc: 67.12%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001, Test acc: 70.33%, Train acc: 67.12%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001, Test acc: 71.43%, Train acc: 67.38%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8, Test acc: 71.43%, Train acc: 67.50%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.9, Test acc: 71.43%, Train acc: 67.50%

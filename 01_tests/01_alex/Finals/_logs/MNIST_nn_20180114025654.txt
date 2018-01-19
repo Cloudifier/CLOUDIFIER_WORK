@@ -1,0 +1,25 @@
+Start NN
+Grid search: 200 use cases, 10 folds, 2000 total iterations
+Fold nr 1/10. Mean acc: 0%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 90.85%, Test acc: 90.34%
+Fold nr 2/10. Mean acc: [90.85 90.34]%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 90.85%, Test acc: 90.45%
+Fold nr 3/10. Mean acc: [90.85  90.395]%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 90.85%, Test acc: 90.81%
+Fold nr 4/10. Mean acc: [90.85       90.53333333]%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 90.85%, Test acc: 90.62%
+Fold nr 5/10. Mean acc: [90.85  90.555]%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 90.85%, Test acc: 91.34%
+Fold nr 6/10. Mean acc: [90.85  90.712]%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 90.84%, Test acc: 91.27%
+Fold nr 7/10. Mean acc: [90.84833333 90.805     ]%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 90.85%, Test acc: 90.61%
+Fold nr 8/10. Mean acc: [90.84857143 90.77714286]%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0

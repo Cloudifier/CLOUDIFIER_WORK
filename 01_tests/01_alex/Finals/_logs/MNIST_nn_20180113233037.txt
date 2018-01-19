@@ -1,0 +1,5 @@
+Start NN
+Grid search: 200 iterations
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 91.55%, Test acc: 94.29%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1, Train acc: 90.83%, Test acc: 94.29%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2, Train acc: 90.23%, Test acc: 94.29%

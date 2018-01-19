@@ -1,0 +1,22 @@
+Start kmeans
+Init: k-means++, max_iter: 1, n_init: 1, algo: elkan
+Train acc: 15.324489795918367, Test acc: 15.333333333333332
+
+
+Init: k-means++, max_iter: 1, n_init: 1, algo: full
+Train acc: 13.434693877551021, Test acc: 13.185714285714287
+
+
+Init: k-means++, max_iter: 1, n_init: 5, algo: elkan
+Train acc: 13.67142857142857, Test acc: 13.79047619047619
+
+
+Init: k-means++, max_iter: 1, n_init: 5, algo: full
+Train acc: 11.875510204081632, Test acc: 12.014285714285714
+
+
+Init: k-means++, max_iter: 1, n_init: 10, algo: elkan
+Train acc: 16.687755102040818, Test acc: 17.02857142857143
+
+
+Init: k-means++, max_iter: 1, n_init: 10, algo: full

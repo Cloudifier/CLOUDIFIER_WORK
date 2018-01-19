@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Nov 15 07:07:50 2017
-
-history:
+History:
+  
+  2017-10-01 First version based on YOLO v1
+  2017-11-15 Second version based on YOLO2K
+  2017-11-30 Added OmniFR features 
+  2017-12-10 Added support for production implementation
+  2017-12-11 Finalized production grade computational graph 
+  2017-12-18 Added support for TF ODAPI graphs
 
 """
 
@@ -29,7 +34,7 @@ from omni_camera_utils import VideoCameraStream, np_rect, np_circle
 from omni_face_eng import FaceEngine, is_shape, FacialLandmarks
 
 
-__version__   = "1.1.yolo_dlib"
+__version__   = "1.3.ytf_fr2"
 __author__    = "Cloudifier"
 __copyright__ = "(C) Cloudifier SRL"
 __project__   = "Cloudifier"  
@@ -75,14 +80,20 @@ def load_module(module_name, file_name):
 
 
 class FastObjectDetector:
-  def __init__(self, config_file = "config.txt", max_boxes=10, score_threshold=.6, iou_threshold=.5,
-               use_PIL = False, PERSON_CLASS = 0, add_new_session = False, session = None):
+  def __init__(self, config_file = "config.txt", 
+               max_boxes=10, 
+               score_threshold=.6, 
+               iou_threshold=.5,
+               use_PIL = False, 
+               PERSON_CLASS = 0, add_new_session = False, session = None):
 
     self.DEBUG = True
+    self.prepared = False
     self.__version__ = __version__
     
     self.use_PIL = use_PIL
     self.image_shape = None
+    self.current_session = None
     module = load_module("logger", "logger.py")
     self.logger = module.Logger(lib_name = "CFOD", lib_ver = self.__version__,
                                 config_file = config_file,
@@ -106,17 +117,19 @@ class FastObjectDetector:
         self.sess = K.get_session()
     self.logger.VerboseLog("Done init session.", show_time = True)
     
-    
     self.PERSON_CLASS = PERSON_CLASS
 
     
     classes_file = os.path.join(self.logger._data_dir, self.config_data["CLASSES"])
     anchors_file = os.path.join(self.logger._data_dir, self.config_data["ANCHORS"])
-    self.logger.VerboseLog("Load classes: {}".format(classes_file))
+    self.logger.VerboseLog("Load classes: ...{}".format(classes_file[-30:]))
     self.class_names = read_classes(classes_file)
-    self.logger.VerboseLog("Load anchors: {}".format(anchors_file))
+    self.logger.VerboseLog("Load anchors: ...{}".format(anchors_file[-30:]))
     self.anchors = read_anchors(anchors_file)
     
+    fr_method = self.config_data["FR_METHOD"]
+    fr_result = self.config_data["FR_OUTPUT_FILE"]
+    fr_out_file = fr_method + "_" +  fr_result
     
     self.shape_large_clf = None
     self.shape_small_clf = None
@@ -133,34 +146,108 @@ class FastObjectDetector:
     self.face_engine = FaceEngine(path_small_shape_model = spredictor_file, 
                                   path_large_shape_model = lpredictor_file, 
                                   path_faceid_model = net_model_file,
+                                  fr_method = fr_method,
                                   logger = self.logger,
                                   DEBUG = self.DEBUG,
-                                  score_threshold = 0.619)
+                                  score_threshold = 0.619,
+                                  output_file = fr_out_file)
     self.logger.VerboseLog("Done loading face detector engine.")
-   
-
-    model_file = os.path.join(self.logger._data_dir, self.config_data["MODEL"])
-    self.logger.VerboseLog("Loading model [{}]...".format(model_file))
-    self.yolo_model = load_model(model_file)
-    self.learning_phase = K.learning_phase()
-    self.logger.VerboseLog("Done loading model.", show_time = True)
-    self.logger.VerboseLog(self.logger.GetKerasModelDesc(self.yolo_model))
-    self.logger.Log(self.logger.GetKerasModelDesc(self.yolo_model))
-
-
     
+    self.used_method = self.config_data["USED_METHOD"] 
+    self.valid_methods = self.config_data["ALL_METHODS"]
+    assert self.used_method in self.valid_methods, "Configuratio issue: {} not in methods {}".format(
+        self.used_method, self.valid_methods)
+   
+    self.log("CFOD used method: {}".format(self.used_method))
 
+    if self.used_method=='YOLO':
+      self._load_yolo()
+    elif self.used_method=='TFODAPI':
+      self._load_tfodapi()
+      
     
     self.max_boxes = max_boxes
     self.score_threshold = score_threshold
     self.iou_threshold = iou_threshold
     
-    self.prepared = False
-    self.model_shape = (self.config_data["MODEL_SIZE"],self.config_data["MODEL_SIZE"])
     
     self.logger.VerboseLog("Done engine init.")
     
     return
+  
+  
+  def _load_tfodapi(self):
+    self.pb_file = os.path.join(self.logger._data_dir, self.config_data["TFODAPI_MODEL"])
+    assert os.path.isfile(self.pb_file), "Model graph file {} not found".format(self.pb_file)
+    self.classes_tensor_name = self.config_data["TFODAPI_CLASSES_TENSOR_NAME"]
+    self.scores_tensor_name = self.config_data["TFODAPI_SCORES_TENSOR_NAME"]
+    self.boxes_tensor_name = self.config_data["TFODAPI_BOXES_TENSOR_NAME"]
+    self.input_tensor_name = self.config_data["TFODAPI_INPUT_TENSOR_NAME"]
+    self.numdet_tensor_name = self.config_data["TFODAPI_NUMDET_TENSOR_NAME"]
+    self.tfodapi_graph = self.logger.LoadTFGraph(self.pb_file)
+    self.tfodapi_sess = tf.Session(graph = self.tfodapi_graph)
+    self.tf_classes = self.tfodapi_sess.graph.get_tensor_by_name(
+                            self.classes_tensor_name+":0")
+    self.tf_scores = self.tfodapi_sess.graph.get_tensor_by_name(
+                            self.scores_tensor_name+":0")
+    self.tf_boxes= self.tfodapi_sess.graph.get_tensor_by_name(
+                            self.boxes_tensor_name+":0")
+    self.tf_numdet= self.tfodapi_sess.graph.get_tensor_by_name(
+                            self.numdet_tensor_name+":0")
+    self.tf_odapi_input = self.tfodapi_sess.graph.get_tensor_by_name(
+                            self.input_tensor_name+":0")
+    self.prepared = True      
+    self.current_session = self.tfodapi_sess
+    self.log("Done loading TFGRaph")
+    
+    return
+  
+  
+  def _load_yolo(self):
+    model_file = os.path.join(self.logger._data_dir, self.config_data["YOLO_MODEL"])
+    self.logger.VerboseLog("Loading scene inference model [{}]...".format(model_file[-30:]))
+    
+    self.classes_tensor_name = self.config_data["YOLO_CLASSES_TENSOR_NAME"]
+    self.scores_tensor_name = self.config_data["YOLO_SCORES_TENSOR_NAME"]
+    self.boxes_tensor_name = self.config_data["YOLO_BOXES_TENSOR_NAME"]
+    self.input_tensor_name = self.config_data["YOLO_INPUT_TENSOR_NAME"]
+    
+    filename, file_extension = os.path.splitext(model_file)
+    self.pb_file = filename+'.pb'   
+    #FIRST TRY TO LOAD .pb GRAPH THEN TURN TO MODEL
+    if os.path.isfile(self.pb_file):
+      self.log("TFGraph found. Loading [...{}]".format(self.pb_file[-30:]))
+      self.yolo_graph = self.logger.LoadTFGraph(self.pb_file)
+      self.yolo_sess = tf.Session(graph = self.yolo_graph)
+      
+      self.learning_phase = self.yolo_sess.graph.get_tensor_by_name("keras_learning_phase:0")
+      self.tf_classes = self.yolo_sess.graph.get_tensor_by_name(
+                              self.classes_tensor_name+":0")
+      self.tf_scores = self.yolo_sess.graph.get_tensor_by_name(
+                              self.scores_tensor_name+":0")
+      self.tf_boxes= self.yolo_sess.graph.get_tensor_by_name(
+                              self.boxes_tensor_name+":0")
+      self.tf_yolo_input = self.yolo_sess.graph.get_tensor_by_name(
+                              self.input_tensor_name+":0")
+      ## graph_h, graph_w not used at inference but kept nevertheless
+      self.graph_out_height = self.config_data["GRAPH_H"]
+      self.graph_out_width = self.config_data["GRAPH_W"]
+      ##
+      #IF .pb LOADED THEN CONSIDER MODEL PREPARED !
+      self.prepared = True      
+      self.current_session = self.yolo_sess
+      self.log("Done loading TFGRaph")
+    else:  
+      self.yolo_model = load_model(model_file)
+      #self.learning_phase = self.sess.graph.get_tensor_by_name("keras_learning_phase:0")
+      #K.learning_phase()
+      self.logger.VerboseLog("Done loading model.", show_time = True)
+      self.logger.VerboseLog(self.logger.GetKerasModelDesc(self.yolo_model))
+      self.logger.Log(self.logger.GetKerasModelDesc(self.yolo_model))
+      
+    self.model_shape = (self.config_data["YOLO_MODEL_SIZE"],self.config_data["YOLO_MODEL_SIZE"])      
+    return
+
     
   def _DEBUG_INFO(self, skey, img = None):
     if self.DEBUG:
@@ -178,26 +265,10 @@ class FastObjectDetector:
     img /= 255
     return np.expand_dims(img, 0)
 
-  def prepare(self, image_shape = (720., 1280.)):
-    """
-    final preparation of computation graph
-    """
-    image_shape = (float(image_shape[0]),float(image_shape[1]))
-    self.image_shape = image_shape
-    self.yolo_outputs = yolo_head(self.yolo_model.output, 
-                                  self.anchors, 
-                                  len(self.class_names))    
-    self.scores, self.boxes, self.classes = self.y9k_eval(yolo_outputs = self.yolo_outputs, 
-                                                          image_shape = self.image_shape,
-                                                          max_boxes = self.max_boxes, 
-                                                          score_threshold = self.score_threshold, 
-                                                          iou_threshold = self.iou_threshold)
-    self.prepared = True
-    return self.prepared
   
   def _person_callback(self, box, np_img):
     """
-    call this function when class is self.PERSON_CLASS 
+    callback function used when class is self.PERSON_CLASS 
     """
     top,left,bottom,right = box
     left = max(0, int(left))
@@ -210,16 +281,16 @@ class FastObjectDetector:
     
     
     DRAW_FACE_RECT = True
-    FACE_THUMBSIZE = 75
     FACE_LANDMARKS = True # 0: no, 1: full 2: only 5 feats
     DISPLAY_FACE = True
     FACE_ID = True
     
     self.logger.start_timer(" FaceGetInfo")
     res = self.face_engine.GetFaceInfo(np_pers_img, get_shape = FACE_LANDMARKS,
-                                       get_id_name = FACE_ID)
+                                       get_id_name = FACE_ID,
+                                       get_thumb = True)
     self.logger.end_timer(" FaceGetInfo")
-    found_box, np_facial_shape, _, fid, sname = res
+    found_box, np_facial_shape, _, fid, sname, np_resized, dist = res
     
     
     FACE_TOP_OFFSET = -30
@@ -236,6 +307,10 @@ class FastObjectDetector:
       R += FACE_RIGHT_OFFSET
       B += FACE_BOTTOM_OFFSET
       np_exact_face = np_pers_img[T:B,L:R,:]
+      if self.DEBUG:
+        self.last_face = np_exact_face
+        self.last_person = np_pers_img
+        self.last_align = np_resized
       face_left = left + L
       face_top = top + T
       face_right = left + R
@@ -246,51 +321,66 @@ class FastObjectDetector:
       ###
       self.logger.start_timer(" FaceDrawingTime")
       if DISPLAY_FACE:
-        if (np_exact_face.shape[0]>FACE_THUMBSIZE) and (np_exact_face.shape[1]>FACE_THUMBSIZE):
-          np_resized = scipy.misc.imresize(np_exact_face, (FACE_THUMBSIZE,FACE_THUMBSIZE))
-          np_img[:FACE_THUMBSIZE,-FACE_THUMBSIZE:,:] = np_resized
+        #if ((np_exact_face.shape[0] > FACE_THUMBSIZE) and 
+        #    (np_exact_face.shape[1] > FACE_THUMBSIZE)):   
+        #  np_resized = scipy.misc.imresize(np_exact_face, (FACE_THUMBSIZE,FACE_THUMBSIZE))
+        resized_h, resized_w = np_resized.shape[0:2]
+        np_img[:resized_h, -resized_w:, :] = np_resized
       
       if FACE_LANDMARKS:
-        for i in range(np_facial_shape.shape[0]):
-          x = int(np_facial_shape[i,0]) + left
-          y = int(np_facial_shape[i,1]) + top
-          clr = (0,0,255)
-          if is_shape(FacialLandmarks.FL_LEYE,i) :
-            clr = (255,255,255)
-          if is_shape(FacialLandmarks.FL_REYE,i) :
-            clr = (0,255,255)
-          np_img = np_circle(np_img, (x, y), 1, clr, -1)
+        np_img = self.face_engine.draw_facial_shape(np_img, np_facial_shape, 
+                                                    left = left, top = top)
 
       if DRAW_FACE_RECT:
+        txt = person_id + " D:{:.2f} S:{}".format(dist,
+                             (face_bottom-face_top, face_right-face_left),)
         np_img = np_rect(face_left, face_top, face_right, face_bottom, np_img,
-                         color = (0,255,0), text = person_id)
+                         color = (0,255,0), text = txt)
       self.logger.end_timer(" FaceDrawingTime")
       ### 
       ### done extra processing
       ###
-    
     return np_img
   
   def process_boxes(self, scores, boxes, classes, np_img, show_label = False):
-    
+    """
+    process each box box within inferred scene
+    """
     for i,box in enumerate(boxes):
-      cls = self.class_names[classes[i]]
+      cls_idx = min(classes[i],len(self.class_names)-1)
+      cls = self.class_names[cls_idx]
       score = scores[i]
       top, left, bottom, right = box
+      H = int(bottom-top)
+      W = int(right-left)
       clr = (255,255,255)
+      
       if classes[i] == self.PERSON_CLASS:
         clr = (0,0,255) # red
         np_img = self._person_callback(box,np_img)
       label = None
+      
       if show_label:
-        label = "{} [{:.1f}%]".format(cls, score * 100)
+        label = "{} [{:.1f}%] {}".format(cls, score * 100, (H,W))
+        
       np_img = np_rect(left,top,right,bottom,np_img, 
                        color = clr, text = label,
                        use_cv2 = False, thickness = 2)    # cv2 = True for fast drawing
     return np_img
 
-  def predict_img(self, img):
+  
+  def predict_img(self, np_img):
+    result = None
+    if self.used_method == 'YOLO':
+      result = self._yolo_predict_img(np_img)
+    elif self.used_method == 'TFODAPI':
+      result  = self._tfodapi_predict_img(np_img)
+    return result
+
+
+  def _tfodapi_predict_img(self, np_img):
     """
+     TF ODAPI graph based inference
      accepts a single image in HWC format - image can be any size
      
      returns touple of 4 items:
@@ -299,7 +389,78 @@ class FastObjectDetector:
        out_classes: box classes
        np_image: numpy HWC image
       
+    """    
+    _result = None
+    if self.prepared:
+      self.logger.start_timer("Predict")
+      
+      assert len(np_img.shape) == 3, "Input image in tf_pred must pe HWC"
+
+      np_img_input = np.expand_dims(np_img, axis = 0)
+      
+      img_h = np_img_input.shape[1]
+      img_w = np_img_input.shape[2]
+      # Run the session 
+      # model uses BatchNorm thus need to pass {K.learning_phase(): 0}
+      self.logger.start_timer("TFODAPI Inference")
+      np_scores, np_boxes, np_classes, np_numdet = self.tfodapi_sess.run(
+          [self.tf_scores, self.tf_boxes, self.tf_classes, self.tf_numdet], 
+           feed_dict = {self.tf_odapi_input : np_img_input,
+                        })
+      _DEBUG_t_inference = self.logger.end_timer("TFODAPI Inference")
+      
+      self.logger.start_timer("ProcessBoxes")
+
+      result_boxes = []
+      result_scores = []
+      result_classes = []
+      for i in range(np_boxes.shape[1]):
+        score = np_scores[0,i]
+        if score >= self.score_threshold:
+          coords = np_boxes[0,i,:]
+          top = coords[0] * img_h
+          left = coords[1] * img_w
+          bottom = coords[2] * img_h
+          right = coords[3] * img_w   
+          det_class = np_classes[0,i] - 1 # zero-offset due to COCO dict...
+          result_boxes.append((top,left,bottom,right))
+          result_scores.append(score)
+          result_classes.append(int(det_class))
+
+      img = self.process_boxes(result_scores, result_boxes, result_classes, 
+                               np_img = np_img, show_label = True)
+      _DEBUG_t_process = self.logger.end_timer("ProcessBoxes")
+      _result = img
+
+      # Print predictions info
+      if self.DEBUG:
+        self.logger.VerboseLog('Found {} boxes for current frame: {} in {:.2f}s'.format(
+            len(result_boxes), result_classes, _DEBUG_t_inference))
+
+      _DEBUG_t_total = self.logger.end_timer("Predict")        
+      if self.DEBUG:
+        self.logger.VerboseLog(" Total frame time {:.3f}s inference: {:.3f}s process: {:.3f}s".format(
+            _DEBUG_t_total, _DEBUG_t_inference, _DEBUG_t_process))
+      
+    else:
+      self.logger.VerboseLog("ERROR: Predict called without preparation")
+      
+    return _result
+
+
+
+  def _yolo_predict_img(self, img):
     """
+     yolo graph based inference
+     accepts a single image in HWC format - image can be any size
+     
+     returns touple of 4 items:
+       out_scores: scores for each box
+       out_boxes: each box
+       out_classes: box classes
+       np_image: numpy HWC image
+      
+    """    
     _result = None
     if self.prepared:
       self.logger.start_timer("Predict")
@@ -307,10 +468,10 @@ class FastObjectDetector:
       # Run the session 
       # model uses BatchNorm thus need to pass {K.learning_phase(): 0}
       self.logger.start_timer("YOLO Inference")
-      out_scores, out_boxes, out_classes = self.sess.run(
-          [self.scores, self.boxes, self.classes], 
-           feed_dict = {self.yolo_model.input:image_data,
-                        self.learning_phase:0})
+      out_scores, out_boxes, out_classes = self.yolo_sess.run(
+          [self.tf_scores, self.tf_boxes, self.tf_classes], 
+           feed_dict = {self.tf_yolo_input : image_data,
+                        self.learning_phase : 0})
       _DEBUG_t_inference = self.logger.end_timer("YOLO Inference")
       # Print predictions info
       if self.DEBUG:
@@ -345,44 +506,6 @@ class FastObjectDetector:
       
     return _result
     
-  def predict_file(self, image_file):
-    """
-     accepts a single image file
-    """    
-    _result = None
-    if self.prepared:
-      self.logger.VerboseLog("Predicting ...")
-      # Preprocess your image
-      image, image_data = preprocess_image(image_file, model_image_size = self.model_shape)
-  
-      # Run the session 
-      # model uses BatchNorm thus need to pass {K.learning_phase(): 0}
-      out_scores, out_boxes, out_classes = self.sess.run([self.scores, 
-                                                          self.boxes, 
-                                                          self.classes], 
-                                                         feed_dict = {self.yolo_model.input:image_data,
-                                                                      K.learning_phase():0})
- 
-      # Print predictions info
-      self.logger.VerboseLog('Found {} boxes for {}'.format(len(out_boxes), image_file), show_time = True)
-      # Generate colors for drawing bounding boxes.
-      colors = generate_colors(self.class_names)
-      # Draw bounding boxes on the image file
-      draw_boxes(image, out_scores, out_boxes, out_classes, self.class_names, colors, 
-                 logger = self.logger)
-      # Save the predicted bounding box on the image
-      image.save(os.path.join(self.logger._outp_dir, image_file), quality=90)
-      # Display the results 
-      output_image = scipy.misc.imread(os.path.join(self.logger._outp_dir, image_file))
-      imshow(output_image)
-      self.logger.VerboseLog('Done preparing output image', show_time = True)
-      
-      _result =  (out_scores, out_boxes, out_classes)
-      
-    else:
-      self.logger.VerboseLog("ERROR: Predict called without preparation")
-      
-    return _result
 
   def y9k_filter_boxes(self, box_confidence, boxes, box_class_probs, threshold = .6):
     """Filters YOLO boxes by thresholding on object and class confidence.    
@@ -445,8 +568,6 @@ class FastObjectDetector:
     # next initialize variable max_boxes_tensor
     #self.logger.VerboseLog("{} == {} is {}".format(self.sess,K.get_session(),
     #                       self.sess == K.get_session()))
-    self.logger.VerboseLog("{} == {} is {}".format(self.sess,K.get_session(),
-                           self.sess == K.get_session()))
     self.sess.run(tf.variables_initializer([max_boxes_tensor])) 
     
     # Use tf.image.non_max_suppression() to get the list of indices corresponding to boxes you keep
@@ -485,6 +606,7 @@ class FastObjectDetector:
     boxes -- tensor of shape (None, 4), predicted box coordinates
     classes -- tensor of shape (None,), predicted class for each box
     """
+    self.log("Preparing final Y2k evaluation graph for {} input".format(image_shape))
        
     # Retrieve outputs of the YOLO model (≈1 line)
     box_confidence, box_xy, box_wh, box_class_probs = yolo_outputs
@@ -501,7 +623,50 @@ class FastObjectDetector:
     # perform Non-max suppression with a threshold of iou_threshold (≈1 line)
     scores, boxes, classes =  self.y9k_non_max_suppression(scores, boxes, classes, max_boxes = max_boxes, iou_threshold = iou_threshold)
     
+    scores = tf.identity(scores, name = self.scores_tensor_name)
+    boxes = tf.identity(boxes, name = self.boxes_tensor_name)
+    classes = tf.identity(classes, name = self.classes_tensor_name)
+    
     return scores, boxes, classes  
+
+
+  def prepare(self, image_shape = (720., 1280.)):
+    """
+    final preparation of computation graph 
+    will save production grade full DAG as .pb file
+    """
+    if self.prepared: # return if model allready prepared (probabily loaded .pb)      
+      return True
+    self.log("Preparing outputs ...")
+    image_shape = (float(image_shape[0]),float(image_shape[1]))
+    self.image_shape = image_shape
+    self.yolo_outputs = yolo_head(self.yolo_model.output, 
+                                  self.anchors, 
+                                  len(self.class_names))    
+    self.log("Preparing evaluation ...")
+    self.tf_scores, self.tf_boxes, self.tf_classes = self.y9k_eval(yolo_outputs = self.yolo_outputs, 
+                                                          image_shape = self.image_shape,
+                                                          max_boxes = self.max_boxes, 
+                                                          score_threshold = self.score_threshold, 
+                                                          iou_threshold = self.iou_threshold)
+    self.tf_yolo_input = self.yolo_model.input
+    self.input_tensor_name = self.tf_yolo_input.name
+    self.log("Graph prepared. Saving .pb ...")
+    self.yolo_sess = K.get_session()
+    self.logger.SaveGraph(session = self.yolo_sess,
+                          tensor_list = [self.tf_scores, 
+                                         self.tf_boxes, 
+                                         self.tf_classes],
+                          pb_file = self.pb_file,
+                          input_names = [self.input_tensor_name],)
+                          #output_names = [self.scores_tensor_name,
+                          #                self.boxes_tensor_name,
+                          #                self.classes_tensor_name])   
+    self.log("Done Saving .pb file.")
+    self.prepared = True
+    self.current_session = self.yolo_sess
+    return self.prepared
+
   
   def show_fr_stats(self):
     self.logger.VerboseLog("FR STATS:\n{}".format(self.face_engine.get_stats()))
@@ -521,17 +686,29 @@ class FastObjectDetector:
     #self.sess.close()
     #del self.sess
     #del self.face_engine
+    self.current_session.close()
+    return
+  
+  def log(self, s, show_time = False):
+    self.logger.VerboseLog(s, show_time = show_time,)
+    return
+  
+  
+  def on_click(self, x, y):
     return
   
 
 if __name__ == '__main__':
 
   cfod = FastObjectDetector(score_threshold = 0.5)
-  vstrm = VideoCameraStream(logger = cfod.logger)  
+  vstrm = VideoCameraStream(logger = cfod.logger,
+                            process_func = cfod.predict_img, 
+                            info_func = cfod._DEBUG_INFO,
+                            onclick_func = cfod.on_click)
   if vstrm.video != None:
     video_frame_shape = (vstrm.H,vstrm.W) 
     cfod.prepare(image_shape = video_frame_shape)
-    vstrm.play(process_func = cfod.predict_img, info_func = cfod._DEBUG_INFO)
+    vstrm.play()
     vstrm.shutdown()
     if cfod.DEBUG:
       cfod.show_fr_stats()

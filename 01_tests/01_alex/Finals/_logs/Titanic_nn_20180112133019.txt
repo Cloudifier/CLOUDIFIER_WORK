@@ -1,0 +1,5 @@
+Start NN
+Batch size: 32, Alpha: 0.2, Lmbd: 0.2, Test acc: 7.62%, Train acc: 70.25%
+Best train acc: 70.25%, best test acc: 7.62%, best alpha: 0.2, best batch size: 32, best lmbd: 0.2
+Total execution time: 0:00:01.814895
+End NN

@@ -1,10 +1,10 @@
 {
  "BASE_FOLDER" : "GoogleDrive",
- "APP_FOLDER" : "/_cloudifier_data/10_object_detector_data",
+ "APP_FOLDER" : "_cloudifier_data/10_object_detector_data",
  "DEFAULT_MODEL" : "MODEL1",
  "MODELS" : {
    "MODEL1" : {
-	  "MODEL_NAME" : "ssd_mobilenet_v1_coco_11_06_2017",
+	  "MODEL_NAME" : "ssd_mobilenet_v1_coco_2017_06",
 	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
 	  "MODEL_FILE" : "ssd_mobilenet_v1_coco_11_06_2017.tar.gz",
 	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
@@ -12,7 +12,7 @@
 	  },
 
    "MODEL2" : {
-	  "MODEL_NAME" : "ssd_inception_v2_coco_11_06_2017",
+	  "MODEL_NAME" : "ssd_inception_v2_coco_2017_06",
 	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
 	  "MODEL_FILE" : "ssd_inception_v2_coco_11_06_2017.tar.gz",
 	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
@@ -20,7 +20,7 @@
 	  },
 
    "MODEL3" : {
-	  "MODEL_NAME" : "rfcn_resnet101_coco_11_06_2017",
+	  "MODEL_NAME" : "rfcn_resnet101_co_2017_06",
 	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
 	  "MODEL_FILE" : "rfcn_resnet101_coco_11_06_2017.tar.gz",
 	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
@@ -29,7 +29,7 @@
 
 
    "MODEL4" : {
-	  "MODEL_NAME" : "faster_rcnn_resnet101_coco_11_06_2017",
+	  "MODEL_NAME" : "faster_rcnn_resnet1_co_2017_06",
 	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
 	  "MODEL_FILE" : "faster_rcnn_resnet101_coco_11_06_2017.tar.gz",
 	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
@@ -37,12 +37,134 @@
 	  },
 
    "MODEL5" : {
-	  "MODEL_NAME" : "faster_rcnn_inception_resnet_v2_atrous_coco_11_06_2017",
+	  "MODEL_NAME" : "faster_rcnn_inc_res_atr_co_2017_06",
 	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
 	  "MODEL_FILE" : "faster_rcnn_inception_resnet_v2_atrous_coco_11_06_2017.tar.gz",
 	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
-          "CLASSES_FILE" : "coco_ro.txt"
+      "CLASSES_FILE" : "coco_ro.txt"
+	  },
+
+   "V2_1" : {
+	  "MODEL_NAME" : "ssd_mobnet_v1_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "ssd_mobilenet_v1_coco_2017_11_17.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+      "CLASSES_FILE" : "coco_ro.txt"
+	  },
+
+   "V2_2" : {
+	  "MODEL_NAME" : "ssd_inc_v2_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "ssd_inception_v2_coco_2017_11_17.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+      "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+	  
+   "V2_3" : {
+	  "MODEL_NAME" : "faster_rcnn_inc2_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_inception_v2_coco_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+      "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+	  
+   "V2_4" : {
+	  "MODEL_NAME" : "faster_rcnn_r50_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_resnet50_coco_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+      "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+   "V2_5" : {
+	  "MODEL_NAME" : "faster_rcnn_re50_lp_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_resnet50_lowproposals_coco_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+	  "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+   "V2_6" : {
+	  "MODEL_NAME" : "rfcn_res101_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "rfcn_resnet101_coco_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+	  "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+   "V2_7" : {
+	  "MODEL_NAME" : "faster_rcnn_res101_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_resnet101_coco_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+	  "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+   "V2_8" : {
+	  "MODEL_NAME" : "faster_rcnn_res101_lp_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_resnet101_lowproposals_coco_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+	  "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+   "V2_9" : {
+	  "MODEL_NAME" : "faster_rcnn_incres2_atr_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_inception_resnet_v2_atrous_coco_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+	  "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+   "V2_10" : {
+	  "MODEL_NAME" : "faster_rcnn_incres2_atr_lp_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_inception_resnet_v2_atrous_lowproposals_coco_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+	  "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+   "V2_11" : {
+	  "MODEL_NAME" : "faster_rcnn_nas_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_nas_coco_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+	  "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+	  
+   "V2_12" : {
+	  "MODEL_NAME" : "faster_rcnn_nas_lp_co_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_nas_lowproposals_coco_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+	  "CLASSES_FILE" : "coco_ro.txt"
+	  },
+	  
+   "OIDv1_1" : {
+	  "MODEL_NAME" : "faster_rcnn_incres2_atr_oid_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_inception_resnet_v2_atrous_oid_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+	  "CLASSES_FILE" : "oid1.csv",
+	  "MAP_FILE" : "oid1_map.txt",
+	  "MODEL_TYPE" : "OID"
+	  },
+	  
+	  
+   "OIDv1_2" : {
+	  "MODEL_NAME" : "faster_rcnn_incres2_atr_lp_oid_2017_11",
+	  "MODEL_URL" : "http://download.tensorflow.org/models/object_detection/",
+	  "MODEL_FILE" : "faster_rcnn_inception_resnet_v2_atrous_lowproposals_oid_2017_11_08.tar.gz",
+	  "DETECTION_GRAPH" : "frozen_inference_graph.pb",
+	  "CLASSES_FILE" : "oid1.csv",
+	  "MAP_FILE" : "oid1_map.txt",
+	  "MODEL_TYPE" : "OID"
 	  }
+	  
+	  
 	  
 	  
   }

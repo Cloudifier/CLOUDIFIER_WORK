@@ -1,0 +1,13 @@
+{
+  "BASE_FOLDER": "GoogleDrive",
+  "APP_FOLDER": "_hyperloop_data/recom_compl",
+  "FRAMEWORK":
+  {
+     "NAME": "Tensorflow",
+     "EMBEDDINGS_CONTEXT": "flatten",
+     "NUM_SAMPLED": 10
+  },
+
+  "AUXILIARY_NAME": "",
+  "LOAD_MODEL": "_output/20171224_201215_Tensorflow_CBOW_Sampled_10_Emb_64_Window_4_Batch_512_flatten_Ep_05.h5"
+}

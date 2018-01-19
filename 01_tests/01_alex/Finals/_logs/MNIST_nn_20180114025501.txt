@@ -1,0 +1,10 @@
+Start NN
+Grid search: 200 use cases, 10 folds, 2000 total iterations
+Fold nr 0/10. Mean acc: 0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 90.85%, Test acc: 90.34%
+Fold nr 1/10. Mean acc: 90.595
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 90.85%, Test acc: 90.45%
+Fold nr 2/10. Mean acc: 90.62249999999999
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0

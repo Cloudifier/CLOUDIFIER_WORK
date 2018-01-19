@@ -3,35 +3,45 @@
 Created on Thu Nov 23 00:08:05 2017
 
 History:
-  
+  2017-11-01  First version based on dlib
+  2017-12-08  Added TF based inference (using Keras model)
+  2017-12-11  Added face alignment
 
 """
 from sklearn.metrics.pairwise import pairwise_distances
 from collections import OrderedDict
 import cv2
-import dlib
 import pandas as pd
 import numpy as np
 import os
 
-__version__ = "0.1.dl20.1"
+from scipy.misc import imresize
+
+from omni_utils import LoadLogger
+from omni_camera_utils import VideoCameraStream, np_rect, np_circle
+
+from omni_utils import FacialLandmarks
+from omni_utils import INNER_EYES_AND_BOTTOM_LIP, OUTER_EYES_AND_NOSE
+from omni_utils import TEMPLATE, INV_TEMPLATE, TPL_MIN, TPL_MAX, MINMAX_TEMPLATE
+
+#import tensorflow as tf
+from keras.models import load_model
+import keras.backend as K
+
+__module__  = "OmniFR"
+__version__ = "0.2.tf14"
 __author__  = "Andrei Ionut Damian"
 __copyright__ = "(C) Knowledge Investment Group"
 __project__ = "OmniDJ"
 
-class FacialLandmarks:
-  FL_MOUTH = "MOUTH"
-  FL_REYEB = "RIGHT EYEBROW"
-  FL_LEYEB = "LEFT EYEBROW"
-  FL_REYE  = "RIGHT EYE"
-  FL_LEYE  = "LEFT EYE"
-  FL_NOSE  = "NOSE"
-  FL_JAW   = "JAW"
-  FL_SET = [FL_MOUTH, 
-            FL_REYEB, FL_LEYEB,
-            FL_REYE, FL_LEYE,
-            FL_NOSE,
-            FL_JAW]
+_METHODS_ = ['dlib','tf']
+
+try:
+  import dlib
+except:
+  print("Running without dlib")
+
+
 
 FACIAL_LANDMARKS = OrderedDict([
 	(FacialLandmarks.FL_MOUTH, (48, 68)),
@@ -42,6 +52,9 @@ FACIAL_LANDMARKS = OrderedDict([
 	(FacialLandmarks.FL_NOSE, (27, 35)),
 	(FacialLandmarks.FL_JAW, (0, 17))
 ])
+  
+
+
 
 def is_shape(name, nr):
   assert name in FacialLandmarks.FL_SET
@@ -87,21 +100,39 @@ def visualize_facial_landmarks(image, shape, colors=None, alpha=0.75):
 
 
 class FaceEngine:
-  def __init__(self, path_small_shape_model, path_large_shape_model, path_faceid_model,
-               logger,
-               method = 'dlib', score_threshold = 0.6, 
-               DEBUG = False):
+  def __init__(self, 
+               path_small_shape_model = None, 
+               path_large_shape_model = None, 
+               path_faceid_model = None,
+               path_keras_model = None,
+               logger = None,
+               fr_method = 'dlib', score_threshold = 0.6, 
+               DEBUG = False,
+               config_file = 'config_omnifr.txt',
+               output_file = None):
     """
      loads DLib models for 5, 68 feature detection together with CNN model for 
        128 face embeddings
-     need to pass Logger object
+     loads pretrained tf/keras model (uses tf sess.run for inference)
+     
     """
-    self.method = method
+    
+    if not (fr_method in _METHODS_):
+      raise Exception("Unknown method: {}".format(fr_method))
+    self.method = fr_method
+    self.__module__ = __module__
     self.score_threshold = score_threshold
     self.__version__ = __version__
     self.DEBUG = DEBUG
-    self.logger = logger
-    self.logger.VerboseLog("Initializing FaceEngine v.{}".format(self.__version__))
+    self._tf_input_HW = (100, 100) # set to a default - used for thumb creation
+    if logger is None:
+      self.logger = LoadLogger(self.__module__, 
+                               config_file = config_file,
+                               DEBUG = self.DEBUG)
+    else:
+      self.logger = logger
+    
+    self.log("Initializing FaceEngine v.{}".format(self.__version__))
     self.config_data = self.logger.config_data
     self.shape_large_model = None
     self.shape_small_model = None
@@ -110,74 +141,166 @@ class FaceEngine:
     self.ID_FIELD = "ID"
     self.NAME_FIELD = "NAME"
     
-    self.data_file = os.path.join(self.logger._data_dir, "faces.csv")
+    if output_file is None:
+      assert "FR_OUTPUT_FILE" in self.config_data.keys()
+      output_file = self.config_data["FR_OUTPUT_FILE"]
+    self.data_file = os.path.join(self.logger._data_dir, output_file)
+    
+    self.log(" OmniFR output file: [...{}]".format(self.data_file[-30:]))
+    
     self.feats_names = []
     for i in range(self.NR_EMBEDDINGS):
       self.feats_names.append("F_{}".format(i+1))
       
     if os.path.isfile(self.data_file):
+      self.log("Loading ...{}".format(self.data_file[-40:]))
       self.df_faces = pd.read_csv(self.data_file, index_col = False)
       self.columns = list(self.df_faces.columns)
+      self.log("Loaded {} face IDs".format(self.df_faces.shape[0]))
     else:
       self.columns = [self.ID_FIELD, self.NAME_FIELD]
       for i in range(128):
         self.columns.append(self.feats_names[i])        
       self.df_faces = pd.DataFrame(columns = self.columns)
+      self.log("Created empty faces dataset")
     
-    if path_large_shape_model != None:
-      self.logger.VerboseLog("Loading dlib LARGE 68 shape predictor model [{}]...".format(
-          path_large_shape_model))
-      self._shape_large_model = dlib.shape_predictor(path_large_shape_model)
-      self.logger.VerboseLog("Done loading dlib LARGE 68 shape predictor model", show_time = True)
+    if path_large_shape_model is None:
+      assert "DLIB_FACE_MODEL" in self.config_data.keys()
+      path_large_shape_model = os.path.join(self.logger._data_dir, self.config_data["DLIB_FACE_MODEL"])      
+    self.log("Loading dlib-68-shape-pred [{}]...".format(
+        path_large_shape_model[-20:]))
+    self._shape_large_model = dlib.shape_predictor(path_large_shape_model)
+    self.log("Done loading dlib-68-shape-pred", show_time = True)
       
-    if path_small_shape_model != None:
-      self.logger.VerboseLog("Loading dlib small 5 shape predictor model [{}]...".format(
-          path_small_shape_model))
-      self._shape_small_model = dlib.shape_predictor(path_small_shape_model)
-      self.logger.VerboseLog("Done loading dlib small 5 shape predictor model.", show_time = True)
+    if path_small_shape_model is None:
+      assert "DLIB_FACE_MODEL_SMALL" in self.config_data.keys()
+      path_small_shape_model = os.path.join(self.logger._data_dir, self.config_data["DLIB_FACE_MODEL_SMALL"])      
+    self.log("Loading dlib-5-shape-pred [{}]...".format(
+        path_small_shape_model[-20:]))
+    self._shape_small_model = dlib.shape_predictor(path_small_shape_model)
+    self.log("Done loading dlib-5-shape-pred.", show_time = True)
 
-    self.logger.VerboseLog("Loading face detector ...")    
+    self.log("Loading dlib face detector ...")    
     self._face_detector = dlib.get_frontal_face_detector()
-    self.logger.VerboseLog("Done loading face detector.", show_time = True)    
+    self.log("Done loading dlib face detector.", show_time = True)    
     
-    self.logger.VerboseLog("Loading face recognition model ...")
-    if hasattr(dlib, "face_recognition_model_v1"):
-      self._face_recog = dlib.face_recognition_model_v1(path_faceid_model)
+    
+    if self.method == 'dlib':
+      if path_faceid_model is None:
+        assert "DLIB_FACE_NET" in self.config_data.keys()
+        path_faceid_model = os.path.join(self.logger._data_dir, self.config_data["DLIB_FACE_NET"])
+      self.log("Loading dlib face recognition model [{}]...".format(path_faceid_model[-20:]))
+      if hasattr(dlib, "face_recognition_model_v1"):
+        self._dlib_face_recog = dlib.face_recognition_model_v1(path_faceid_model)
+      else:
+        self._dlib_face_recog = None
+        ver = 0
+        self.log("Dlib face recognition model NOT available v{}.".format(ver), show_time = True)
+      self.log("Done loading dlib face recognition model.", show_time = True)
+      
+    elif self.method =='tf':    
+      if path_keras_model is None:
+        assert "TF_FACE_NET" in self.config_data.keys() 
+        path_keras_model = os.path.join(self.logger._data_dir, self.config_data["TF_FACE_NET"])
+      self.log("Loading TF model [...{}]...".format(path_keras_model[-30:]))
+      self.sess = None
+      self._keras_model = load_model(path_keras_model)
+      self._tf_fr_output = self._keras_model.output
+      self._tf_fr_input = self._keras_model.input
+      self.sess = K.get_session()
+      self.log("Done loading TF model.")
+      
+      if "TF_MODEL_CHANNELS" in self.config_data.keys():
+        self._model_channels = self.config_data["TF_MODEL_CHANNELS"]
+      else:
+        self._model_channels = 'channels_last'
+      self.log(" TF model image format: {}".format(self._model_channels))
+      
+      input_size = int(self.config_data['TF_MODEL_INPUT_SIZE'])
+      self._tf_input_HW = (input_size, input_size)
+      self.log(" TF model input HW: {}".format(self._tf_input_HW))
+      
     else:
-      self._face_recog = None
-      ver = 0
-      self.logger.VerboseLog("Dlib face recognition model NOT available v{}.".format(ver), show_time = True)
-    self.logger.VerboseLog("Done loading face recognition model.", show_time = True)
+      raise Exception("Unknown method for face embedding {}".format(self.method))
     
     return
   
-  def GetFaceInfo(self, np_image, get_shape = True, get_id_name = True):
+  def log(self,s, show_time = False):
+    self.logger.VerboseLog(s, show_time = show_time)
+    return
+  
+  def show_run_stats(self):
+    self.log("FR STATS:\n{}".format(self.get_stats()))  
+    self.logger.show_timers()
+    return
+
+  ##
+  ## Face Align zone  
+  ##
+  
+  def FaceAlign(self, np_img, landmarks, inds = INNER_EYES_AND_BOTTOM_LIP,
+                img_dim = 180, scale = 1.0):
     """
-     returns a tuple (BOX, SHAPE, EMBED, ID, NAME) containing facial info such as:
+     tries to align a face based on landmarks
+    """
+    if self.DEBUG: self.logger.start_timer("    FaceAlign")
+    np_landmarks = np.float32(landmarks)
+    np_land_inds = np.array(inds)
+
+    # pylint: disable=maybe-no-member
+    p1 = np_landmarks[np_land_inds]
+    p2 = img_dim * MINMAX_TEMPLATE[np_land_inds] * scale + img_dim * (1 - scale) / 2
+    H = cv2.getAffineTransform(p1, p2)
+    thumbnail = cv2.warpAffine(np_img, H, (img_dim, img_dim))
+    if self.DEBUG: self.logger.end_timer("    FaceAlign")
+    return thumbnail
+  
+  ##
+  ## END Face Align zone  
+  ##
+  
+  def GetFaceInfo(self, np_image, get_shape = True, get_id_name = True,
+                  get_thumb = True):
+    """
+     returns a tuple (BOX, SHAPE, EMBED, ID, NAME, IMG, DIST) containing 
+     facial info such as:
          BOX - LTRB tuple if face detected in frame or None otherwise
          SHAPE - facial landmarks if get_shape
          EMBED - embedding vector if get_embed
          ID - db user ID if get_id_name
          NAME -  db user name if get_id_name
+         IMG - resized/realigned image of the face 
+         DIST - distance from the re-identified person         
     """
     _found_box = None
     _shape = None
     _embed = None
     _id = None
     _name = "???"
+    _np_resized = None
+    _dist = 0
     self.logger.start_timer("  FaceDetect")
     fbox, _found_box = self.face_detect(np_image)    
     self.logger.end_timer("  FaceDetect")
     if get_shape and (fbox != None):
       self.logger.start_timer("  FaceLandmarks")
-      landmarks, _shape= self.face_landmarks(np_image, fbox)
+      landmarks, _shape = self.face_landmarks(np_image, fbox)
       self.logger.start_timer("  FaceLandmarks")
       if landmarks != None:
+        
+        if get_thumb or self.method=='tf':
+          _np_resized = self.FaceAlign(np_img = np_image, 
+                                       landmarks = _shape, 
+                                       inds = INNER_EYES_AND_BOTTOM_LIP,
+                                       img_dim = self._tf_input_HW[0], 
+                                       scale = 1.0)
         if get_id_name:
-          self.logger.start_timer("  FaceID")
-          _id, _name, _embed  = self.face_id_maybe_save(np_image, landmarks)
-          self.logger.end_timer("  FaceID")
-    return (_found_box, _shape, _embed, _id, _name)
+          fr_res  = self.face_id_maybe_save(np_img = np_image, 
+                                            dlib_landmarks = landmarks,
+                                            np_box = _found_box,
+                                            np_img_resized = _np_resized)
+          _id, _name, _embed, _dist = fr_res
+    return (_found_box, _shape, _embed, _id, _name, _np_resized, _dist)
   
   def get_stats(self):
     mat = self.df_faces[self.feats_names]
@@ -219,6 +342,7 @@ class FaceEngine:
      given (NR_EMBEDDINGS,) vector finds closest embedding and returns ID
     """
     result = -1
+    min_dist = -1
     np_embeds = self._get_current_matrix()
     if np_embeds.shape[0]>0:
       dists = (np_embeds - embed)**2
@@ -228,9 +352,9 @@ class FaceEngine:
       if min_dist <= self.score_threshold:
         result = np.argmin(dists)      
         if self.DEBUG:
-          self.logger.VerboseLog(" OmniFaceEngine: Person ID [Idx:{} Dist:{:3f}]".format(
+          self.log(" OmniFaceEngine: Person ID [Idx:{} Dist:{:3f}]".format(
               result, min_dist))
-    return result
+    return result, min_dist
   
   
   def _create_identity(self, embed):
@@ -250,7 +374,7 @@ class FaceEngine:
     self.df_faces = self.df_faces.append(rec, ignore_index = True)
     self._save_data()
     if self.DEBUG:
-      self.logger.VerboseLog(" OmniFaceEngine: Created new identity {}".format(
+      self.log(" OmniFaceEngine: Created new identity {}".format(
           pers_name))
     return pers_id, pers_name
 
@@ -268,68 +392,148 @@ class FaceEngine:
   
   
   def __dl_face_embed(self, np_img, dl_shape):
-    return self._face_recog.compute_face_descriptor(np_img, dl_shape)
+    return self._dlib_face_recog.compute_face_descriptor(np_img, dl_shape)
   
-  def tf_face_embed(self, np_img):
-    _result = None
-    return _result
+  def __tf_face_embed(self, np_img, np_ltrb = None):
+    """
+     np_img MUST be HWC but will be converted to appropriate format
+     np_ltrb is LTRB format box
+    """
+    assert len(np_img.shape) == 3
+    if np_ltrb is not None:
+      L,T,R,B = np_ltrb
+      np_img = np_img[T:B,L:R,:].copy()
+    self.log("   Running TF inference on {}".format(np_img.shape))
+    if np_img.shape[0:2] != self._tf_input_HW:
+      np_img = imresize(np_img, self._tf_input_HW)
+    if self._model_channels == 'channels_first':
+      np_img = np_img.T
+    np_img = np.expand_dims(np_img, axis = 0) / 255
+    prev_ch = K.image_data_format()
+    K.set_image_data_format(self._model_channels)
+    embed = self.sess.run(self._tf_fr_output,
+                          feed_dict = {self._tf_fr_input : np_img,
+                                       K.learning_phase() : 0})
+    K.set_image_data_format(prev_ch)
+    embed = embed.ravel()
+    return embed
 
 
-  def get_face_embed(self, np_img, dl_shape = None):
-    self.logger.start_timer("   FaceEMBED")
+  def get_face_embed(self, np_img, dl_shape = None, np_LTRB = None):
+    """
+     np_img: either full picture or just cropped
+     dl_shape: landmarks from dlib
+     np_LTRB: left, top, right, bottom used in tf inference preprocessing
+    """
+    if self.DEBUG:
+      self.logger.start_timer("   FaceEMBED")      
+      self.log(" Running FR on {} image".format(np_img.shape))
     _result = None
     if self.method == 'dlib':
       assert dl_shape != None
+      self.logger.start_timer("    FaceEMBED_DLIb")
       _result = self.__dl_face_embed(np_img, dl_shape = dl_shape)
-    elif self.method =='model':
-      _result = self.tf_face_embed(np_img)
-    self.logger.end_timer("   FaceEMBED")
+      self.logger.end_timer("    FaceEMBED_DLIb")
+    elif self.method =='tf':
+      self.logger.start_timer("    FaceEMBED_TF")
+      _result = self.__tf_face_embed(np_img) # np_ltrb = np_LTRB)
+      _DEBUG_tf = self.logger.end_timer("    FaceEMBED_TF")
+      if self.DEBUG:
+        self.log("    TF Time: {:.4f}s".format(_DEBUG_tf))
+        self.logger.end_timer("   FaceEMBED")      
       
     return _result
       
   
   def _get_info(self, embed):
     """
-    given generated embedding get ID and Name of that person
+    given generated embedding get ID, Name and L2 distance of proposed embed
     returns -1, "" if not found
     """
-    idx = self._find_closest_embedding(embed)
+    idx, dist = self._find_closest_embedding(embed)
     idpers = -1
     sname = ""
     if idx != -1:
       sname = self._get_name_by_id(idx, use_index = True)
       idpers = self._get_id_by_index(idx)
-    return idpers,sname
+    return idpers, sname, dist
   
-  def face_id_maybe_save(self, np_img, landmarks_shape):
+  def face_id_maybe_save(self, np_img, dlib_landmarks, np_box, np_img_resized):
     """
     tries to ID face. Will return ID, Name, Embed if found or new info if NOT found
     also saves new IDs in own face datastore
     must pass np_img (H,W,C) and landmarks_shape (from face_landmarks)
+    np_box is LTRB
     """
+    if self.DEBUG:  self.logger.start_timer("  FaceID")
     result = (None, None, None)
-    if self._face_recog != None:
-      # get embed
-      embed = self.get_face_embed(np_img, dl_shape = landmarks_shape)
-      # try to find if avail
-      pers_id, pers_name = self._get_info(embed)
-      if pers_id == -1:
-        # now create new identity
-        pers_id, pers_name = self._create_identity(embed)
-      result = (pers_id, pers_name, embed)
+    # get embed
+    img = np_img
+    if self.method == 'tf':
+      img = np_img_resized
+    embed = self.get_face_embed(img, 
+                                dl_shape = dlib_landmarks,
+                                np_LTRB = np_box)
+    if self.DEBUG: self.logger.start_timer("   FaceInfo")
+    # try to find if avail
+    pers_id, pers_name, dist = self._get_info(embed)
+    if pers_id == -1:
+      # now create new identity
+      pers_id, pers_name = self._create_identity(embed)
+    result = (pers_id, pers_name, embed, dist)
+    if self.DEBUG: self.logger.end_timer("   FaceInfo")
+    if self.DEBUG:  self.logger.end_timer("  FaceID")
     return result
   
-  def face_detect(self, np_img):
+  
+  def draw_facial_shape(self, np_img, np_facial_shape, left = 0, top = 0):
+    self.logger.start_timer("   DrawFacialShape")
+    for i in range(np_facial_shape.shape[0]):
+      x = int(np_facial_shape[i,0]) + left
+      y = int(np_facial_shape[i,1]) + top
+      clr = (0,0,255)
+      if is_shape(FacialLandmarks.FL_LEYE,i) :
+        clr = (255,255,255)
+      if is_shape(FacialLandmarks.FL_REYE,i) :
+        clr = (0,255,255)
+      np_img = np_circle(np_img, (x, y), 1, clr, -1)
+    self.logger.end_timer("   DrawFacialShape")
+    return np_img
+
+
+  
+  def face_detect(self, np_img, upsample_detector = 0):
     """
      face detector - will return 1st bounding box both in dlib format and tuple format
      will return None if nothing found
     """
-    boxes = self._face_detector(np_img)
+    boxes = self._face_detector(np_img, upsample_detector)
     result = (None, None)
     if len(boxes)>0:
       box = boxes[0]
       LTRB = (box.left(),box.top(),box.right(),box.bottom())
       result = (box, LTRB)
+    return result
+  
+  def multi_face_detect(self, np_img, upsample_detector = 0):
+    """
+    returns Dlib boxes and LTRB tuples list
+     will return None if nothing found
+    
+    """
+    if self.DEBUG: # half-redundant
+      self.logger.start_timer("   FaceDetector")
+    boxes = self._face_detector(np_img, upsample_detector)
+    if self.DEBUG: # half-redundant
+      self.logger.end_timer("   FaceDetector")
+    result = (None, None)
+    if len(boxes)>0:
+      LTRB_list = []
+      for box in boxes:
+        LTRB = (box.left(),box.top(),box.right(),box.bottom())
+        LTRB_list.append(LTRB)
+      result = (boxes, LTRB_list)
+    
     return result
     
   def face_landmarks(self, np_img, dlib_box, large_landmarks = True):
@@ -354,3 +558,67 @@ class FaceEngine:
     result = landmarks, np_landmarks
     
     return result
+  
+  
+  def full_scene_process(self, np_img):
+    
+    self.logger.start_timer(" FullSceneProcess")
+    np_out_img = np_img.copy()
+    
+    #first stage detect all faces
+    self.logger.start_timer("  MultiFaceDetect")
+    boxes, ltrb_list = self.multi_face_detect(np_img)
+    self.logger.end_timer("  MultiFaceDetect")
+    
+    #now process each face !
+    if not (boxes is None):
+      self.logger.start_timer("  MultiFR")
+      for i, LTRB in enumerate(ltrb_list):
+        box = boxes[i]
+        self.logger.start_timer("   MultiFaceLandmarks")
+        landmarks, np_shape = self.face_landmarks(np_img, box)
+        self.logger.end_timer("   MultiFaceLandmarks")
+        self.logger.start_timer("   MultiFaceID")
+        _np_resized = None
+        if self.method=='tf':
+          _np_resized = self.FaceAlign(np_img = np_img, 
+                                       landmarks = np_shape, 
+                                       inds = INNER_EYES_AND_BOTTOM_LIP,
+                                       img_dim = self._tf_input_HW[0], 
+                                       scale = 1.0)
+        _id, _name, _embed, _dist  = self.face_id_maybe_save(np_img, 
+                                                             landmarks, 
+                                                             LTRB,
+                                                             _np_resized)
+        _DEBUG_face_id = self.logger.end_timer("   MultiFaceID")
+        self.log("  Face [{}/{}/{}] identified in {:.3f}s".format(
+            _id, _name, _dist, _DEBUG_face_id))
+        np_out_img = self.draw_facial_shape(np_out_img, np_shape)
+        np_out_img = np_rect(LTRB[0], LTRB[1], LTRB[2], LTRB[3], np_out_img,
+                           color = (0,255,0), text = _name + ' D:{:.3f}'.format(_dist))        
+      self.logger.end_timer("  MultiFR")
+      
+    _DEBUG_full_scene = self.logger.end_timer(" FullSceneProcess")
+    if self.DEBUG:
+      self.log(" OmniFR Full scene inference and draw time {:.3f}s".format(
+          _DEBUG_full_scene))
+    return np_out_img
+  
+  
+
+  
+  
+  
+if __name__ == '__main__':
+  fr_method = 'tf'
+  out_file = "faces_"+fr_method+".csv"
+  omnifr = FaceEngine(DEBUG = True, fr_method = fr_method,
+                      output_file = out_file)
+  vstrm = VideoCameraStream(logger = omnifr.logger)  
+  if vstrm.video != None:
+    video_frame_shape = (vstrm.H,vstrm.W) 
+    vstrm.play(process_func = omnifr.full_scene_process, info_func = None)
+    vstrm.shutdown()
+
+  omnifr.show_run_stats()  
+  

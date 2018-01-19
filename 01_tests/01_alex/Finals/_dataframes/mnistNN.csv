@@ -1,0 +1,2 @@
+AvgTestAcc(%),AvgTrainAcc(%),BestParams,Model,Obs,TestAcc(%),TrainAcc(%),TunningRun
+0,0,"batch_size= None; alpha= None, lmbd= None",NN,,0,0,200

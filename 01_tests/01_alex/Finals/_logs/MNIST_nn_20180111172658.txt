@@ -1,0 +1,2 @@
+Start NN
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Test acc: 8.57%, Train acc: 11.03%

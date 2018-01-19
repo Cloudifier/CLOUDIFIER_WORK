@@ -1,0 +1,321 @@
+Init: k-means++, max_iter: 1, n_init: 1, algo: elkan
+Train acc: 7.5, Test acc: 8.791208791208792
+
+
+Init: k-means++, max_iter: 1, n_init: 1, algo: full
+Train acc: 4.0, Test acc: 3.296703296703297
+
+
+Init: k-means++, max_iter: 1, n_init: 5, algo: elkan
+Train acc: 10.375, Test acc: 16.483516483516482
+
+
+Init: k-means++, max_iter: 1, n_init: 5, algo: full
+Train acc: 5.5, Test acc: 4.395604395604396
+
+
+Init: k-means++, max_iter: 1, n_init: 10, algo: elkan
+Train acc: 7.625, Test acc: 7.6923076923076925
+
+
+Init: k-means++, max_iter: 1, n_init: 10, algo: full
+Train acc: 5.75, Test acc: 5.4945054945054945
+
+
+Init: k-means++, max_iter: 1, n_init: 15, algo: elkan
+Train acc: 10.875, Test acc: 18.681318681318682
+
+
+Init: k-means++, max_iter: 1, n_init: 15, algo: full
+Train acc: 30.625000000000004, Test acc: 20.87912087912088
+
+
+Init: k-means++, max_iter: 5, n_init: 1, algo: elkan
+Train acc: 2.0, Test acc: 1.098901098901099
+
+
+Init: k-means++, max_iter: 5, n_init: 1, algo: full
+Train acc: 18.625, Test acc: 18.681318681318682
+
+
+Init: k-means++, max_iter: 5, n_init: 5, algo: elkan
+Train acc: 30.625000000000004, Test acc: 20.87912087912088
+
+
+Init: k-means++, max_iter: 5, n_init: 5, algo: full
+Train acc: 6.5, Test acc: 7.6923076923076925
+
+
+Init: k-means++, max_iter: 5, n_init: 10, algo: elkan
+Train acc: 18.625, Test acc: 18.681318681318682
+
+
+Init: k-means++, max_iter: 5, n_init: 10, algo: full
+Train acc: 4.75, Test acc: 4.395604395604396
+
+
+Init: k-means++, max_iter: 5, n_init: 15, algo: elkan
+Train acc: 4.0, Test acc: 3.296703296703297
+
+
+Init: k-means++, max_iter: 5, n_init: 15, algo: full
+Train acc: 7.000000000000001, Test acc: 7.6923076923076925
+
+
+Init: k-means++, max_iter: 10, n_init: 1, algo: elkan
+Train acc: 9.625, Test acc: 4.395604395604396
+
+
+Init: k-means++, max_iter: 10, n_init: 1, algo: full
+Train acc: 39.25, Test acc: 28.57142857142857
+
+
+Init: k-means++, max_iter: 10, n_init: 5, algo: elkan
+Train acc: 30.625000000000004, Test acc: 20.87912087912088
+
+
+Init: k-means++, max_iter: 10, n_init: 5, algo: full
+Train acc: 29.375, Test acc: 19.78021978021978
+
+
+Init: k-means++, max_iter: 10, n_init: 10, algo: elkan
+Train acc: 28.000000000000004, Test acc: 19.78021978021978
+
+
+Init: k-means++, max_iter: 10, n_init: 10, algo: full
+Train acc: 9.25, Test acc: 16.483516483516482
+
+
+Init: k-means++, max_iter: 10, n_init: 15, algo: elkan
+Train acc: 9.625, Test acc: 7.6923076923076925
+
+
+Init: k-means++, max_iter: 10, n_init: 15, algo: full
+Train acc: 17.375, Test acc: 17.582417582417584
+
+
+Init: k-means++, max_iter: 50, n_init: 1, algo: elkan
+Train acc: 11.125, Test acc: 12.087912087912088
+
+
+Init: k-means++, max_iter: 50, n_init: 1, algo: full
+Train acc: 4.125, Test acc: 3.296703296703297
+
+
+Init: k-means++, max_iter: 50, n_init: 5, algo: elkan
+Train acc: 9.625, Test acc: 7.6923076923076925
+
+
+Init: k-means++, max_iter: 50, n_init: 5, algo: full
+Train acc: 4.0, Test acc: 3.296703296703297
+
+
+Init: k-means++, max_iter: 50, n_init: 10, algo: elkan
+Train acc: 39.25, Test acc: 28.57142857142857
+
+
+Init: k-means++, max_iter: 50, n_init: 10, algo: full
+Train acc: 17.375, Test acc: 17.582417582417584
+
+
+Init: k-means++, max_iter: 50, n_init: 15, algo: elkan
+Train acc: 39.25, Test acc: 28.57142857142857
+
+
+Init: k-means++, max_iter: 50, n_init: 15, algo: full
+Train acc: 5.75, Test acc: 5.4945054945054945
+
+
+Init: k-means++, max_iter: 100, n_init: 1, algo: elkan
+Train acc: 18.875, Test acc: 14.285714285714285
+
+
+Init: k-means++, max_iter: 100, n_init: 1, algo: full
+Train acc: 5.25, Test acc: 3.296703296703297
+
+
+Init: k-means++, max_iter: 100, n_init: 5, algo: elkan
+Train acc: 18.625, Test acc: 18.681318681318682
+
+
+Init: k-means++, max_iter: 100, n_init: 5, algo: full
+Train acc: 27.250000000000004, Test acc: 26.373626373626376
+
+
+Init: k-means++, max_iter: 100, n_init: 10, algo: elkan
+Train acc: 28.499999999999996, Test acc: 21.978021978021978
+
+
+Init: k-means++, max_iter: 100, n_init: 10, algo: full
+Train acc: 4.625, Test acc: 5.4945054945054945
+
+
+Init: k-means++, max_iter: 100, n_init: 15, algo: elkan
+Train acc: 39.25, Test acc: 28.57142857142857
+
+
+Init: k-means++, max_iter: 100, n_init: 15, algo: full
+Train acc: 30.625000000000004, Test acc: 20.87912087912088
+
+
+Init: random, max_iter: 1, n_init: 1, algo: elkan
+Train acc: 5.125, Test acc: 4.395604395604396
+
+
+Init: random, max_iter: 1, n_init: 1, algo: full
+Train acc: 7.124999999999999, Test acc: 5.4945054945054945
+
+
+Init: random, max_iter: 1, n_init: 5, algo: elkan
+Train acc: 4.5, Test acc: 3.296703296703297
+
+
+Init: random, max_iter: 1, n_init: 5, algo: full
+Train acc: 3.875, Test acc: 3.296703296703297
+
+
+Init: random, max_iter: 1, n_init: 10, algo: elkan
+Train acc: 2.25, Test acc: 3.296703296703297
+
+
+Init: random, max_iter: 1, n_init: 10, algo: full
+Train acc: 17.875, Test acc: 23.076923076923077
+
+
+Init: random, max_iter: 1, n_init: 15, algo: elkan
+Train acc: 4.125, Test acc: 4.395604395604396
+
+
+Init: random, max_iter: 1, n_init: 15, algo: full
+Train acc: 42.625, Test acc: 28.57142857142857
+
+
+Init: random, max_iter: 5, n_init: 1, algo: elkan
+Train acc: 12.875, Test acc: 13.186813186813188
+
+
+Init: random, max_iter: 5, n_init: 1, algo: full
+Train acc: 17.125, Test acc: 14.285714285714285
+
+
+Init: random, max_iter: 5, n_init: 5, algo: elkan
+Train acc: 14.75, Test acc: 9.89010989010989
+
+
+Init: random, max_iter: 5, n_init: 5, algo: full
+Train acc: 4.625, Test acc: 4.395604395604396
+
+
+Init: random, max_iter: 5, n_init: 10, algo: elkan
+Train acc: 3.0, Test acc: 4.395604395604396
+
+
+Init: random, max_iter: 5, n_init: 10, algo: full
+Train acc: 27.500000000000004, Test acc: 18.681318681318682
+
+
+Init: random, max_iter: 5, n_init: 15, algo: elkan
+Train acc: 9.375, Test acc: 8.791208791208792
+
+
+Init: random, max_iter: 5, n_init: 15, algo: full
+Train acc: 33.0, Test acc: 26.373626373626376
+
+
+Init: random, max_iter: 10, n_init: 1, algo: elkan
+Train acc: 4.625, Test acc: 6.593406593406594
+
+
+Init: random, max_iter: 10, n_init: 1, algo: full
+Train acc: 5.625, Test acc: 14.285714285714285
+
+
+Init: random, max_iter: 10, n_init: 5, algo: elkan
+Train acc: 29.125, Test acc: 21.978021978021978
+
+
+Init: random, max_iter: 10, n_init: 5, algo: full
+Train acc: 5.625, Test acc: 6.593406593406594
+
+
+Init: random, max_iter: 10, n_init: 10, algo: elkan
+Train acc: 10.875, Test acc: 12.087912087912088
+
+
+Init: random, max_iter: 10, n_init: 10, algo: full
+Train acc: 8.125, Test acc: 8.791208791208792
+
+
+Init: random, max_iter: 10, n_init: 15, algo: elkan
+Train acc: 29.875, Test acc: 23.076923076923077
+
+
+Init: random, max_iter: 10, n_init: 15, algo: full
+Train acc: 6.375, Test acc: 4.395604395604396
+
+
+Init: random, max_iter: 50, n_init: 1, algo: elkan
+Train acc: 9.375, Test acc: 17.582417582417584
+
+
+Init: random, max_iter: 50, n_init: 1, algo: full
+Train acc: 7.000000000000001, Test acc: 5.4945054945054945
+
+
+Init: random, max_iter: 50, n_init: 5, algo: elkan
+Train acc: 13.5, Test acc: 10.989010989010989
+
+
+Init: random, max_iter: 50, n_init: 5, algo: full
+Train acc: 4.5, Test acc: 4.395604395604396
+
+
+Init: random, max_iter: 50, n_init: 10, algo: elkan
+Train acc: 29.5, Test acc: 24.175824175824175
+
+
+Init: random, max_iter: 50, n_init: 10, algo: full
+Train acc: 6.375, Test acc: 4.395604395604396
+
+
+Init: random, max_iter: 50, n_init: 15, algo: elkan
+Train acc: 8.25, Test acc: 3.296703296703297
+
+
+Init: random, max_iter: 50, n_init: 15, algo: full
+Train acc: 25.374999999999996, Test acc: 17.582417582417584
+
+
+Init: random, max_iter: 100, n_init: 1, algo: elkan
+Train acc: 7.625, Test acc: 16.483516483516482
+
+
+Init: random, max_iter: 100, n_init: 1, algo: full
+Train acc: 17.5, Test acc: 21.978021978021978
+
+
+Init: random, max_iter: 100, n_init: 5, algo: elkan
+Train acc: 28.499999999999996, Test acc: 21.978021978021978
+
+
+Init: random, max_iter: 100, n_init: 5, algo: full
+Train acc: 7.5, Test acc: 8.791208791208792
+
+
+Init: random, max_iter: 100, n_init: 10, algo: elkan
+Train acc: 12.625, Test acc: 14.285714285714285
+
+
+Init: random, max_iter: 100, n_init: 10, algo: full
+Train acc: 1.0, Test acc: 3.296703296703297
+
+
+Init: random, max_iter: 100, n_init: 15, algo: elkan
+Train acc: 8.5, Test acc: 3.296703296703297
+
+
+Init: random, max_iter: 100, n_init: 15, algo: full
+Train acc: 4.0, Test acc: 2.197802197802198
+
+
+Best train acc: 39.25, Best test acc: 28.57142857142857, Best init: k-means++, Best max iter: 10, Best n init 1, Best algo: full

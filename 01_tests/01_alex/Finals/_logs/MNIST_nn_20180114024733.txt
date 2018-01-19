@@ -1,0 +1,5 @@
+Start NN
+Grid search: 200 use cases, 10 folds, 2000 total iterations
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 90.85%, Test acc: 87.5%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1

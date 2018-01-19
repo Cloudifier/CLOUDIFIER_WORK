@@ -1,0 +1,65 @@
+Start gaussian naive bayes
+Train acc: 53.07%, Test acc: 54.29%
+Total execution time: 0:00:09.813075
+End gaussian naive bayes
+Start decission tree
+Max depth: 2, Max leafs: 2, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 3, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 4, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 5, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 6, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 7, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 8, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 9, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 10, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 11, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 12, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 13, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 14, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 15, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 16, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 17, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 18, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 2, Max leafs: 19, Train acc: 34.20%, Test acc: 22.86%
+
+
+Max depth: 3, Max leafs: 2, Train acc: 44.24%, Test acc: 37.14%
+
+
+Max depth: 3, Max leafs: 3, Train acc: 44.24%, Test acc: 37.14%
+
+

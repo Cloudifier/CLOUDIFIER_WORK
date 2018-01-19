@@ -1,0 +1,46 @@
+Start kmeans
+Init: k-means++, max_iter: 1, n_init: 1, algo: elkan
+Train acc: 15.324489795918367, Test acc: 15.333333333333332
+
+
+Init: k-means++, max_iter: 1, n_init: 1, algo: full
+Train acc: 13.434693877551021, Test acc: 13.185714285714287
+
+
+Init: k-means++, max_iter: 1, n_init: 5, algo: elkan
+Train acc: 13.67142857142857, Test acc: 13.79047619047619
+
+
+Init: k-means++, max_iter: 1, n_init: 5, algo: full
+Train acc: 11.875510204081632, Test acc: 12.014285714285714
+
+
+Init: k-means++, max_iter: 1, n_init: 10, algo: elkan
+Train acc: 16.687755102040818, Test acc: 17.02857142857143
+
+
+Init: k-means++, max_iter: 1, n_init: 10, algo: full
+Train acc: 11.893877551020408, Test acc: 11.619047619047619
+
+
+Init: k-means++, max_iter: 1, n_init: 15, algo: elkan
+Train acc: 11.679591836734694, Test acc: 11.67142857142857
+
+
+Init: k-means++, max_iter: 1, n_init: 15, algo: full
+Train acc: 9.846938775510203, Test acc: 9.700000000000001
+
+
+Init: k-means++, max_iter: 5, n_init: 1, algo: elkan
+Train acc: 15.559183673469388, Test acc: 15.842857142857142
+
+
+Init: k-means++, max_iter: 5, n_init: 1, algo: full
+Train acc: 2.663265306122449, Test acc: 2.857142857142857
+
+
+Init: k-means++, max_iter: 5, n_init: 5, algo: elkan
+Train acc: 16.84081632653061, Test acc: 17.066666666666666
+
+
+Init: k-means++, max_iter: 5, n_init: 5, algo: full

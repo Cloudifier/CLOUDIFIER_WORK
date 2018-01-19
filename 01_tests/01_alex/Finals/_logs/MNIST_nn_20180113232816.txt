@@ -1,0 +1,26 @@
+Start NN
+Grid search: 200 iterations
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Train acc: 91.55%, Test acc: 94.29%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1, Train acc: 90.83%, Test acc: 94.29%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2, Train acc: 90.23%, Test acc: 94.29%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004, Train acc: 89.71%, Test acc: 94.29%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4, Train acc: 89.21%, Test acc: 91.43%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5, Train acc: 88.73%, Test acc: 88.57%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001, Train acc: 88.26%, Test acc: 88.57%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001, Train acc: 87.80%, Test acc: 88.57%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8, Train acc: 87.40%, Test acc: 88.57%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9, Train acc: 87.02%, Test acc: 88.57%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0, Train acc: 89.66%, Test acc: 94.29%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1, Train acc: 89.58%, Test acc: 94.29%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2, Train acc: 89.40%, Test acc: 94.29%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004, Train acc: 89.21%, Test acc: 91.43%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4, Train acc: 89.01%, Test acc: 91.43%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5, Train acc: 88.84%, Test acc: 91.43%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001, Train acc: 88.67%, Test acc: 91.43%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001, Train acc: 88.43%, Test acc: 91.43%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8, Train acc: 88.26%, Test acc: 91.43%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.9, Train acc: 88.08%, Test acc: 91.43%
+Batch size: 16, Alpha: 0.031, Lmbd: 0.2, Train acc: 90.25%, Test acc: 91.43%
+Best train acc: 91.55%, best test acc: 94.29%, best alpha: 0.001, best batch size: 8, best lmbd: 0.0
+Total execution time: 0:21:19.649503
+End NN

@@ -1,0 +1,384 @@
+Start NN
+Grid search: 200 use cases, 10 folds, 2000 total iterations
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8
+Use case not converging.
+Batch size: 16, Alpha: 0.001, Lmbd: 0.9
+Use case not converging.

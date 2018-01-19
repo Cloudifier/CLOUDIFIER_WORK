@@ -1,0 +1,15 @@
+Start NN
+Start NN
+Start NN
+Batch size: 8, Alpha: 0.01, Lmbd: 0.8, Train acc: 85.11%, Test acc: 88.57%
+Best train acc: 85.11%, best test acc: 88.57%, best alpha: 0.01, best batch size: 8, best lmbd: 0.8
+Total execution time: 0:00:54.363244
+End NN
+Batch size: 8, Alpha: 0.01, Lmbd: 0.7, Train acc: 86.99%, Test acc: 91.43%
+Best train acc: 86.99%, best test acc: 91.43%, best alpha: 0.01, best batch size: 8, best lmbd: 0.7
+Total execution time: 0:00:54.347598
+End NN
+Batch size: 8, Alpha: 0.01, Lmbd: 0.9, Train acc: 80.48%, Test acc: 85.71%
+Best train acc: 80.48%, best test acc: 85.71%, best alpha: 0.01, best batch size: 8, best lmbd: 0.9
+Total execution time: 0:00:55.555250
+End NN

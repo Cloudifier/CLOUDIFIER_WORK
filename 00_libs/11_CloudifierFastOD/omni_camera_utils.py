@@ -57,7 +57,7 @@ def _np_rect(left,top,right,bottom, np_img, color = (255,255,255), thickness = 1
   return np_img
   
 
-def np_rect(left,top,right,bottom, np_img, color = (255,255,255), 
+def np_rect(left, top, right, bottom, np_img, color = (255,255,255), 
             thickness = 1, text = None, use_cv2 = False):
   """
   draws "target" rect on box 
@@ -88,13 +88,20 @@ def np_rect(left,top,right,bottom, np_img, color = (255,255,255),
   return np_img
 
 class VideoCameraStream:
-  def __init__(self, logger = None, file_name = None):
+  def __init__(self, logger = None, file_name = None,
+               process_func = None, info_func = None, 
+               onclick_func = None):
+    self.process_func = process_func
+    self.onclick_func = onclick_func
+    self.info_func = info_func
     self.__version__ = __version__
     self.logger = logger
     self.log("Initializing VideoCameraStream v.{}".format(self.__version__))
     if file_name == None:
       self.video = cv2.VideoCapture(0)
       success, frame = self.video.read()
+      cv2.namedWindow("frame_win")
+      cv2.setMouseCallback("frame_win", self.click_event)
       self.H = frame.shape[0]
       self.W = frame.shape[1]
       if not success:
@@ -125,19 +132,20 @@ class VideoCameraStream:
     ret, jpeg = cv2.imencode('.jpg',frame)
     return jpeg.tobytes()
   
-  def play(self, sleep_time = 0, process_func = None, info_func = None):
-    assert self.video != None
+  def play(self, sleep_time = 0, ):
+    
+    assert self.video != None    
     total_errors = 0
     while(True):
       success, frame = self.video.read()      
       if success:
         if sleep_time>0:
           sleep(sleep_time)
-        if process_func != None:
-          out_frame = process_func(frame)
+        if self.process_func != None:
+          out_frame = self.process_func(frame)
         else:
           out_frame = frame
-        cv2.imshow("frame",out_frame)
+        cv2.imshow("frame_win",out_frame)
       else:
         self.log("Error in OpenCV video stream!")
         total_errors += 1
@@ -150,7 +158,7 @@ class VideoCameraStream:
         skey = chr(key)
         skey = skey.upper()
         if key>=65 and key<=122: # if normal ascii
-          info_func(skey, img = out_frame)
+          self.info_func(skey, img = out_frame)
         
     cv2.destroyAllWindows()
     return
@@ -162,7 +170,12 @@ class VideoCameraStream:
     return
     
 
-    
+  def click_event(self, event, x, y, flags, param):  
+    if event == cv2.EVENT_LBUTTONDOWN:
+      self.log("  OmniCamera click ({},{}) {} {}".format(x, y, flags, param))
+    if self.onclick_func is not None:
+      self.onclick_func(x,y)
+    return
     
     
 

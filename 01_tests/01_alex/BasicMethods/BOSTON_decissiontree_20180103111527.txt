@@ -1,0 +1,980 @@
+Start decission tree
+Max depth: 2, Max leafs: 2, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 3, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 4, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 5, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 6, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 7, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 8, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 9, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 10, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 11, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 12, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 13, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 14, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 15, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 16, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 17, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 18, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 2, Max leafs: 19, Train acc: 69.16%, Test acc: 71.07%
+
+
+Max depth: 3, Max leafs: 2, Train acc: 81.16%, Test acc: 76.38%
+
+
+Max depth: 3, Max leafs: 3, Train acc: 80.65%, Test acc: 77.51%
+
+
+Max depth: 3, Max leafs: 4, Train acc: 80.21%, Test acc: 76.72%
+
+
+Max depth: 3, Max leafs: 5, Train acc: 78.80%, Test acc: 76.58%
+
+
+Max depth: 3, Max leafs: 6, Train acc: 78.20%, Test acc: 78.66%
+
+
+Max depth: 3, Max leafs: 7, Train acc: 78.00%, Test acc: 78.56%
+
+
+Max depth: 3, Max leafs: 8, Train acc: 77.84%, Test acc: 78.40%
+
+
+Max depth: 3, Max leafs: 9, Train acc: 77.77%, Test acc: 78.45%
+
+
+Max depth: 3, Max leafs: 10, Train acc: 76.91%, Test acc: 78.42%
+
+
+Max depth: 3, Max leafs: 11, Train acc: 76.91%, Test acc: 78.42%
+
+
+Max depth: 3, Max leafs: 12, Train acc: 76.91%, Test acc: 78.42%
+
+
+Max depth: 3, Max leafs: 13, Train acc: 76.91%, Test acc: 78.42%
+
+
+Max depth: 3, Max leafs: 14, Train acc: 76.91%, Test acc: 78.42%
+
+
+Max depth: 3, Max leafs: 15, Train acc: 76.91%, Test acc: 78.42%
+
+
+Max depth: 3, Max leafs: 16, Train acc: 76.91%, Test acc: 78.42%
+
+
+Max depth: 3, Max leafs: 17, Train acc: 76.86%, Test acc: 77.99%
+
+
+Max depth: 3, Max leafs: 18, Train acc: 76.86%, Test acc: 77.99%
+
+
+Max depth: 3, Max leafs: 19, Train acc: 76.86%, Test acc: 77.99%
+
+
+Max depth: 4, Max leafs: 2, Train acc: 89.21%, Test acc: 82.84%
+
+
+Max depth: 4, Max leafs: 3, Train acc: 88.72%, Test acc: 84.22%
+
+
+Max depth: 4, Max leafs: 4, Train acc: 88.02%, Test acc: 83.23%
+
+
+Max depth: 4, Max leafs: 5, Train acc: 86.49%, Test acc: 84.04%
+
+
+Max depth: 4, Max leafs: 6, Train acc: 84.20%, Test acc: 83.21%
+
+
+Max depth: 4, Max leafs: 7, Train acc: 83.15%, Test acc: 83.38%
+
+
+Max depth: 4, Max leafs: 8, Train acc: 82.97%, Test acc: 83.26%
+
+
+Max depth: 4, Max leafs: 9, Train acc: 82.41%, Test acc: 82.16%
+
+
+Max depth: 4, Max leafs: 10, Train acc: 81.55%, Test acc: 82.13%
+
+
+Max depth: 4, Max leafs: 11, Train acc: 81.25%, Test acc: 82.10%
+
+
+Max depth: 4, Max leafs: 12, Train acc: 81.10%, Test acc: 81.71%
+
+
+Max depth: 4, Max leafs: 13, Train acc: 80.60%, Test acc: 81.86%
+
+
+Max depth: 4, Max leafs: 14, Train acc: 80.47%, Test acc: 81.24%
+
+
+Max depth: 4, Max leafs: 15, Train acc: 80.47%, Test acc: 81.24%
+
+
+Max depth: 4, Max leafs: 16, Train acc: 80.39%, Test acc: 81.15%
+
+
+Max depth: 4, Max leafs: 17, Train acc: 80.53%, Test acc: 80.95%
+
+
+Max depth: 4, Max leafs: 18, Train acc: 80.30%, Test acc: 81.05%
+
+
+Max depth: 4, Max leafs: 19, Train acc: 79.49%, Test acc: 80.42%
+
+
+Max depth: 5, Max leafs: 2, Train acc: 92.32%, Test acc: 84.17%
+
+
+Max depth: 5, Max leafs: 3, Train acc: 91.61%, Test acc: 85.57%
+
+
+Max depth: 5, Max leafs: 4, Train acc: 90.61%, Test acc: 84.03%
+
+
+Max depth: 5, Max leafs: 5, Train acc: 88.99%, Test acc: 84.60%
+
+
+Max depth: 5, Max leafs: 6, Train acc: 87.05%, Test acc: 84.80%
+
+
+Max depth: 5, Max leafs: 7, Train acc: 85.91%, Test acc: 84.87%
+
+
+Max depth: 5, Max leafs: 8, Train acc: 85.17%, Test acc: 84.06%
+
+
+Max depth: 5, Max leafs: 9, Train acc: 84.85%, Test acc: 82.78%
+
+
+Max depth: 5, Max leafs: 10, Train acc: 83.93%, Test acc: 82.76%
+
+
+Max depth: 5, Max leafs: 11, Train acc: 83.64%, Test acc: 82.72%
+
+
+Max depth: 5, Max leafs: 12, Train acc: 83.01%, Test acc: 81.24%
+
+
+Max depth: 5, Max leafs: 13, Train acc: 82.56%, Test acc: 81.74%
+
+
+Max depth: 5, Max leafs: 14, Train acc: 82.40%, Test acc: 80.63%
+
+
+Max depth: 5, Max leafs: 15, Train acc: 82.25%, Test acc: 81.14%
+
+
+Max depth: 5, Max leafs: 16, Train acc: 82.04%, Test acc: 81.02%
+
+
+Max depth: 5, Max leafs: 17, Train acc: 81.90%, Test acc: 80.60%
+
+
+Max depth: 5, Max leafs: 18, Train acc: 81.67%, Test acc: 80.70%
+
+
+Max depth: 5, Max leafs: 19, Train acc: 80.88%, Test acc: 80.22%
+
+
+Max depth: 6, Max leafs: 2, Train acc: 94.08%, Test acc: 82.89%
+
+
+Max depth: 6, Max leafs: 3, Train acc: 93.71%, Test acc: 85.01%
+
+
+Max depth: 6, Max leafs: 4, Train acc: 92.48%, Test acc: 84.31%
+
+
+Max depth: 6, Max leafs: 5, Train acc: 90.83%, Test acc: 85.57%
+
+
+Max depth: 6, Max leafs: 6, Train acc: 88.21%, Test acc: 83.99%
+
+
+Max depth: 6, Max leafs: 7, Train acc: 86.98%, Test acc: 83.80%
+
+
+Max depth: 6, Max leafs: 8, Train acc: 86.10%, Test acc: 83.49%
+
+
+Max depth: 6, Max leafs: 9, Train acc: 85.92%, Test acc: 83.10%
+
+
+Max depth: 6, Max leafs: 10, Train acc: 84.89%, Test acc: 83.25%
+
+
+Max depth: 6, Max leafs: 11, Train acc: 84.52%, Test acc: 83.39%
+
+
+Max depth: 6, Max leafs: 12, Train acc: 83.73%, Test acc: 82.16%
+
+
+Max depth: 6, Max leafs: 13, Train acc: 83.21%, Test acc: 82.06%
+
+
+Max depth: 6, Max leafs: 14, Train acc: 82.86%, Test acc: 81.25%
+
+
+Max depth: 6, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 6, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 6, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 6, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 6, Max leafs: 19, Train acc: 81.17%, Test acc: 80.33%
+
+
+Max depth: 7, Max leafs: 2, Train acc: 95.59%, Test acc: 83.99%
+
+
+Max depth: 7, Max leafs: 3, Train acc: 95.14%, Test acc: 86.19%
+
+
+Max depth: 7, Max leafs: 4, Train acc: 93.65%, Test acc: 84.59%
+
+
+Max depth: 7, Max leafs: 5, Train acc: 91.74%, Test acc: 85.70%
+
+
+Max depth: 7, Max leafs: 6, Train acc: 89.11%, Test acc: 84.83%
+
+
+Max depth: 7, Max leafs: 7, Train acc: 87.76%, Test acc: 84.73%
+
+
+Max depth: 7, Max leafs: 8, Train acc: 87.06%, Test acc: 83.90%
+
+
+Max depth: 7, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 7, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 7, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 7, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 7, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 7, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 7, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 7, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 7, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 7, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 7, Max leafs: 19, Train acc: 81.17%, Test acc: 80.33%
+
+
+Max depth: 8, Max leafs: 2, Train acc: 96.69%, Test acc: 84.15%
+
+
+Max depth: 8, Max leafs: 3, Train acc: 95.95%, Test acc: 86.37%
+
+
+Max depth: 8, Max leafs: 4, Train acc: 94.30%, Test acc: 85.32%
+
+
+Max depth: 8, Max leafs: 5, Train acc: 92.21%, Test acc: 85.71%
+
+
+Max depth: 8, Max leafs: 6, Train acc: 89.32%, Test acc: 85.19%
+
+
+Max depth: 8, Max leafs: 7, Train acc: 88.17%, Test acc: 84.63%
+
+
+Max depth: 8, Max leafs: 8, Train acc: 87.26%, Test acc: 83.63%
+
+
+Max depth: 8, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 8, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 8, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 8, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 8, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 8, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 8, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 8, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 8, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 8, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 8, Max leafs: 19, Train acc: 81.17%, Test acc: 80.33%
+
+
+Max depth: 9, Max leafs: 2, Train acc: 97.51%, Test acc: 85.21%
+
+
+Max depth: 9, Max leafs: 3, Train acc: 96.52%, Test acc: 86.42%
+
+
+Max depth: 9, Max leafs: 4, Train acc: 94.55%, Test acc: 84.78%
+
+
+Max depth: 9, Max leafs: 5, Train acc: 92.41%, Test acc: 85.12%
+
+
+Max depth: 9, Max leafs: 6, Train acc: 89.49%, Test acc: 85.26%
+
+
+Max depth: 9, Max leafs: 7, Train acc: 88.31%, Test acc: 84.64%
+
+
+Max depth: 9, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 9, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 9, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 9, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 9, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 9, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 9, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 9, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 9, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 9, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 9, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 9, Max leafs: 19, Train acc: 81.17%, Test acc: 80.38%
+
+
+Max depth: 10, Max leafs: 2, Train acc: 97.73%, Test acc: 84.93%
+
+
+Max depth: 10, Max leafs: 3, Train acc: 96.85%, Test acc: 86.83%
+
+
+Max depth: 10, Max leafs: 4, Train acc: 94.72%, Test acc: 84.49%
+
+
+Max depth: 10, Max leafs: 5, Train acc: 92.53%, Test acc: 85.96%
+
+
+Max depth: 10, Max leafs: 6, Train acc: 89.62%, Test acc: 85.40%
+
+
+Max depth: 10, Max leafs: 7, Train acc: 88.41%, Test acc: 84.39%
+
+
+Max depth: 10, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 10, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 10, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 10, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 10, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 10, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 10, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 10, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 10, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 10, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 10, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 10, Max leafs: 19, Train acc: 81.17%, Test acc: 80.38%
+
+
+Max depth: 11, Max leafs: 2, Train acc: 98.09%, Test acc: 84.80%
+
+
+Max depth: 11, Max leafs: 3, Train acc: 97.00%, Test acc: 86.81%
+
+
+Max depth: 11, Max leafs: 4, Train acc: 94.86%, Test acc: 84.95%
+
+
+Max depth: 11, Max leafs: 5, Train acc: 92.68%, Test acc: 86.09%
+
+
+Max depth: 11, Max leafs: 6, Train acc: 89.76%, Test acc: 85.41%
+
+
+Max depth: 11, Max leafs: 7, Train acc: 88.54%, Test acc: 84.27%
+
+
+Max depth: 11, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 11, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 11, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 11, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 11, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 11, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 11, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 11, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 11, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 11, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 11, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 11, Max leafs: 19, Train acc: 81.17%, Test acc: 80.38%
+
+
+Max depth: 12, Max leafs: 2, Train acc: 98.27%, Test acc: 85.06%
+
+
+Max depth: 12, Max leafs: 3, Train acc: 97.14%, Test acc: 86.75%
+
+
+Max depth: 12, Max leafs: 4, Train acc: 95.00%, Test acc: 84.45%
+
+
+Max depth: 12, Max leafs: 5, Train acc: 92.79%, Test acc: 85.89%
+
+
+Max depth: 12, Max leafs: 6, Train acc: 89.82%, Test acc: 85.29%
+
+
+Max depth: 12, Max leafs: 7, Train acc: 88.54%, Test acc: 84.27%
+
+
+Max depth: 12, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 12, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 12, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 12, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 12, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 12, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 12, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 12, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 12, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 12, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 12, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 12, Max leafs: 19, Train acc: 81.17%, Test acc: 80.38%
+
+
+Max depth: 13, Max leafs: 2, Train acc: 98.49%, Test acc: 85.56%
+
+
+Max depth: 13, Max leafs: 3, Train acc: 97.22%, Test acc: 86.35%
+
+
+Max depth: 13, Max leafs: 4, Train acc: 95.07%, Test acc: 85.07%
+
+
+Max depth: 13, Max leafs: 5, Train acc: 92.83%, Test acc: 86.03%
+
+
+Max depth: 13, Max leafs: 6, Train acc: 89.82%, Test acc: 85.29%
+
+
+Max depth: 13, Max leafs: 7, Train acc: 88.54%, Test acc: 84.27%
+
+
+Max depth: 13, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 13, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 13, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 13, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 13, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 13, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 13, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 13, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 13, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 13, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 13, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 13, Max leafs: 19, Train acc: 81.17%, Test acc: 80.33%
+
+
+Max depth: 14, Max leafs: 2, Train acc: 98.63%, Test acc: 84.47%
+
+
+Max depth: 14, Max leafs: 3, Train acc: 97.24%, Test acc: 86.28%
+
+
+Max depth: 14, Max leafs: 4, Train acc: 95.09%, Test acc: 84.48%
+
+
+Max depth: 14, Max leafs: 5, Train acc: 92.85%, Test acc: 86.04%
+
+
+Max depth: 14, Max leafs: 6, Train acc: 89.82%, Test acc: 85.29%
+
+
+Max depth: 14, Max leafs: 7, Train acc: 88.54%, Test acc: 84.43%
+
+
+Max depth: 14, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 14, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 14, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 14, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 14, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 14, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 14, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 14, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 14, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 14, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 14, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 14, Max leafs: 19, Train acc: 81.17%, Test acc: 80.38%
+
+
+Max depth: 15, Max leafs: 2, Train acc: 98.60%, Test acc: 85.43%
+
+
+Max depth: 15, Max leafs: 3, Train acc: 97.26%, Test acc: 86.47%
+
+
+Max depth: 15, Max leafs: 4, Train acc: 95.10%, Test acc: 84.66%
+
+
+Max depth: 15, Max leafs: 5, Train acc: 92.85%, Test acc: 85.49%
+
+
+Max depth: 15, Max leafs: 6, Train acc: 89.82%, Test acc: 85.29%
+
+
+Max depth: 15, Max leafs: 7, Train acc: 88.54%, Test acc: 84.27%
+
+
+Max depth: 15, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 15, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 15, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 15, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 15, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 15, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 15, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 15, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 15, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 15, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 15, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 15, Max leafs: 19, Train acc: 81.17%, Test acc: 80.33%
+
+
+Max depth: 16, Max leafs: 2, Train acc: 98.75%, Test acc: 85.20%
+
+
+Max depth: 16, Max leafs: 3, Train acc: 97.26%, Test acc: 86.80%
+
+
+Max depth: 16, Max leafs: 4, Train acc: 95.10%, Test acc: 84.67%
+
+
+Max depth: 16, Max leafs: 5, Train acc: 92.85%, Test acc: 86.01%
+
+
+Max depth: 16, Max leafs: 6, Train acc: 89.82%, Test acc: 85.29%
+
+
+Max depth: 16, Max leafs: 7, Train acc: 88.54%, Test acc: 84.27%
+
+
+Max depth: 16, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 16, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 16, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 16, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 16, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 16, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 16, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 16, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 16, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 16, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 16, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 16, Max leafs: 19, Train acc: 81.17%, Test acc: 80.33%
+
+
+Max depth: 17, Max leafs: 2, Train acc: 98.75%, Test acc: 84.34%
+
+
+Max depth: 17, Max leafs: 3, Train acc: 97.26%, Test acc: 86.62%
+
+
+Max depth: 17, Max leafs: 4, Train acc: 95.10%, Test acc: 85.31%
+
+
+Max depth: 17, Max leafs: 5, Train acc: 92.85%, Test acc: 86.01%
+
+
+Max depth: 17, Max leafs: 6, Train acc: 89.82%, Test acc: 85.29%
+
+
+Max depth: 17, Max leafs: 7, Train acc: 88.54%, Test acc: 84.43%
+
+
+Max depth: 17, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 17, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 17, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 17, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 17, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 17, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 17, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 17, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 17, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 17, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 17, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 17, Max leafs: 19, Train acc: 81.17%, Test acc: 80.38%
+
+
+Max depth: 18, Max leafs: 2, Train acc: 98.62%, Test acc: 84.75%
+
+
+Max depth: 18, Max leafs: 3, Train acc: 97.26%, Test acc: 86.27%
+
+
+Max depth: 18, Max leafs: 4, Train acc: 95.10%, Test acc: 84.73%
+
+
+Max depth: 18, Max leafs: 5, Train acc: 92.85%, Test acc: 85.58%
+
+
+Max depth: 18, Max leafs: 6, Train acc: 89.82%, Test acc: 85.29%
+
+
+Max depth: 18, Max leafs: 7, Train acc: 88.54%, Test acc: 84.43%
+
+
+Max depth: 18, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 18, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 18, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 18, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 18, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 18, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 18, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 18, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 18, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 18, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 18, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 18, Max leafs: 19, Train acc: 81.17%, Test acc: 80.38%
+
+
+Max depth: 19, Max leafs: 2, Train acc: 98.75%, Test acc: 84.75%
+
+
+Max depth: 19, Max leafs: 3, Train acc: 97.26%, Test acc: 86.77%
+
+
+Max depth: 19, Max leafs: 4, Train acc: 95.10%, Test acc: 85.05%
+
+
+Max depth: 19, Max leafs: 5, Train acc: 92.85%, Test acc: 85.92%
+
+
+Max depth: 19, Max leafs: 6, Train acc: 89.82%, Test acc: 85.29%
+
+
+Max depth: 19, Max leafs: 7, Train acc: 88.54%, Test acc: 84.43%
+
+
+Max depth: 19, Max leafs: 8, Train acc: 87.35%, Test acc: 83.74%
+
+
+Max depth: 19, Max leafs: 9, Train acc: 86.22%, Test acc: 83.10%
+
+
+Max depth: 19, Max leafs: 10, Train acc: 85.01%, Test acc: 82.90%
+
+
+Max depth: 19, Max leafs: 11, Train acc: 84.65%, Test acc: 83.03%
+
+
+Max depth: 19, Max leafs: 12, Train acc: 83.86%, Test acc: 81.83%
+
+
+Max depth: 19, Max leafs: 13, Train acc: 83.33%, Test acc: 81.71%
+
+
+Max depth: 19, Max leafs: 14, Train acc: 82.91%, Test acc: 81.13%
+
+
+Max depth: 19, Max leafs: 15, Train acc: 82.68%, Test acc: 81.81%
+
+
+Max depth: 19, Max leafs: 16, Train acc: 82.43%, Test acc: 81.30%
+
+
+Max depth: 19, Max leafs: 17, Train acc: 82.20%, Test acc: 80.70%
+
+
+Max depth: 19, Max leafs: 18, Train acc: 81.97%, Test acc: 80.80%
+
+
+Max depth: 19, Max leafs: 19, Train acc: 81.17%, Test acc: 80.38%
+
+
+Best train acc: 96.85%, Best test acc: 86.83%, max depth: 10, max leaf: 3
+Total execution time: 0:00:00.590302
+End decission tree
+Start liniar regression
+Train acc: 73.01%, Test acc: 73.82%
+Total execution time: 0:00:00
+End liniar regression

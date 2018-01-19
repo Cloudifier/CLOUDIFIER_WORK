@@ -1,0 +1,5 @@
+Start gaussian naive bayes
+Train acc: 53.96%, Test acc: 54.00%
+Total execution time: 0:00:07.692868
+End gaussian naive bayes
+Start knn

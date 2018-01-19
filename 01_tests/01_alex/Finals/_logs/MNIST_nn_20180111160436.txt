@@ -1,0 +1,27 @@
+Start NN
+Batch size: 8, Alpha: 0.001, Lmbd: 0.0, Test acc: 8.57%, Train acc: 11.03%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.1, Test acc: 5.71%, Train acc: 7.29%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.2, Test acc: 8.57%, Train acc: 15.28%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.30000000000000004, Test acc: 2.86%, Train acc: 4.45%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.4, Test acc: 0.00%, Train acc: 2.43%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.5, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.6000000000000001, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.7000000000000001, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.8, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 8, Alpha: 0.001, Lmbd: 0.9, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.0, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.1, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.2, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.30000000000000004, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.4, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.5, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.6000000000000001, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.7000000000000001, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.8, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 16, Alpha: 0.001, Lmbd: 0.9, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 8, Alpha: 0.031, Lmbd: 0.0, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 8, Alpha: 0.031, Lmbd: 0.1, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 8, Alpha: 0.031, Lmbd: 0.2, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 8, Alpha: 0.031, Lmbd: 0.30000000000000004, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 8, Alpha: 0.031, Lmbd: 0.4, Test acc: 11.43%, Train acc: 9.86%
+Batch size: 8, Alpha: 0.031, Lmbd: 0.5, Test acc: 11.43%, Train acc: 9.86%

@@ -1,0 +1,4 @@
+AvgTestAcc(%),AvgTrainAcc(%),BestParams,Model,Obs,TestAcc(%),TrainAcc(%),TunningRun
+82.01,85.04,max_depth= 15; min_samples_leaf= 3,decission tree,,86.68,97.26,324
+73.82,73.01,,logistic regression,,73.82,73.01,1
+-2.28,-2.03,"batch_size= 8; alpha= 0.211, lmbd= 0.0",NN,,0.7671162986068983,0.7099086731743011,200

@@ -1,0 +1,6 @@
+Init: k-means++, max_iter: 1, n_init: 1, algo: elkan
+Train acc: 6.384126984126984, Test acc: 6.314285714285714
+
+
+
+Init: k-means++, max_iter: 1, n_init: 1, algo: full

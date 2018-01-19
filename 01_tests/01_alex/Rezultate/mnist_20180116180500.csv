@@ -1,0 +1,6 @@
+Model,TunningRun,AvgTrainAcc(%),AvgTestAcc(%),TrainAcc(%),TestAcc(%),BestParams,Obs
+kmeans,80,54.8,66.82,56.49,77.14,init= k-means++; max_iter= 10; n_init= 15; algorithm= elkan,
+gaussian naive bayes,1,54.29,54.29,53.07,54.29,,
+decission tree,324,79.86,67.52,92.22,88.57,max_depth= 13; min_samples_leaf= 9,
+logistic regression,1,93.04,94.29,93.04,94.29,,
+NN,200,82.19,82.17,94.33,93.87,"batch_size= 16; alpha= 0.031, lmbd= 0.2",

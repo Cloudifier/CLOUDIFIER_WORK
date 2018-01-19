@@ -1,12 +1,14 @@
 {
   "BASE_FOLDER": "GoogleDrive",
-  "APP_FOLDER": "_hyperloop_data\\recom_compl",
+  "APP_FOLDER": "_hyperloop_data/recom_compl_2014_2017",
   "FRAMEWORK":
   {
      "NAME": "Tensorflow",
-     "EMBEDDINGS_CONTEXT": "flatten"
+     "EMBEDDINGS_CONTEXT": "flatten",
+     "NUM_SAMPLED": 64
   },
-  
+
   "AUXILIARY_NAME": "",
-  "LOAD_MODEL": "_output/20171119_185255_Tensorflow_Emb_64_Window_6_Batch_128_flatten_hotseason_Ep_15.h5"
+  "MCO_CACHE": "",
+  "LOAD_MODEL": "_output/20180116_092258_Tensorflow_CBOW_Sampled_64_Emb_64_Window_6_Batch_64_flatten_winter_Ep_20.h5"
 }

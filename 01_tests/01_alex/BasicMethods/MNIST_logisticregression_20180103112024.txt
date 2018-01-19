@@ -1,0 +1,4 @@
+Start logistic regression
+Train acc: 93.04%, Test acc: 94.29%
+Total execution time: 0:29:32.796914
+End logistic regression

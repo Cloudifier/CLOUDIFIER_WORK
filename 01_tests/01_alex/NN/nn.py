@@ -1,6 +1,8 @@
 import numpy as np
 from enum import Enum
 from typing import List
+import sys
+from sklearn import metrics
 
 class ActivationFuncEnum(Enum):
     NONE = 0
@@ -11,22 +13,49 @@ class ActivationFuncEnum(Enum):
 class CostFuncEnum(Enum):
     MSE = 0
     CROSSENTROPY = 1
-    SOFTMAX = 2
+    CROSSENTROPY_SOFTMAX = 2
 
 class ActivationFunctions:
+    # @staticmethod
+    # def sigmoid(z):
+        #return 1 / (1 + np.exp(-z))
+
+    #http://timvieira.github.io/blog/post/2014/02/11/exp-normalize-trick/
     @staticmethod
-    def sigmoid(z):
-        return 1 / (1 + np.exp(-z))
+    def sigmoid(x):
+        if x >= 0:
+            z = np.exp(-x)
+            return 1 / (1 + z)
+        else:
+            z = np.exp(x)
+            return z / (1 + z)
 
     @staticmethod
-    def relu(z):
-        return np.maximum(0, z)
+    def relu(X):
+        np.clip(X, 0, np.finfo(X.dtype).max, out=X)
+        return X
 
-    #i'm trying this copied code for function simplification
+    # @staticmethod
+    # def relu(z):
+    #     return np.maximum(0, z)
+
+    # # #i always get overflow exception with this function.
+    # @staticmethod
+    # def softmax(z):
+    #     m, n = z.shape
+    #     sm = np.exp(z) / np.exp(z).sum(axis=1).reshape(m, 1)
+    #     return sm
+
+
+    #tooked this one from sklearn
     @staticmethod
-    def softmax(z):
-        m, n = z.shape
-        return np.exp(z) / np.exp(z).sum(axis=1).reshape(m, 1)
+    def softmax(X):
+        tmp = X - X.max(axis=1)[:, np.newaxis]
+        np.exp(tmp, out=X)
+        X /= X.sum(axis=1)[:, np.newaxis]
+        eps = 1e-6
+        X = np.clip(X, eps, 1 - eps)
+        return X
 
     @staticmethod
     def sigmoidPrime(z):
@@ -34,7 +63,8 @@ class ActivationFunctions:
 
     @staticmethod
     def reluPrime(z):
-        return (ActivationFunctions.relu(z) > 0) * 1
+        # return (ActivationFunctions.relu(z) > 0) * 1
+        return (z > 0) * 1
 
 class CostFunctions:
     @staticmethod
@@ -46,8 +76,16 @@ class CostFunctions:
         return np.mean((yhat - y) ** 2)
 
     @staticmethod
-    def softmax(yhat, y):
-        return - np.sum(y * np.log(yhat))
+    def crossentropySoftmax(yhat, y):
+        #res = - np.sum(y * np.log(yhat)) / y.shape[0]
+        # eps = 1e-15
+
+        #method inspired from sklearn log_loss
+        # Clipping
+        # yhat = np.clip(yhat, eps, 1 - eps)
+        res = - np.sum(y * np.log(yhat)) / y.shape[0]
+
+        return res
 
     @staticmethod
     def crossentropyPrime(yhat, y):
@@ -57,16 +95,12 @@ class CostFunctions:
     def msePrime(yhat, y):
         return 2 * (yhat - y) / len(y)
 
-    @staticmethod
-    def softmaxPrime(yhat, y):
-        return yhat - y
-
 class Theta:
     weights = None
     bias = None
     def __init__(self, nrRows: int, nrColumns: int):
-        self.weights = np.random.uniform(-0.01, 0.01, (nrRows, nrColumns))
-        self.bias = np.random.uniform(-0.01, 0.01, (1, nrColumns))
+        self.weights = np.random.uniform(-.001, .001, (nrRows, nrColumns))
+        self.bias = np.random.uniform(-.001, .001, (1, nrColumns))
 
 class LearningStatus:
     def __init__(self, epochNr, error, accuracy, thetas, yhat):
@@ -77,30 +111,30 @@ class LearningStatus:
         self.yhat = yhat
 
 class Layer:
-    nrNeurons= 0
+    nrNeurons: int = 0
     activationFunc = None
     linearity = None
     activation = None
     delta = None
     grad = None
-    theta = None
+    theta: Theta = None
 
     def __init__(self, nrNeurons: int, activationFunc=ActivationFuncEnum.NONE):
         self.nrNeurons = nrNeurons
         self.activationFunc = activationFunc
 
-#intrare->hidden layers->output
 class NN:
     epochs = None
     batchSize = None
     alpha = None
     lmbd = None
 
-    def __init__(self, layers: List[Layer], costFunction, useBias):
+    def __init__(self, layers: List[Layer], costFunction, useBias, seed=1234):
         self.nnLayers = layers
         self.nnCostFunc = costFunction
-        self.learningStatus = list()
+        self.learningStatus: List[LearningStatus] = list()
         self.useBias = useBias
+        np.random.seed(seed)
         self.__initTheta()
 
     def __initTheta(self):
@@ -140,26 +174,27 @@ class NN:
 
     def __layerPrimeActivation(self, currentLayer: Layer):
         if currentLayer.activationFunc == ActivationFuncEnum.NONE:
-            return 1
+            return currentLayer.linearity
         elif currentLayer.activationFunc == ActivationFuncEnum.RELU:
             return ActivationFunctions.reluPrime(currentLayer.linearity)
         elif currentLayer.activationFunc == ActivationFuncEnum.SIGMOID:
             return ActivationFunctions.sigmoidPrime(currentLayer.linearity)
-        elif currentLayer.activationFunc == ActivationFuncEnum.SOFTMAX:
-            return ActivationFunctions.softmaxPrime(currentLayer.linearity)
 
     def __layerCost(self, currentLayer: Layer, y):
         if self.nnCostFunc == CostFuncEnum.CROSSENTROPY:
             currentLayer.delta = CostFunctions.crossentropyPrime(currentLayer.activation, y)
         elif self.nnCostFunc == CostFuncEnum.MSE:
             currentLayer.delta = CostFunctions.msePrime(currentLayer.activation,y)  # * ActivationFunctions.sigmoidPrime(currentLayer.activation)
-        elif self.nnCostFunc == CostFuncEnum.SOFTMAX:
-            currentLayer.delta = CostFunctions.softmaxPrime(currentLayer.activation,y)
+
+    def __dJdzLastLayer(self, currentLayer, y):
+        if(self.nnCostFunc == CostFuncEnum.CROSSENTROPY_SOFTMAX and currentLayer.activationFunc == ActivationFuncEnum.SOFTMAX):
+            # print(currentLayer.activation - y)
+            currentLayer.delta = currentLayer.activation - y
 
     def __calculateDelta(self, layerPosition, y):
         currentLayer = self.nnLayers[layerPosition]
         if layerPosition == len(self.nnLayers) - 1:
-            self.__layerCost(currentLayer, y)
+            self.__dJdzLastLayer(currentLayer, y)
         else:
             previousLayer = self.nnLayers[layerPosition + 1]
             currentLayer.delta = previousLayer.delta.dot(previousLayer.theta.weights.T) * self.__layerPrimeActivation(currentLayer)
@@ -175,7 +210,7 @@ class NN:
 
     def __calculateBias(self, layerPosition):
         currentLayer = self.nnLayers[layerPosition]
-        #currentLayer.theta.bias -= self.alpha * 1 / self.batchSize * (currentLayer.delta.sum(axis=0) / (1 * self.batchSize))
+        m, n = currentLayer.delta.shape
         currentLayer.theta.bias -= self.alpha * 1 / self.batchSize * currentLayer.delta.sum(axis=0)
 
     def __forwardPropagation(self, X):
@@ -199,23 +234,48 @@ class NN:
 
     def __setLearningStatus(self, X, y, epochNr):
         yhat = self.__forwardPropagation(X)
+        # if 0 in yhat:
+        #     print(yhat)
+
         if self.nnCostFunc == CostFuncEnum.CROSSENTROPY:
             E = CostFunctions.crossentropy(yhat, y)
         elif self.nnCostFunc == CostFuncEnum.MSE:
             E = CostFunctions.mse(yhat, y)
-        elif self.nnCostFunc == CostFuncEnum.SOFTMAX:
-            E = CostFunctions.softmax(yhat, y)
-        self.learningStatus.append(LearningStatus(epochNr, E, self.__accuracy(yhat, y), self.__getThetas(), yhat))
+        elif self.nnCostFunc == CostFuncEnum.CROSSENTROPY_SOFTMAX:
+            E = CostFunctions.crossentropySoftmax(yhat, y)
+
+        predict = (np.argmax(yhat, axis=1))
+        y_true = np.argmax(y, axis=1)
+        acc = np.mean((predict == y_true) * 1) * 100
+        print("Train acc: {:.2f}%, Loss: {:.3f}".format(np.mean((predict == y_true) * 1) * 100, E))
+        thetas = self.__getThetas()
+        lastTheta = thetas[-1]
+        print('-----THETA-----')
+        print(lastTheta.weights[0:2, 0:4])
+        print(lastTheta.bias)
+        print('~~~~~THETA~~~~~')
+
+        print('-----LINEARITY-----')
+        lastLayer = self.nnLayers[-1]
+        print(lastLayer.linearity[0,:])
+        print('~~~~~LINEARITY~~~~~')
+
+        print('-----PREV ACTIVATION-----')
+        prevLayer = self.nnLayers[-2]
+        print(prevLayer.activation[0, 0:5])
+        print('~~~~~PREV ACTIVATION~~~~~')
+        z = prevLayer.activation.dot(lastTheta.weights) + lastTheta.bias
+        print(z[0])
+
+        self.learningStatus.append(LearningStatus(epochNr, E, acc, self.__getThetas(), yhat))
 
     def __sortByAccuracy(self):
         return sorted(self.learningStatus, key=lambda x: (x.accuracy), reverse=True)
 
     def __restoreBestThetas(self):
         print('Sortam dupa best acc')
-        _sorted = self.__sortByAccuracy()
-        print('Gasit best acc la epoca: {}, acc: {}, eroare: {}'.format(
-            _sorted[0].epochNr, _sorted[0].accuracy, _sorted[0].error))
-        
+        sorted = self.__sortByAccuracy()
+        print(f'Gasit best acc la epoca: {sorted[0].epochNr}, acc: {sorted[0].accuracy}, eroare: {sorted[0].error}')
         bestThetas = sorted[0].thetas
         for i in range(1, len(self.nnLayers)):
             self.nnLayers[i].theta = bestThetas[i - 1]
@@ -232,7 +292,7 @@ class NN:
         self.lmbd = lmbd
         m, n = X_train.shape
         for i in range(self.epochs):
-            print('Epoch {}'.format(i))
+            print('Epoch {:}'.format(i + 1))
             mod = m % self.batchSize
             iterations = int(m / self.batchSize) + (1 if mod != 0 else 0)
             for j in range(iterations):

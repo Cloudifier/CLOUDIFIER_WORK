@@ -1,0 +1,16 @@
+{
+  "BASE_FOLDER": "GoogleDrive",
+  "APP_FOLDER": "_omnidj_data/01_face_recognition",
+
+  "FR_OUTPUT_FILE" : "omnifr_output.csv",
+
+
+  "DLIB_FACE_MODEL" : "shape_predictor_68_face_landmarks.dat",
+  "DLIB_FACE_MODEL_SMALL" : "shape_predictor_5_face_landmarks.dat",
+
+  "DLIB_FACE_NET" : "dlib_face_recognition_resnet_model_v1.dat",
+
+  "TF_FACE_NET" : "fr_inception_ch1st.h5",
+  "TF_MODEL_CHANNELS" : "channels_first",
+  "TF_MODEL_INPUT_SIZE" : "96"
+}
