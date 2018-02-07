@@ -7,6 +7,7 @@ Created on Tue Jan 23 08:38:57 2018
 
 from keras.layers import (
                           Conv2D, 
+                          Conv2DTranspose,
                           Dense,
                           BatchNormalization, 
                           Activation, 
@@ -355,29 +356,74 @@ class CloudifierNet:
     
     return x
   
-  def _start_block(self, input_tensor):
+  def _start_block_v1(self, input_tensor):
     x = input_tensor
-    x = self.conv2_bn(x, f=32, k=(3,3), p='valid', n='block1_c1')
-    x = self.conv2_bn(x, f=48, k=(3,3), s=(2,2), p='valid', n='block1_c2')
-    x = self.conv2_bn(x, f=64, k=(3,3), p='valid', n='block1_c3')
-    x = self.conv2_bn(x, f=80, k=(3,3), s=(2,2), p='valid', n='block1_c4')
+    x = self.conv2_bn(x, f=32, k=(3,3), p='same', n='block1_c1')
+    x = self.conv2_bn(x, f=48, k=(3,3), s=(2,2), p='same', n='block1_c2')
+    x = Conv2D(filters=64,
+               kernel_size=(1,1),
+               stride=(1,1),
+               padding='valid',
+               name='block1_c3')(x)
     return x
+  
+  
+  def _add_head(self, head_type):    
+    if head_type == 1:
+      self.final_out_layer = Dense(n_classes, activation='softmax', 
+                                   name='readout')(self.final_out_layer)
+
+    elif head_type == 2:
+      # deconv process
+      out_deconved = self._get_dense_output()
+      self.final_out_layer = Activation("softmax")(out_deconved)
+  
+  
+  def _get_dense_output(self):
+    deconv_list = []
+    AddScaleLayer = Lambda(lambda inputs, scale: inputs[0] + inputs[1] * scale,
+                           output_shape=K.int_shape(x)[1:],
+                           arguments={'scale': scale},
+                           name=name+'_fcn_as')
+    result =  Conv2DTranspose(filters=,
+                                 kernel_size=,
+                                 strides=,
+                                 padding=,)(self.downsamplers[-1][0]])
+    n_layers = len(self.downsamplers)-1
+    for i in range(n_layers):
+      layer, factor, scale = self.downsamplers[i]
     
+      deconved = Conv2DTranspose(filters=,
+                                 kernel_size=,
+                                 strides=,
+                                 padding=,)(layer)
+      deconv_list.append(deconved)
+    return add(deconv_list, axis=self.channel_axis)
   
   def _build_network_v1(self, input_shape, n_classes, activ='relu', 
-                        include_head=True, 
+                        head_type=1, 
                         conv_head=False,
                         pooling='max', 
                         simple_compile=False):
+    """
+    
+    head_type = 0: No head, 1: classification head; 2: dense softmax
+    """
     input_tensor = Input(input_shape)
+    self.downsamplers = []
     self.input_tensor = input_tensor
     
-    x = self._start_block(self.input_tensor)
+    x = self._start_block_v1(self.input_tensor)
+    
 
-    x = self.SimpleInceptResBlock(x, n_maps=128, direct_skip=..)   
-    x = self.SimpleInceptResBlock(x, n_maps=256, direct_skip=..)
-    x = self.SimpleInceptResBlock(x, n_maps=384, direct_skip=..)
-    x = self.SimpleInceptResBlock(x, n_maps=512, direct_skip=..)
+    x = self.SimpleInceptResBlock(x, n_maps=128, direct_skip=True)
+    x = self.SimpleInceptResBlock(x, n_maps=256, direct_skip=False)
+    x = self.SimpleInceptResBlock(x, n_maps=384, direct_skip=True)
+    self.downsamplers.append((x,0.5))
+
+    x = self.conv2_bn(x, f=256, k=(3,3), s=(2,2), p='same', n='downsmpl1')    
+    x = self.SimpleInceptResBlock(x, n_maps=512, direct_skip=False)
+    self.downsamplers.append((x,0.25))
 
     
     self.final_conv_layer = x
@@ -388,11 +434,10 @@ class CloudifierNet:
       x = GlobalAveragePooling2D()(x)
     
     self.final_pool_layer = x
+    self.final_out_layer = x   
     
-    if include_head:
-      x = Dense(n_classes, activation='softmax', name='readout')(x)
-    
-    self.final_out_layer = x
+    self._add_head(head_type)
+                  
     
     self.model = Model(self.input_tensor, self.final_out_layer)
     if simple_compile:

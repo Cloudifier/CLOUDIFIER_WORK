@@ -11,52 +11,59 @@ import os
 import pandas as pd
 import numpy as np
 import itertools
-
-def load_module(module_name, file_name):
-  """
-  loads modules from _pyutils Google Drive repository
-  usage:
-    module = load_module("logger", "logger.py")
-    logger = module.Logger()
-  """
-  from importlib.machinery import SourceFileLoader
-  home_dir = os.path.expanduser("~")
-  valid_paths = [
-                 os.path.join(home_dir, "Google Drive"),
-                 os.path.join(home_dir, "GoogleDrive"),
-                 os.path.join(os.path.join(home_dir, "Desktop"), "Google Drive"),
-                 os.path.join(os.path.join(home_dir, "Desktop"), "GoogleDrive"),
-                 os.path.join("C:/", "GoogleDrive"),
-                 os.path.join("C:/", "Google Drive"),
-                 os.path.join("D:/", "GoogleDrive"),
-                 os.path.join("D:/", "Google Drive"),
-                 ]
-
-  drive_path = None
-  for path in valid_paths:
-    if os.path.isdir(path):
-      drive_path = path
-      break
-
-  if drive_path is None:
-    raise Exception("Couldn't find google drive folder!")
-
-  utils_path = os.path.join(drive_path, "_pyutils")
-  print("Loading [{}] package...".format(os.path.join(utils_path,file_name)),flush = True)
-  module_lib   = SourceFileLoader(module_name, os.path.join(utils_path, file_name)).load_module()
-  print("Done loading [{}] package.".format(os.path.join(utils_path,file_name)),flush = True)
-
-  return module_lib
+import json
 
 
 class BigDataProcesser:
-  def __init__(config_file = 'config.txt'):
-    pass
+  def __init__(self, logger=None, config_file='config.txt'):
+    assert config_file != ""
+    f = open(config_file)
+    self.config_data = json.load(f)
+    assert ("DF_CSV" in self.config_data.keys())
+    assert ("CHUNKSIZE" in self.config_data.keys())
+
+    self.logger = logger
+    self._log("Initializing BigDataProcessor; df=[..{}] ...".format(self.config_data["DF_CSV"][-40:]))
+
+    col_names_keys = ["COL" + str(i) for i in range(1, self.config_data["LAST_COL_ID"] + 1)]
+    self.col_names = []
+    for key in col_names_keys:
+      self.col_names.append(self.config_data[key])
+    self.reader = pd.read_csv(self.config_data["DF_CSV"],
+                              names = self.col_names,
+                              chunksize = self.config_data["CHUNKSIZE"])
+    self._log("Initialized BigDataProcessor.")
+    return
+
+  def _log(self, str_msg, results = False, show_time = False):
+    if self.logger != None:
+      self.logger.VerboseLog(str_msg, results, show_time)
+    else:
+      print(str_msg, flush=True)
+    return
   
-  """
-  LOAD('TRAN_COL': 'FTRAN' ....)
-  FILTER(LIST OF TUPLES: [(START, END), (START, END)])
-  GenerateMCO()
-  GetBatch() -- cu GenerateMCO()
-  GetP2VBatch()
-  """
+  
+  def GenerateMarketBaskets(self, *args):
+    
+    keep_columns = list(args)
+    if keep_columns == []:
+      keep_columns = self.col_names
+
+    self._log("Generating market baskets. Keep cols={} ...".format(keep_columns))
+    for i, batch in enumerate(self.reader):
+      self._log("  Processing batch {} with {:,} entries ...".format(i+1, batch.shape[0]))
+      df = pd.DataFrame(batch[keep_columns])
+
+      #TODO generalizare!!!!
+      df.loc[:, 'FTRAN'] = df['SITE_ID'].astype(str) + df['TRAN_ID'].astype(str)
+      df.drop(['TRAN_ID', 'SITE_ID'], axis = 1, inplace = True)
+      df["IDE"] = df["IDE"].apply(lambda x: x - 1)
+      unique_trans_grouped = df.groupby('FTRAN').apply(lambda x: x['IDE'].values)
+      unique_trans_grouped = np.array(unique_trans_grouped)
+      self._log("  Batch processed.", show_time=True)
+      yield unique_trans_grouped
+  
+
+  
+if __name__ == '__main__':
+  bp = BigDataProcesser()

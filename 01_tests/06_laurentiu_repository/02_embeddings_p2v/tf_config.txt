@@ -10,5 +10,5 @@
 
   "AUXILIARY_NAME": "",
   "MCO_CACHE": "",
-  "LOAD_MODEL": "_output/20180116_092258_Tensorflow_CBOW_Sampled_64_Emb_64_Window_6_Batch_64_flatten_winter_Ep_20.h5"
+  "LOAD_MODEL": "_output/20180205_220615_Tensorflow_SKIP-GRAM_Sampled_64_Emb_128_Window_4_Batch_256_flatten_Ep_10.h5"
 }

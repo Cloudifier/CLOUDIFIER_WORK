@@ -452,8 +452,8 @@ class RecomP2VEmbeddings:
     
     if self.ARCHITECTURE.upper() == "SKIP-GRAM":
       shape_tf_train_inputs = [None, 1]
-      shape_tf_train_labels = [None, self.context_window * 2]
-      self.num_true = self.context_window * 2
+      shape_tf_train_labels = [None, 1]
+      self.num_true = 1
     
     tf_train_inputs = tf.placeholder(tf.int32, shape = shape_tf_train_inputs, name = 'train_inputs')
     tf_train_labels = tf.placeholder(tf.int32, shape = shape_tf_train_labels, name = 'train_labels')

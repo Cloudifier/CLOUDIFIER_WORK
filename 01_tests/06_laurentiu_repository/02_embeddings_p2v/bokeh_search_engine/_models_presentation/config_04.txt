@@ -1,7 +1,7 @@
 {
   "BASE_FOLDER": "GoogleDrive",
   "APP_FOLDER": "_hyperloop_data/recom_compl_2014_2017/",
-  "MODEL": "_models/20180117_011505_GloVe_Emb_64_Window_4_Batch_128_Ep_70.csv",
+  "MODEL": "_models/20180117_011505_GloVe_Emb_64_Window_4_Batch_128_Ep_70_embeuclid.csv",
   "MCO": "_data/all/mco_f32.npz",
   "KEEP_PRODUCTS": 10000,
 
@@ -13,5 +13,8 @@
   "COLOR_FIELD": "Color",
   "ITEM_ID_FIELD": "ITEM_ID",
   "ITEM_NAME_FIELD": "ITEM_NAME",
-  "IDE_FIELD": "IDE"
+  "IDE_FIELD": "IDE",
+  
+  "EUCL_EMB_SLICE_START_FIELD" : "EMB_EUCL1",
+  "EUCL_EMB_SLICE_END_FIELD"   : "EMB_EUCL64"
 }

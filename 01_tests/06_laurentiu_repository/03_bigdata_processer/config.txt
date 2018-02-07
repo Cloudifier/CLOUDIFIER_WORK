@@ -1,0 +1,14 @@
+{
+  "DF_CSV"     : "D:/_hyperloop_tran_2014_2017/tran_all.csv",
+  "CHUNKSIZE"  : 2e6,
+  "COL1"       : "CUST_ID",
+  "COL2"       : "ITEM_ID",
+  "COL3"       : "TIMESTAMP",
+  "COL4"       : "TRAN_ID",
+  "COL5"       : "TRAN_DET_ID",
+  "COL6"       : "SITE_ID",
+  "COL7"       : "QTY",
+  "COL8"       : "AMOUNT",
+  "COL9"       : "IDE",
+  "LAST_COL_ID": 9
+}

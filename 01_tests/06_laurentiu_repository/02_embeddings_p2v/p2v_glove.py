@@ -405,9 +405,11 @@ if __name__ == '__main__':
     r.NormalizeEmbeddings()
     additional_name_figure = '_NORMEMB_TSNE'
 
-  embeddings = r.GetEmbeddings(norm_embeddings = norm_embeddings)
-  y_kmeans = r.GetKMeansClusters(norm_embeddings = norm_embeddings)
+  embeddings = r.GetEmbeddings(norm_embeddings = False)
+  norm_embeddings = r.GetEmbeddings(norm_embeddings = True)
+  #y_kmeans = r.GetKMeansClusters(norm_embeddings = norm_embeddings)
 
+  """
   low_dim_embs = tsne(embeddings,
                       indexed_from = lowest_newid,
                       nr_products = tsne_nr_products)
@@ -432,7 +434,7 @@ if __name__ == '__main__':
   print("Saving low_dim_embs ...")
   np.save(os.path.join(tsne_folder, fig_name + '_Coords.npy'), low_dim_embs)
   print("low_dim_embs saved.")
-
+  """
 
 
 

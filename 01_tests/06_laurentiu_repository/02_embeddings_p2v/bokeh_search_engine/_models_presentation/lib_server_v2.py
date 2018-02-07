@@ -64,8 +64,10 @@ dict_colors = {0: "red", 1: "purple", 2: "salmon", 3: "springgreen",
 
 
 class DataLoader:
-  def __init__(self, model_file, mco_file, emb_slice_start_field, emb_slice_end_field,
-               cluster_field, color_field, keep_products):
+  def __init__(self, model_file, mco_file,
+               emb_slice_start_field, emb_slice_end_field,
+               eucl_emb_slice_start_field, eucl_emb_slice_end_field,
+               cluster_field, color_field):
     try:
       self.df_prods = pd.read_csv(model_file, encoding = 'ISO-8859-1')
       self.mco = load_npz(mco_file) # it is saved as a csr_matrix
@@ -77,9 +79,11 @@ class DataLoader:
     for key in self.clusters:
       colors.append(dict_colors[key])
     self.df_prods[color_field] = pd.Series(colors)
-    self.df_prods = self.df_prods[:keep_products]
-
     self.norm_embeddings = np.array(self.df_prods.loc[:, emb_slice_start_field:emb_slice_end_field])
+    
+    self.eucl_embeddings = None
+    if (eucl_emb_slice_start_field != "") and (eucl_emb_slice_end_field != ""):
+      self.eucl_embeddings = np.array(self.df_prods.loc[:, eucl_emb_slice_start_field:eucl_emb_slice_end_field])
     return
 
 class Map:
@@ -256,9 +260,10 @@ class Server:
                                      mco_file = mco_file,
                                      emb_slice_start_field = self.CONFIG["EMB_SLICE_START_FIELD"],
                                      emb_slice_end_field = self.CONFIG["EMB_SLICE_END_FIELD"],
+                                     eucl_emb_slice_start_field = self.CONFIG["EUCL_EMB_SLICE_START_FIELD"],
+                                     eucl_emb_slice_end_field = self.CONFIG["EUCL_EMB_SLICE_END_FIELD"],
                                      cluster_field = self.CONFIG["CLUSTER_FIELD"],
-                                     color_field = self.CONFIG["COLOR_FIELD"],
-                                     keep_products = self.CONFIG["KEEP_PRODUCTS"])
+                                     color_field = self.CONFIG["COLOR_FIELD"])
     self._log("  Finished loading data.", show_time = True)
 
     title_text = "<h1>Explorator interactiv al modelului de recomandari ce detecteaza complementaritatea produselor SSB</h1>"
@@ -301,7 +306,15 @@ class Server:
     self.gen_top_clust_button.on_click(partial(self._update_topk_plot, idx = 2))
     self.gen_top_clust_button.disabled = True
     
+    self.button_group_distances = RadioButtonGroup(labels=["Calcul cu dist. cosinus", "Calcul cu dist. euclidiana"], active=0)
+    self.button_group_distances.on_change('active', lambda attr, old, new: self._change_distances_computed())
+    self.can_compute_euclidean = (self.CONFIG["EUCL_EMB_SLICE_START_FIELD"] != "") and\
+                                 (self.CONFIG["EUCL_EMB_SLICE_END_FIELD"] != "")
+    self.distances_computed = "cosine"
     
+    if not self.can_compute_euclidean:
+      # Cannot compute euclidean because the dataset does not contain 'euclidean embeddings'
+      self._log("  [Warning] Even if you choose euclidean distances, they will not be computed")
     self._log("Initialized the server. [{:.2f}s]".format(time() - start))
     return
 
@@ -373,7 +386,8 @@ class Server:
                              self.product_name,
                              self.possibilities_descript,
                              widgetbox(self.table_possibilities),
-                             self.descript),
+                             self.descript,
+                             self.button_group_distances),
                       self.maps[1].p)
     
     layout_tab2 = column(self.maps[0].p)
@@ -409,8 +423,8 @@ class Server:
   
   def DrawProducts(self):
     self._log('Drawing all the maps which we created ...')
+    df_prods = self.data_collector.df_prods[:self.CONFIG["KEEP_PRODUCTS"]]
     for m in self.maps:
-      df_prods = self.data_collector.df_prods
       m.p.xaxis.axis_label = "t-SNE-x"
       m.p.yaxis.axis_label = "t-SNE-y"
       m.p.title.text = "[Prod2Vec] Harta produselor SSB creata pe baza complementaritatii lor"
@@ -502,6 +516,9 @@ class Server:
     self._log("    Finished TSNE algorithm.", show_time = True)
     return low_dim_embs
   
+  def __compute_distances(self):
+    pass #TODOO
+  
   def __select_k_products_by_cosine(self, prod_id):
     data = self.data_collector
     selected = pd.DataFrame(columns = list(data.df_prods.columns) + ['DIST', 'CO_OCC'])
@@ -516,19 +533,24 @@ class Server:
       found_id = True
       new_id = selected.iloc[0][self.CONFIG["IDE_FIELD"]] - 1
       
-      self._log("    Computing cosine distances between the selected product [{}] and the other {} products ..."
-                .format(selected.iloc[0][self.CONFIG["ITEM_ID_FIELD"]], self.CONFIG["KEEP_PRODUCTS"]))
-      distances = pairwise_distances(data.norm_embeddings[new_id].reshape(1, -1),
-                                     data.norm_embeddings,
-                                     metric = 'cosine',
-                                     n_jobs = multiprocessing.cpu_count())
-      distances = distances.flatten()
+      if (self.distances_computed == "euclidean") and self.can_compute_euclidean:
+        self._log("    Computing euclidean distances between the selected product [{}] and the other {} products ..."
+                  .format(selected.iloc[0][self.CONFIG["ITEM_ID_FIELD"]], len(self.data_collector.df_prods)))
+        distances = pairwise_distances(data.eucl_embeddings[new_id].reshape(1, -1),
+                                       data.eucl_embeddings,
+                                       metric='euclidean',
+                                       n_jobs=multiprocessing.cpu_count())
+        distances = distances.flatten()
+      else:
+        self._log("    Computing cosine distances between the selected product [{}] and the other {} products ..."
+                  .format(selected.iloc[0][self.CONFIG["ITEM_ID_FIELD"]], len(self.data_collector.df_prods)))
+        distances = 1 - data.norm_embeddings.dot(data.norm_embeddings[new_id])
 
       K = 100  ## this should be inserted manually from the interface
       top_k_indexes = np.argsort(distances)[1 : (K + 1)]
       top_k_distances = distances[top_k_indexes]
       top_k_distances = np.insert(top_k_distances, 0, 0)
-      self._log("    Computed cosine distances.", show_time = True)
+      self._log("    Computed the distances.", show_time = True)
       
       k_embeddings = data.norm_embeddings[top_k_indexes]
       k_embeddings = np.vstack([k_embeddings, data.norm_embeddings[new_id]])
@@ -594,14 +616,19 @@ class Server:
       selected['x_new'] = pd.Series(k_low_dim_embs[:, 0])
       selected['y_new'] = pd.Series(k_low_dim_embs[:, 1])
       
-      self._log("    Computing cosine distances between the selected product [{}] and the other {} products ..."
-                .format(selected.iloc[0][self.CONFIG["ITEM_ID_FIELD"]], self.CONFIG["KEEP_PRODUCTS"]))
-      distances = pairwise_distances(data.norm_embeddings[new_id].reshape(1, -1),
-                                     data.norm_embeddings,
-                                     metric = 'cosine',
-                                     n_jobs = multiprocessing.cpu_count())
-      distances = distances.flatten()
-      self._log("    Computed cosine distances.", show_time = True)
+      if (self.distances_computed == "euclidean") and self.can_compute_euclidean:
+        self._log("    Computing euclidean distances between the selected product [{}] and the other {} products ..."
+                  .format(selected.iloc[0][self.CONFIG["ITEM_ID_FIELD"]], len(self.data_collector.df_prods)))
+        distances = pairwise_distances(data.eucl_embeddings[new_id].reshape(1, -1),
+                                       data.eucl_embeddings,
+                                       metric='euclidean',
+                                       n_jobs=multiprocessing.cpu_count())
+        distances = distances.flatten()
+      else:
+        self._log("    Computing cosine distances between the selected product [{}] and the other {} products ..."
+                  .format(selected.iloc[0][self.CONFIG["ITEM_ID_FIELD"]], len(self.data_collector.df_prods)))
+        distances = 1 - data.norm_embeddings.dot(data.norm_embeddings[new_id])
+      self._log("    Computed the distances.", show_time = True)
       
       distances = distances[top_k_indexes]
       distances = np.insert(distances, 0, 0)
@@ -624,19 +651,24 @@ class Server:
       new_id = selected.iloc[0][self.CONFIG["IDE_FIELD"]] - 1
       cluster_to_remove = selected.iloc[0][self.CONFIG["CLUSTER_FIELD"]]
       
-      self._log("    Computing cosine distances between the selected product [{}] and the other {} products ..."
-                .format(selected.iloc[0][self.CONFIG["ITEM_ID_FIELD"]], self.CONFIG["KEEP_PRODUCTS"]))
-      distances = pairwise_distances(data.norm_embeddings[new_id].reshape(1, -1),
-                                     data.norm_embeddings,
-                                     metric = 'cosine',
-                                     n_jobs = multiprocessing.cpu_count())
-      distances = distances.flatten()
+      if (self.distances_computed == "euclidean") and self.can_compute_euclidean:
+        self._log("    Computing euclidean distances between the selected product [{}] and the other {} products ..."
+                  .format(selected.iloc[0][self.CONFIG["ITEM_ID_FIELD"]], len(self.data_collector.df_prods)))
+        distances = pairwise_distances(data.eucl_embeddings[new_id].reshape(1, -1),
+                                       data.eucl_embeddings,
+                                       metric='euclidean',
+                                       n_jobs=multiprocessing.cpu_count())
+        distances = distances.flatten()
+      else:
+        self._log("    Computing cosine distances between the selected product [{}] and the other {} products ..."
+                  .format(selected.iloc[0][self.CONFIG["ITEM_ID_FIELD"]], len(self.data_collector.df_prods)))
+        distances = 1 - data.norm_embeddings.dot(data.norm_embeddings[new_id])
 
       K = 500  ## this should be inserted manually from the interface
       top_k_indexes = np.argsort(distances)[1 : (K + 1)]
       top_k_distances = distances[top_k_indexes]
       top_k_distances = np.insert(top_k_distances, 0, 0)
-      self._log("    Computed cosine distances.", show_time = True)
+      self._log("    Computed the distances.", show_time = True)
       
       k_embeddings = data.norm_embeddings[top_k_indexes]
       k_embeddings = np.vstack([k_embeddings, data.norm_embeddings[new_id]])
@@ -693,6 +725,15 @@ class Server:
     self._log('  Updating topk_plot #{} and its associated table ...'.format(idx))
     self.topk_plots[idx].Update(df, prod_id, found_id)
     self._log('  Finished updating topk_plot and its associated table.', show_time = True)
+    return
+  
+  
+  def _change_distances_computed(self):
+    if self.button_group_distances.active == 0:
+      self.distances_computed = "cosine"
+    else:
+      self.distances_computed = "euclidean"
+
     return
   
   def _log(self, str_msg, results = False, show_time = False):

@@ -23,7 +23,7 @@ def plot_kmeans_clusters(title, size, low_dim_embs, labels, y_kmeans, filename='
   plt.savefig(filename)
   return
 
-def tsne(embeddings, dim = 2, n_iter = 2500, indexed_from = 1,
+def tsne(embeddings, dim = 2, n_iter = 1500, indexed_from = 1,
          nr_products = None, method = None, verbose = 2):
 
   strnowtime = dt.now().strftime("[%Y-%m-%d %H:%M:%S] ")
