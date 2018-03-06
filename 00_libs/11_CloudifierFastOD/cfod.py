@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 """
 History:
   
@@ -160,6 +160,10 @@ class FastObjectDetector:
    
     self.log("CFOD used method: {}".format(self.used_method))
 
+    ## graph_h, graph_w are used only for cross-check loaded model with config/video stream
+    self.graph_out_height = int(self.config_data["GRAPH_H"])
+    self.graph_out_width = int(self.config_data["GRAPH_W"])
+
     if self.used_method=='YOLO':
       self._load_yolo()
     elif self.used_method=='TFODAPI':
@@ -213,7 +217,7 @@ class FastObjectDetector:
     self.input_tensor_name = self.config_data["YOLO_INPUT_TENSOR_NAME"]
     
     filename, file_extension = os.path.splitext(model_file)
-    self.pb_file = filename+'.pb'   
+    self.pb_file = filename+'_{}_{}.pb'.format(self.graph_out_height,self.graph_out_width)   
     #FIRST TRY TO LOAD .pb GRAPH THEN TURN TO MODEL
     if os.path.isfile(self.pb_file):
       self.log("TFGraph found. Loading [...{}]".format(self.pb_file[-30:]))
@@ -229,9 +233,6 @@ class FastObjectDetector:
                               self.boxes_tensor_name+":0")
       self.tf_yolo_input = self.yolo_sess.graph.get_tensor_by_name(
                               self.input_tensor_name+":0")
-      ## graph_h, graph_w not used at inference but kept nevertheless
-      self.graph_out_height = self.config_data["GRAPH_H"]
-      self.graph_out_width = self.config_data["GRAPH_W"]
       ##
       #IF .pb LOADED THEN CONSIDER MODEL PREPARED !
       self.prepared = True      
@@ -635,6 +636,7 @@ class FastObjectDetector:
     final preparation of computation graph 
     will save production grade full DAG as .pb file
     """
+    assert image_shape[0]==self.graph_out_height and image_shape[1]==self.graph_out_width, "Input video stream HW differs from config/model"
     if self.prepared: # return if model allready prepared (probabily loaded .pb)      
       return True
     self.log("Preparing outputs ...")
@@ -658,7 +660,7 @@ class FastObjectDetector:
                                          self.tf_boxes, 
                                          self.tf_classes],
                           pb_file = self.pb_file,
-                          input_names = [self.input_tensor_name],)
+                          check_input_names = [self.input_tensor_name],)
                           #output_names = [self.scores_tensor_name,
                           #                self.boxes_tensor_name,
                           #                self.classes_tensor_name])   
@@ -704,7 +706,8 @@ if __name__ == '__main__':
   vstrm = VideoCameraStream(logger = cfod.logger,
                             process_func = cfod.predict_img, 
                             info_func = cfod._DEBUG_INFO,
-                            onclick_func = cfod.on_click)
+                            onclick_func = cfod.on_click,
+                            hd=1)
   if vstrm.video != None:
     video_frame_shape = (vstrm.H,vstrm.W) 
     cfod.prepare(image_shape = video_frame_shape)

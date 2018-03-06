@@ -1,0 +1,9 @@
+{
+"PAIR_ITEMS": [ 
+		[{"THERAFLU RACEALA SI GRIPA EXTRA LAMAIE CT*10PL": "-1"}, {"PARACETAMOL 500MG CT*20CPR BIOFARM": "-1"}],
+		[
+	      ], 
+"TRIPLET_ITEMS": [ 
+		[{"overcast": "-1"}, {"rainy": "-1"}, {"hot": "-1"}]
+		 ]
+}

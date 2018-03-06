@@ -193,7 +193,7 @@ class TopKPlot:
     table_data_dict = dict(ID = data[self.item_id_field],
                            name = data[self.item_name_field],
                            distance = data['DIST'].apply(lambda x: round(x, 4)),
-                           co_occ = data['CO_OCC'].apply(lambda x: round(x, 2)))
+                           co_occ = data['CO_OCC'].apply(lambda x: round(x, 8)))
 
     self.source_table_topk.data = table_data_dict
     self.table_topk.height = 550

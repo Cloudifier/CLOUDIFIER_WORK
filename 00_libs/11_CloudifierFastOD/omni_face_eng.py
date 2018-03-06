@@ -107,14 +107,14 @@ class FaceEngine:
                path_custom_model = None,
                logger = None,
                fr_method = 'dlib',
-               score_threshold = 0.6, 
+               score_threshold = 0.9, 
                DEBUG = False,
                config_file = 'config_omnifr.txt',
                output_file = None):
     """
      loads DLib models for 5, 68 feature detection together with CNN model for 
        128 face embeddings
-     loads pretrained tf/keras model (uses tf sess.run for inference)
+     loads pretrained tf/keras model (uses tf sess.run for inference)q
      
     """
     
@@ -292,21 +292,32 @@ class FaceEngine:
   ##
 
   def FaceAlign(self, np_img, landmarks, inds = INNER_EYES_AND_BOTTOM_LIP,
-                img_dim = 160, scale = 1.0):
+                img_dim = 160, scale = 1.0, simple_crop=None):
     """
      tries to align a face based on landmarks
     """
-    if self.DEBUG: self.logger.start_timer("    FaceAlign")
-    np_landmarks = np.float32(landmarks)
-    np_land_inds = np.array(inds)
+    if self.DEBUG: 
+      self.logger.start_timer("    FaceAlign")
+    if simple_crop is not None:
+      left, top, right, bottom = simple_crop
+      thumbnail = np_img[top:bottom,left:right,:].copy()
+    else:  
+      np_landmarks = np.float32(landmarks)
+      np_land_inds = np.array(inds)
+  
+      # pylint: disable=maybe-no-member
+      p1 = np_landmarks[np_land_inds]
+      p2 = img_dim * MINMAX_TEMPLATE[np_land_inds] * scale + img_dim * (1 - scale) / 2
+      H = cv2.getAffineTransform(p1, p2)
+      thumbnail = cv2.warpAffine(np_img, H, (img_dim, img_dim))
 
-    # pylint: disable=maybe-no-member
-    p1 = np_landmarks[np_land_inds]
-    p2 = img_dim * MINMAX_TEMPLATE[np_land_inds] * scale + img_dim * (1 - scale) / 2
-    H = cv2.getAffineTransform(p1, p2)
-    thumbnail = cv2.warpAffine(np_img, H, (img_dim, img_dim))
-    if self.DEBUG: self.logger.end_timer("    FaceAlign")
+    if self.DEBUG: 
+      self.logger.end_timer("    FaceAlign")
+      self.log("  OmniFR: FaceAlign  in: {}  out:{}".format(np_img.shape,
+               thumbnail.shape))
     return thumbnail
+  
+  
   
   ##
   ## END Face Align zone  
@@ -379,7 +390,7 @@ class FaceEngine:
       if min_dist <= self.score_threshold:
         result = np.argmin(dists)      
         if self.DEBUG:
-          self.log(" OmniFaceEngine: Person ID [Idx:{} Dist:{:3f}]".format(
+          self.log("       OmniFR: [Idx:{} Dist:{:3f}]".format(
               result, min_dist))
     return result, min_dist
   
@@ -401,7 +412,7 @@ class FaceEngine:
     self.df_faces = self.df_faces.append(rec, ignore_index = True)
     self._save_data()
     if self.DEBUG:
-      self.log(" OmniFaceEngine: Created new identity {}".format(
+      self.log(" OmniFR: Created new identity {}".format(
           pers_name))
     return pers_id, pers_name
 
@@ -430,7 +441,7 @@ class FaceEngine:
     if np_ltrb is not None:
       L,T,R,B = np_ltrb
       np_img = np_img[T:B,L:R,:].copy()
-    self.log("   Running TF inference on {}".format(np_img.shape))
+    self.log("    OmniFR: Running TF inference on {}".format(np_img.shape))
     
     if np_img.shape[0:2] != self._tf_input_HW:
       np_img = imresize(np_img, self._tf_input_HW)
@@ -462,7 +473,7 @@ class FaceEngine:
     """
     if self.DEBUG:
       self.logger.start_timer("   FaceEMBED")      
-      self.log(" Running FR on {} image".format(np_img.shape))
+      self.log("  OmniFR: {}.FR on {} image".format(self.method, np_img.shape))
     _result = None
     if self.method == 'dlib':
       assert dl_shape != None
@@ -474,7 +485,7 @@ class FaceEngine:
       _result = self.__tf_face_embed(np_img) # np_ltrb = np_LTRB)
       _DEBUG_tf = self.logger.end_timer("    FaceEMBED_TF")
       if self.DEBUG:
-        self.log("    TF Time: {:.4f}s".format(_DEBUG_tf))
+        self.log("  OmniFR: {}.FR Time: {:.4f}s".format(self.method,_DEBUG_tf))
         self.logger.end_timer("   FaceEMBED")      
       
     return _result
@@ -594,8 +605,28 @@ class FaceEngine:
     
     return result
   
+  def GetFaceCropFromLandmarks(self, np_landmarks):
+    top = min(np_landmarks[:,1])
+    left = min(np_landmarks[:,0])
+    right = max(np_landmarks[:,0])
+    bottom = max(np_landmarks[:,1])
+    
+    w = right - left
+    h = bottom - top
+    
+    top -= h * 0.25
+    bottom += h * 0.1
+    left -= w * 0.15
+    right += w * 0.15
+    
+    return int(left), int(top), int(right), int(bottom)
+    
+  
   
   def full_scene_process(self, np_img):
+    
+    SHOW_THUMB = True
+    USE_DLIB_LTRB = True
 
     self.logger.start_timer(" FullSceneProcess")
     np_out_img = np_img.copy()
@@ -608,10 +639,21 @@ class FaceEngine:
     #now process each face !
     if not (boxes is None):
       self.logger.start_timer("  MultiFR")
+      self.log(" OmniFR: Processing {} faces".format(len(ltrb_list)))
       for i, LTRB in enumerate(ltrb_list):
+        self.log("  OmniFR: Face:{} LTRB:{}".format(i,LTRB))
         box = boxes[i]
         self.logger.start_timer("   MultiFaceLandmarks")
         landmarks, np_shape = self.face_landmarks(np_img, box)
+        simple_crop = self.GetFaceCropFromLandmarks(np_shape)
+        self.log("  OmniFR: Landmarks LTRB: {}".format(simple_crop))
+        
+        if USE_DLIB_LTRB:
+          simple_crop = LTRB
+        
+        if min(simple_crop) < 0:
+          self.log("  OmniFR: SKIP")
+          continue
         self.logger.end_timer("   MultiFaceLandmarks")
         self.logger.start_timer("   MultiFaceID")
         _np_resized = None
@@ -620,18 +662,25 @@ class FaceEngine:
                                        landmarks = np_shape, 
                                        inds = INNER_EYES_AND_BOTTOM_LIP,
                                        img_dim = self._tf_input_HW[0], 
-                                       scale = 1.0)
+                                       scale = 1.0,
+                                       simple_crop=simple_crop)
         #endif
         _id, _name, _embed, _dist  = self.face_id_maybe_save(np_img, 
                                                              landmarks, 
                                                              LTRB,
                                                              _np_resized)
         _DEBUG_face_id = self.logger.end_timer("   MultiFaceID")
-        self.log("  Face [{}/{}/{}] identified in {:.3f}s".format(
+        self.log("  OmniFR: Face [{}/{}/{:.2f}] identified in {:.3f}s".format(
             _id, _name, _dist, _DEBUG_face_id))
         np_out_img = self.draw_facial_shape(np_out_img, np_shape)
         np_out_img = np_rect(LTRB[0], LTRB[1], LTRB[2], LTRB[3], np_out_img,
                            color = (0,255,0), text = _name + ' D:{:.3f}'.format(_dist))        
+      # end all faces
+      if SHOW_THUMB:
+        t_h = _np_resized.shape[0]
+        t_w = _np_resized.shape[1]
+        np_out_img[:t_h,-t_w:,:] = _np_resized
+          
       self.logger.end_timer("  MultiFR")
   
     _DEBUG_full_scene = self.logger.end_timer(" FullSceneProcess")
@@ -640,16 +689,13 @@ class FaceEngine:
           _DEBUG_full_scene))
     return np_out_img
   
-  
 
   
   
   
 if __name__ == '__main__':
   fr_method = 'tf'
-  out_file = "faces_"+fr_method+"casia.csv"
-  omnifr = FaceEngine(DEBUG = True, fr_method = fr_method,
-                      output_file = out_file)
+  omnifr = FaceEngine(DEBUG = True, fr_method = fr_method)
 
   vstrm = VideoCameraStream(logger = omnifr.logger,
                             process_func = omnifr.full_scene_process, 

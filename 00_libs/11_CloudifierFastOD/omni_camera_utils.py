@@ -90,7 +90,7 @@ def np_rect(left, top, right, bottom, np_img, color = (255,255,255),
 class VideoCameraStream:
   def __init__(self, logger = None, file_name = None,
                process_func = None, info_func = None, 
-               onclick_func = None):
+               onclick_func = None, hd=1):
     self.process_func = process_func
     self.onclick_func = onclick_func
     self.info_func = info_func
@@ -99,6 +99,17 @@ class VideoCameraStream:
     self.log("Initializing VideoCameraStream v.{}".format(self.__version__))
     if file_name == None:
       self.video = cv2.VideoCapture(0)
+      if hd==1:
+        std_h = self.video.get(cv2.CAP_PROP_FRAME_HEIGHT)
+        std_w = self.video.get(cv2.CAP_PROP_FRAME_WIDTH)
+        self.log("Standard resolution W:{} H:{}".format(std_w,std_h))
+        new_h = 720
+        new_w = 1280
+        self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, new_h)
+        self.video.set(cv2.CAP_PROP_FRAME_WIDTH, new_w)
+        cur_h = self.video.get(cv2.CAP_PROP_FRAME_HEIGHT)
+        cur_w = self.video.get(cv2.CAP_PROP_FRAME_WIDTH)
+        self.log("New resolution W:{} H:{}".format(cur_w,cur_h))
       success, frame = self.video.read()
       cv2.namedWindow("frame_win")
       cv2.setMouseCallback("frame_win", self.click_event)

@@ -1,0 +1,18 @@
+{
+  "BASE_FOLDER"   : "GoogleDrive",
+  "APP_FOLDER"    : "_temprent_data/05_k_ro_en_s2s",
+  
+
+  "SAVE_MODEL"    : 1,
+  "MODEL_LABEL"   : "en_fr_translator",
+
+  "SEQUENCES_FILE"  : "fra.txt",
+  "MAX_SAMPLES"     : 130000,
+  
+  "NR_EMBEDDINGS"   : 64,
+  "MULTI_LANGUAGE"  : 1,
+  "BIDIRECTIONAL"   : 0,
+  
+  "ENCODER_ARCHITECTURE" : [128, 256],
+  "DECODER_ARCHITECTURE" : [256, 128]
+}

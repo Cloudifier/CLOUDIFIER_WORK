@@ -12,30 +12,38 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import fetch_mldata
 
-mnist = fetch_mldata('mnist-original')
-X = mnist.data
+#mnist = fetch_mldata('mnist-original')
+#X = mnist.data
+#y = mnist.target.astype(int)
+
+print("1")
+mnist = fetch_mldata('MNIST original')
+print("2")
+X = mnist.data.astype('float64')
+#X = np.array(mnist.data)
 y = mnist.target.astype(int)
+
 #y = y.reshape(y.shape[0],1)
 label_to_oh=lambda x: np.eye(10)[x]
 y = label_to_oh(y)
-
+X /= 255
 m, n = X.shape
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1234)
-X_train = X_train.astype(float) / 255
-X_test = X_test.astype(float) / 255
+#X_train = X_train.astype(float) / 255
+#X_test = X_test.astype(float) / 255
 
 #print (y_train)
 #input()
 
 nn = CNN.NeuralNetwork(X.shape[1])   
 nn.addLayer(64, 'relu') 
-nn.addLayer(32, 'relu')
+#nn.addLayer(32, 'relu')
 nn.addLayer(10, 'softmax')
 
 
 #nn.fit(X_train, y_train, epochs=6, batchSize=16, alpha=0.03, lmbd=0)
 nn.fit(X_train, y_train, batch_dim=16, epochs=100, learning_rate=0.01, lmbd=0.01, cost_function_type = 'cross_entropySoftmax')
-
+#nn.fit(X_train, y_train, batch_dim=16, epochs=100, learning_rate=0.01, lmbd=0.01, cost_function_type = 'cross_entropy')
 
 
 

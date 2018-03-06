@@ -1,0 +1,11 @@
+{
+ "BASE_FOLDER" : "GoogleDrive",
+ "APP_FOLDER" : "_hyperloop_data/items_operations",
+ "EMB_FILE" : "20180210_102846_Tensorflow_SKIP-GRAM_Sampled_25_Emb_128_Window_4_Batch_256_flatten_Ep_25.csv",
+ "ITEM_IDX": "0",
+ "EMB_START_IDX": "1",
+ "EMB_END_IDX": "128",
+ "DISTANCE": "Unknown",
+ "PAIR_ITEMS": [],
+ "TRIPLET_ITEMS": []
+}

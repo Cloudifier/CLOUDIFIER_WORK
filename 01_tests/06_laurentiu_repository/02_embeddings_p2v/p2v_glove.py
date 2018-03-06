@@ -373,7 +373,7 @@ class RecomP2VGlove:
 if __name__ == '__main__':
   ### Data fetch and exploration
   base_folder = "D:/Google Drive/_hyperloop_data/recom_compl_2014_2017/_data"
-  tran_folder = "all"
+  tran_folder = "summer"
   app_folder = os.path.join(base_folder, tran_folder)
   
   prods_filename = os.path.join(app_folder, 'ITEMS.csv')
@@ -383,7 +383,7 @@ if __name__ == '__main__':
   end = time()
   print('Dataset loaded in {:.2f}s.'.format(end - start))
   
-  newids = np.array(df_prods['IDE'].tolist()) - 1
+  newids = np.array(df_prods['IDE'].tolist())
   newids = list(newids)
   ids = df_prods['ITEM_ID'].tolist()
   names = df_prods['ITEM_NAME'].tolist()
@@ -391,82 +391,20 @@ if __name__ == '__main__':
   new_id2prod = dict(zip(newids, names))
 
 
-  r = RecomP2VGlove(nr_products = df_prods.shape[0])
-  #r.Fit(epochs = 120, batch_size = 64)
-
-
-  from recom_maps_utils import tsne, create_figures
-  tsne_nr_products = None
-  norm_embeddings = True
-
-  lowest_newid = min(newids)
-  additional_name_figure = '_TSNE'
-  if norm_embeddings:
-    r.NormalizeEmbeddings()
-    additional_name_figure = '_NORMEMB_TSNE'
-
-  embeddings = r.GetEmbeddings(norm_embeddings = False)
-  norm_embeddings = r.GetEmbeddings(norm_embeddings = True)
-  #y_kmeans = r.GetKMeansClusters(norm_embeddings = norm_embeddings)
-
-  """
-  low_dim_embs = tsne(embeddings,
-                      indexed_from = lowest_newid,
-                      nr_products = tsne_nr_products)
+  r = RecomP2VGlove(nr_products = df_prods.shape[0], cooccurrence_cutoff = 1000)
+  r.Fit(epochs = 150, batch_size = 256)
   
-  title = "[P2V] t-SNE visualization of {:,} products whose {}-d embeddings " \
-          "are trained during {} epochs using GloVe.".format(20000, 64, 50)
-  if r.CONFIG["LOAD_MODEL"] == "":
-    fig_name = r.model_name + additional_name_figure
-  else:
-    fig_name = r.CONFIG["LOAD_MODEL"][8:-3] + additional_name_figure
-  tsne_folder = os.path.join(r._base_folder, '_tsne')
-  create_figures(name = fig_name,
-                 title = title,
-                 size = 20000,
-                 low_dim_embs = low_dim_embs,
-                 y_kmeans = y_kmeans[:tsne_nr_products],
-                 dict_labels = new_id2prod,
-                 indexed_from = lowest_newid,
-                 nr_labels = tsne_nr_products,
-                 tsne_folder = tsne_folder)
-  
-  print("Saving low_dim_embs ...")
-  np.save(os.path.join(tsne_folder, fig_name + '_Coords.npy'), low_dim_embs)
-  print("low_dim_embs saved.")
-  """
+  from recom_maps_utils import ProcessModel
+  lowest_id = min(newids)
 
+  dict_model_results1 = ProcessModel(r, new_id2prod,
+                                     tsne_nr_products = None,
+                                     compute_norm_embeddings = True,
+                                     do_tsne_3D = False,
+                                     lowest_id = lowest_id)
 
-
-
-
-  
-"""
-FOR KMEANS EXPERIMENTS
------------------------
-low_dim_embs = np.load('D:\\Google Drive\\_hyperloop_data\\recom_compl\\_tsne\\20171227_162401_GloVe_Emb_64_Window_4_Batch_128_Ep_50_NORMEMB_TSNE_Coords.npy')
-
-def plot_kmeans_cost(x, y):
-    plt.figure(figsize = (20, 20), dpi = 100)
-    plt.xlabel("N_Clusters")
-    plt.ylabel("KMeans cost")
-    plt.plot(x, y, linestyle='--', marker='o', color='r')
-    return
-    
-def try_kmeans(embeddings, range_):
-    scores = []
-
-    for i in range_:
-        kmeans = KMeans(n_clusters = i, n_init = 25, max_iter = 750, n_jobs = -2)
-        kmeans.fit(embeddings)
-        inertia = kmeans.inertia_
-        print("Computed {} clusters; inertia = {:.2f}".format(i, inertia))
-        scores.append(inertia)
-    plot_kmeans_cost(x = np.array(list(range_)), y = np.array(scores))
-    return scores
-
-s1 = try_kmeans(r.Embeddings, range(5, 26))
-s2 = try_kmeans(r.NormEmbeddings, range(5, 26))
-s3 = try_kmeans(low_dim_embs, range(5, 26))
-
-"""
+  dict_model_results2 = ProcessModel(r, new_id2prod,
+                                     tsne_nr_products = None,
+                                     compute_norm_embeddings = False,
+                                     do_tsne_3D = False,
+                                     lowest_id = lowest_id)

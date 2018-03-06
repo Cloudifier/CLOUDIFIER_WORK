@@ -5,10 +5,10 @@
   {
      "NAME": "Tensorflow",
      "EMBEDDINGS_CONTEXT": "flatten",
-     "NUM_SAMPLED": 64
+     "NUM_SAMPLED": 25
   },
 
   "AUXILIARY_NAME": "",
   "MCO_CACHE": "",
-  "LOAD_MODEL": "_output/20180205_220615_Tensorflow_SKIP-GRAM_Sampled_64_Emb_128_Window_4_Batch_256_flatten_Ep_10.h5"
+  "LOAD_MODEL": "_output/20180210_102846_Tensorflow_SKIP-GRAM_Sampled_25_Emb_128_Window_4_Batch_256_flatten_Ep_25.h5"
 }

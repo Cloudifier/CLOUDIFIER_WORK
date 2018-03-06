@@ -21,12 +21,12 @@
   "ANCHORS" : "yolo_anchors.txt",
   "YOLO_MODEL" : "yolo.h5",
   "YOLO_MODEL_SIZE" : 608,
-  "GRAPH_H" : "480",
-  "GRAPH_W" : "640",
+  "GRAPH_H" : "720",
+  "GRAPH_W" : "1280",
   "YOLO_CLASSES_TENSOR_NAME" : "YOLO_OUTPUT_CLASSES",
   "YOLO_SCORES_TENSOR_NAME" : "YOLO_OUTPUT_SCORES",
   "YOLO_BOXES_TENSOR_NAME" : "YOLO_OUTPUT_BOXES",
-  "YOLO_INPUT_TENSOR_NAME" : "input_1_1", 
+  "YOLO_INPUT_TENSOR_NAME" : "input_1", 
 
   
   "DLIB_FACE_MODEL" : "shape_predictor_68_face_landmarks.dat",

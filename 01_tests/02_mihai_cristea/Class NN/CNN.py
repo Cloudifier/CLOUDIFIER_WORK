@@ -47,11 +47,11 @@ def tanhPrime(x):
 def softmaxPrime(z):
     return softmax(z) * (1 - softmax(z))
 
-def softmax(x):
+def softmax(z):
     """StableSoftmax: Compute the softmax of vector x in a numerically stable way."""
-    shiftx = x - np.max(x)
+    shiftx = z - np.max(z, axis=1, keepdims=True)
     exps = np.exp(shiftx)
-    return exps / np.sum(exps)
+    return exps / np.sum(exps, axis=1, keepdims=True)
         
 #https://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/
     
@@ -161,9 +161,7 @@ class NeuralNetwork:
         elif activ_f == 'MSE':
             cost = np.mean(2 * (yhat - y))
         elif activ_f == 'cross_entropySoftmax':
-#            cost = - np.sum(y * np.log(yhat)) / y.shape[0]
-#            cost = - np.mean(y * np.log(yhat))
-            cost = - np.mean(np.sum(y*np.log(yhat), axis = 1))
+            cost = - np.mean(np.sum(y * np.log(yhat), axis = 1))
         return cost
     
     def upgrade_param(self, learning_rate, lmbd):
@@ -193,29 +191,29 @@ class NeuralNetwork:
          elif cost_function_type == 'MSE' :
              self.layers[L].dz = CostFunctions.msePrime(self.layers[L].a, y)
 #         self.layers[L].dz = np.mean(self.layers[L].a - y)
-         self.layers[L].dw = 1/batch_dim * np.dot(self.layers[L-1].a.T,self.layers[L].dz.T)
+         self.layers[L].dw = 1/batch_dim * np.dot(self.layers[L-1].a.T,self.layers[L].dz)
          self.layers[L].db = np.sum(self.layers[L].dz)
-         print('yhat', np.shape(self.layers[L].a))
-         print('y', np.shape(y))
-         #print('a-y', CostFunctions.crossentropyPrime_multy(self.layers[L].a, y) )
-         print('a: L-1',np.shape(self.layers[L-1].a))
-         print('dz L', self.layers[L].dz)
-         #input()        
+#         print('yhat', np.shape(self.layers[L].a))
+#         print('y', np.shape(y))
+#         #print('a-y', CostFunctions.crossentropyPrime_multy(self.layers[L].a, y) )
+#         print('a: L-1',np.shape(self.layers[L-1].a))
+#         print('dz L', np.shape(self.layers[L].dz))
+#         input()        
          for l in reversed(range(1,L)):
-             print('dz l', self.layers[l].dz)
-             print('dz l+1', self.layers[l+1].dz)
-             print('a l-1 ', np.shape(self.layers[l-1].a))
-             print('a l ', np.shape(self.layers[l].a))
-             print('w l ', np.shape(self.layers[l].w))
-             #input()
-#             self.layers[l].dz = np.dot(self.layers[l+1].w, self.layers[l+1].dz) * activation(self.layers[l].a.T,self.layers[l].activ_f_prime)
-             self.layers[l].dz = np.dot(self.layers[l+1].w, self.layers[l+1].dz.T) * activation(self.layers[l].a,self.layers[l].activ_f_prime)
-#             self.layers[l].dw = 1/batch_dim * np.dot(self.layers[l].dz,self.layers[l-1].a.T) 
+#             print('dz l', np.shape(self.layers[l].dz))
+#             print('dz l+1', np.shape(self.layers[l+1].dz))
+#             print('a l-1 ', np.shape(self.layers[l-1].a))
+#             print('a l ', np.shape(self.layers[l].a))
+#             print('w l ', np.shape(self.layers[l].w))
+#             input()
+             self.layers[l].dz = np.dot( self.layers[l+1].dz, self.layers[l+1].w.T) * activation(self.layers[l].a,self.layers[l].activ_f_prime)
+##            # self.layers[l].dz = np.dot(self.layers[l+1].w, self.layers[l+1].dz) * activation(self.layers[l].a,self.layers[l].activ_f_prime)
+##            #self.layers[l].dw = 1/batch_dim * np.dot(self.layers[l].dz,self.layers[l-1].a.T) 
 #             print(np.shape(self.layers[l].dz))
 #             print(np.shape(self.layers[l-1].a))
 #             print(np.shape(self.layers[l].w))
 #             input()
-             self.layers[l].dw = 1/batch_dim * np.dot(self.layers[l-1].a.T,self.layers[l].dz.T)# + lmbd / (2 * batch_dim) * self.layers[l].w
+             self.layers[l].dw = 1/batch_dim * np.dot(self.layers[l-1].a.T,self.layers[l].dz) + lmbd / (2 * batch_dim) * self.layers[l].w
              self.layers[l].db = 1/batch_dim * np.sum(self.layers[l].dz)
  
           
@@ -233,9 +231,13 @@ class NeuralNetwork:
                 end = m if ((j + 1) * batch_dim  > m) else (j + 1) * batch_dim
                 X_batch = X_train[begin : end,:]
                 y_batch = y_train[begin : end,:]
-                print('y_batch:',y_batch.shape)
+#                print('y_batch:',y_batch.shape)
                 #input()
                 self.forwardProp(X_batch)
+#                print(y_batch)
+#                print(self.layers[-1].a)
+#                print(cost_function_type)
+#                input()
                 cost = self.cost_function(y_batch, self.layers[-1].a, cost_function_type )
                 self.backwardProp( cost, y_batch, batch_dim, learning_rate, lmbd, cost_function_type)
                 self.upgrade_param(learning_rate,lmbd)

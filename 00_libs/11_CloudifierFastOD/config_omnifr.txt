@@ -3,9 +3,6 @@
   "APP_FOLDER": "_omnidj_data/01_face_recognition",
 
 
-  "FR_OUTPUT_FILE" : "omnifr_output.csv",
-
-
   "DLIB_FACE_MODEL" : "shape_predictor_68_face_landmarks.dat",
   "DLIB_FACE_MODEL_SMALL" : "shape_predictor_5_face_landmarks.dat",
   "DLIB_FACE_NET" : "dlib_face_recognition_resnet_model_v1.dat",
@@ -17,5 +14,8 @@
   
 
   "TF_FACE_NET": "fr_incres_celeb.pb",
-  "TF_MODEL_INPUT_SIZE": "160"
+  "TF_MODEL_INPUT_SIZE": "160",
+  
+  
+  "FR_OUTPUT_FILE" : "omnifr_output_celeb.csv"
 }

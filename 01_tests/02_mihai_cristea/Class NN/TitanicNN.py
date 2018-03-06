@@ -62,7 +62,7 @@ nn.addLayer(1, 'sigmoid')
 ### X shape (n,m) - m = sample numbers in rows, n = features number
 #nn.fit(X_train.T, y_train.T, 8, 1000, 0.05,lmbd=0.01)
 #nn.fit(X_train, y_train, 8, 2000, 0.01, 0.01)
-nn.fit(X_train, y_train, 8, 2000, 0.01, 0.01,'cross_entropy')
+nn.fit(X_train, y_train, 8, 300, 0.01, 0.01,'cross_entropy')
 
 
 

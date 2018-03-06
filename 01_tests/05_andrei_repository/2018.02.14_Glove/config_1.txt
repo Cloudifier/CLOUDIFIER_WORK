@@ -1,0 +1,14 @@
+{
+ "BASE_FOLDER" : "GoogleDrive",
+ "APP_FOLDER" : "_hyperloop_data/items_operations",
+ "EMB_FILE" : "glove.6B.50d.txt",
+ "ITEM_IDX": "0",
+ "EMB_START_IDX": "1",
+ "EMB_END_IDX": "50",
+ "DISTANCE": "Unknown",
+ "PAIR_ITEMS": [ [{"man": "-1"}, {"woman": "-1"}] ],
+ "TRIPLET_ITEMS": [ [{"overcast": "-1"}, {"rainy": "-1"}, {"hot": "-1"}],
+		    [{"opera": "-1"}, {"tenor": "-1"}, {"guitar": "-1"}],
+		    [{"gym": "-1"}, {"running": "-1"}, {"laziness": "-1"}],
+		    [{"building": "-1"}, {"modern": "-1"}, {"vintage": "-1"}] ]
+}

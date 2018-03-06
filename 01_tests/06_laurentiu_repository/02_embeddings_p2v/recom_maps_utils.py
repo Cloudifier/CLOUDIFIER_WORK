@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime as dt
 from sklearn.manifold import TSNE
 import os
+import numpy as np
 
 def plot_kmeans_clusters(title, size, low_dim_embs, labels, y_kmeans, filename='tsne.png'):
   assert low_dim_embs.shape[0] >= len(labels), "More labels than embeddings"
@@ -74,3 +75,56 @@ def create_figures(name, title, size, low_dim_embs, y_kmeans, dict_labels, index
   plot_kmeans_clusters(title, size, low_dim_embs, labels, y_kmeans, filename)
   return
 
+
+def ProcessModel(model, dict_labels,
+                 tsne_nr_products = None, compute_norm_embeddings = True,
+                 do_tsne_3D = False, lowest_id = 0, tsne_iter = 2000):
+  
+  additional_name_figure = '_TSNE'
+  if compute_norm_embeddings:
+    model.NormalizeEmbeddings()
+    additional_name_figure = '_NORMEMB_TSNE'
+  
+  embeddings = model.GetEmbeddings(norm_embeddings = compute_norm_embeddings)
+  y_kmeans = model.GetKMeansClusters(norm_embeddings = compute_norm_embeddings)
+
+  dict_model_results = {}
+  dict_model_results['embeddings'] = embeddings
+  dict_model_results['y_kmeans'] = y_kmeans
+  low_dim_embs2D = tsne(embeddings,
+                        dim = 2,
+                        n_iter = tsne_iter,
+                        indexed_from = lowest_id,
+                        nr_products = tsne_nr_products)
+  dict_model_results['tsne2d'] = low_dim_embs2D
+  if do_tsne_3D:
+    low_dim_embs3D = tsne(embeddings,
+                          dim = 3,
+                          n_iter = tsne_iter,
+                          indexed_from = lowest_id,
+                          nr_products = tsne_nr_products)
+    dict_model_results['tsne3d'] = low_dim_embs3D
+
+
+  title = "[P2V] t-SNE visualization of hyp products trained using {}-d embeddings.".format(128)
+  if model.CONFIG["LOAD_MODEL"] == "":
+    fig_name = model.model_name + additional_name_figure
+  else:
+    fig_name = model.CONFIG["LOAD_MODEL"][8:-3] + additional_name_figure
+  tsne_folder = os.path.join(model._base_folder, '_tsne')
+  create_figures(name = fig_name,
+                 title = title,
+                 size = 20000,
+                 low_dim_embs = low_dim_embs2D,
+                 y_kmeans = y_kmeans[:tsne_nr_products],
+                 dict_labels = dict_labels,
+                 indexed_from = lowest_id,
+                 nr_labels = tsne_nr_products,
+                 tsne_folder = tsne_folder)
+
+  print("Saving low_dim_embs ...")
+  np.save(os.path.join(tsne_folder, fig_name + '_Coords2D.npy'), low_dim_embs2D)
+  if do_tsne_3D:
+    np.save(os.path.join(tsne_folder, fig_name + '_Coords3D.npy'), low_dim_embs3D)
+  print("low_dim_embs saved.")
+  return dict_model_results
