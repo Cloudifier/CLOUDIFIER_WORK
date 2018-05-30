@@ -1,6 +1,7 @@
 {
   "BASE_FOLDER": "GoogleDrive",
   "APP_FOLDER": "_hyperloop_data/recom_compl_2014_2017",
+  
   "FRAMEWORK":
   {
      "NAME": "Tensorflow",

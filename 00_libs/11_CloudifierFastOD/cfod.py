@@ -13,10 +13,11 @@ History:
 
 import os
 
-from matplotlib.pyplot import imshow
 import scipy.io
 import scipy.misc
 import numpy as np
+
+from datetime import datetime as dt
 
 import PIL
 import tensorflow as tf
@@ -76,16 +77,14 @@ def load_module(module_name, file_name):
 
   return logger_lib
 
-
-
-
 class FastObjectDetector:
   def __init__(self, config_file = "config.txt", 
                max_boxes=10, 
                score_threshold=.6, 
                iou_threshold=.5,
                use_PIL = False, 
-               PERSON_CLASS = 0, add_new_session = False, session = None):
+               PERSON_CLASS = 0, add_new_session = False, session = None,
+               new_faces_file=False):
 
     self.DEBUG = True
     self.prepared = False
@@ -129,7 +128,11 @@ class FastObjectDetector:
     
     fr_method = self.config_data["FR_METHOD"]
     fr_result = self.config_data["FR_OUTPUT_FILE"]
-    fr_out_file = fr_method + "_" +  fr_result
+    if new_faces_file:
+      tstamp = dt.now().strftime("%Y%m%d_%H%M%S")
+      fr_out_file = fr_method +"_web_" + tstamp
+    else:
+      fr_out_file = fr_method + "_" +  fr_result
     
     self.shape_large_clf = None
     self.shape_small_clf = None
@@ -301,7 +304,7 @@ class FastObjectDetector:
   
     
     if found_box != None:
-      person_id = sname+" [{}]".format(fid)
+      person_id = "OmniFR: "+ sname+" [{}]".format(fid)
       L,T,R,B = found_box
       T += FACE_TOP_OFFSET
       L += FACE_LEFT_OFFSET

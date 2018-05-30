@@ -1,0 +1,77 @@
+{
+  "BASE_FOLDER"   : "GoogleDrive",
+  "APP_FOLDER"    : "_temprent_data/05_k_ro_en_s2s",
+
+  "MODEL_LABEL"   : "en_ro_translator_v1",
+
+  "SEQUENCES_FILE"  : "corpus/ron.txt",
+  "MAX_SAMPLES"     : 130000,
+  
+  "MULTI_LANGUAGE"  : 1,
+  "ENC_NR_EMBED"    : 64,
+  "DEC_NR_EMBED"    : 64,
+
+
+  "TENSORS_AND_LAYERS" : {
+    "ENCODER_INPUT"           : "enc_input",
+    "ENCODER_EMBEDDING_LAYER" : {"1": "enc_emb", "0": "emb"},
+
+    "DECODER_INPUT"           : "dec_input",
+    "DECODER_EMBEDDING_LAYER" : {"1": "dec_emb", "0": "emb"},
+    "DECODER_READOUT_LAYER"   : "dec_readout"
+  },
+
+
+
+  
+  "SEQ2SEQ_CONFIG_DOCUMENTATION"   : [
+    "#########################################################################",
+    "#########################################################################",
+    "#########################################################################",
+
+    "Encoder architecture can have multiple LSTM layers, for which we specify:",
+    "   - its name; nr. hidden units; type: BIDIRECTIONAL/UNIDIRECTIONAL;",
+    "   - skip connections: is a list that specifies all the skip-connections for a certain layer.",
+    "     For example, if we want a skip-connection from the input layer of the decoder, we add the",
+    "     word INPUT in the list. If we want a skip-connection from a below layer, we add its name",
+    "     in the list.",
+    "Layer config example: {'NAME':'enc_layer_x', 'NR_UNITS':128, 'TYPE':'BIDIRECTIONAL',",
+    "                       'SKIP_CONNECTIONS': ['INPUT', 'below_enc_layer']}",
+
+    "Decoder architecture can also have multiple LSTM layers, for which we specify:",
+    "   - name; nr. hidden units; type; skip connections with the same meaning as above;",
+    "   - peek flag (1/0): if 1, the decored peeks at the last encoder hidden state.",
+    "     Should be mentioned that the peek flag is needed only for the first decoder layer", 
+    "   - initial state: represents the name of the encoder layer from where is transferred the",
+    "     hidden state",
+    "Layer config example: {'NAME':'dec_layer_x', 'NR_UNITS':128, 'TYPE':'UNIDIRECTIONAL',",
+    "                       'SKIP_CONNECTIONS': ['INPUT', 'below_dec_layer'], 'PEEK':1,",
+    "                       'INITIAL_STATE': 'enc_layer_x'}"
+  ],
+
+
+
+  "ENCODER_ARCHITECTURE"  : [
+    {
+      "NAME"     : "enc_layer_1",
+      "NR_UNITS" : 512,
+      "TYPE"     : "BIDIRECTIONAL",
+      "SKIP_CONNECTIONS" : []
+    }
+  ],
+  
+  
+  "DECODER_ARCHITECTURE"  : [
+    {
+      "NAME"      : "dec_layer_1",
+      "NR_UNITS"  : 1024,
+      "TYPE"      : "UNIDIRECTIONAL",
+      "SKIP_CONNECTIONS"  : [],
+      "PEEK" : 0,
+      "INITIAL_STATE" : "enc_layer_1"
+    }
+  ]
+  
+  
+  
+}

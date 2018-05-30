@@ -1,0 +1,7 @@
+ModelLabel,ModelShortDescr,BLEU_Train,BLEU_Test
+en_ro_translator_v1_epoch60_loss0.25,1lstm_nopeek,0.8091865531880914,0.5804007340287046
+en_ro_translator_v2_epoch60_loss0.13,1lstm_peek,0.75094341641553,0.5835078230592886
+en_ro_translator_v3_epoch80_loss0.14,2lstm_skip_nopeek,0.6941084844265957,0.5877031916688953
+en_ro_translator_v4_epoch80_loss0.14,2lstm_skip_peek,0.6076556131724816,0.5707737237844973
+en_ro_translator_dam_v0_epoch15_loss0.35,1lstm_enc_unidir,0.6091351904441648,0.5838289391181799
+en_ro_translator_dam_v1_epoch15_loss0.29,1lstm_peek,0.5872416552492522,0.5813050662119567

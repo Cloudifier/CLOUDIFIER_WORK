@@ -254,7 +254,7 @@ class NeuralNetwork:
     for i in range(self.nr_layers):
       res += "\n  " + self.layers[i].Describe()
 
-    self.logger._log(res)
+    self._log(res)
     return res
 
 
@@ -278,7 +278,7 @@ class NeuralNetwork:
     self.nr_layers = nr_layers
     if nr_layers == 0:
       raise Exception("[NeuralNetwork ERROR] Zero layers !")
-    elif nr_layers < 3:
+    elif nr_layers < 2:
       raise Exception("[NeuralNetwork ERROR] Nr. layers < 3")
 
     self.nr_weights = 0
@@ -289,10 +289,9 @@ class NeuralNetwork:
       self.nr_weights += (punits + 1) * (cunits)
 
     model_size_MB = self.nr_weights * 4 / (1024 * 1024)
-    self.logger._log("Model capacity: {:,} weights, {:,.2f}MB"
-                    .format(self.nr_weights, model_size_MB))
+    self._log("Model capacity: {:,} weights, {:,.2f}MB".format(self.nr_weights, model_size_MB))
     if (model_size_MB > 4000):
-      self.logger._log("Model requires to much memory, please optimize!")
+      self._log("Model requires to much memory, please optimize!")
       return False
 
     PrevLayer = None
@@ -322,7 +321,7 @@ class NeuralNetwork:
       show = True
     else:
       show = False
-    self.logger._log(text, show=show)
+    self._log(text, show=show)
 
 
   def BackProp(self):
@@ -359,15 +358,15 @@ class NeuralNetwork:
     stp = self.step
 
     if (stp % 1000) == 0:
-      self.logger._log('[TRAIN MiniBatch: {}] loss:{:.2f} - acc:{:.2f}'.format(stp, J, acc))
+      self._log('[TRAIN MiniBatch: {}] loss:{:.2f} - acc:{:.2f}'.format(stp, J, acc))
       if self.VERBOSITY >= 10:
         n_to_slice = self.hyper_parameters.batch_size
         if n_to_slice > 10:
           n_to_slice = 10
         d1_slice = y_batch.reshape(y_batch.size)[:n_to_slice]
         d2_slice = y_preds.reshape(y_preds.size)[:n_to_slice]
-        self.logger._log('        yTrue:{}'.format(d1_slice.astype(int)))
-        self.logger._log('        yPred:{}'.format(d2_slice))
+        self._log('        yTrue:{}'.format(d1_slice.astype(int)))
+        self._log('        yPred:{}'.format(d2_slice))
 
     """
     if (len(self.cost_list) > 1) and self.best_theta:
@@ -407,14 +406,14 @@ class NeuralNetwork:
     momentum_speed = self.hyper_parameters.momentum_speed
     decay_factor = self.hyper_parameters.decay_factor
 
-    self.logger._log("Training dnn model (randomly initialized)... epochs={}, alpha={:.2f}, batch_sz={}, beta={}, momentum={}, decay={}"
-                     .format(epochs, learning_rate, batch_size, beta, momentum_speed, decay_factor))
+    self._log("Training dnn model (randomly initialized)... epochs={}, alpha={:.2f}, batch_sz={}, beta={}, momentum={}, decay={}"
+              .format(epochs, learning_rate, batch_size, beta, momentum_speed, decay_factor))
 
     n_batches = X_train.shape[0] // batch_size
     lr_patience = 0
     lr_plateau = 5
     for epoch in range(epochs):
-      self.logger._log('Epoch {}/{}'.format(epoch + 1, epochs))
+      self._log('Epoch {}/{}'.format(epoch + 1, epochs))
       epoch_start_time = time()
 
       for i in range(n_batches):
@@ -448,27 +447,27 @@ class NeuralNetwork:
           if J_valid >= self.validation_cost_history[-1]:
             lr_patience += 1
             if self.VERBOSITY >= 10:
-              self.logger._log('curr_loss >= last_loss - Increase lr_patience to {}'.format(lr_patience))
+              self._log('curr_loss >= last_loss - Increase lr_patience to {}'.format(lr_patience))
           else:
             if (self.validation_cost_history[-1] - J_valid) <= 1e-4:
               lr_patience += 1
               if self.VERBOSITY >= 10:
-                self.logger._log('loss decreased slowly - Increase lr_patience to: {}'.format(lr_patience))
+                self._log('loss decreased slowly - Increase lr_patience to: {}'.format(lr_patience))
 
           if lr_patience >= lr_plateau:
             lr_patience = 0
             learning_rate *= decay_factor
             if self.VERBOSITY >= 10:
-              self.logger._log('lr_patience == {} - alpha: {:.3f}'.format(lr_plateau, learning_rate))
+              self._log('lr_patience == {} - alpha: {:.3f}'.format(lr_plateau, learning_rate))
 
-        self.logger._log('{:.2f}s - loss: {:.2f} - acc: {:.2f}% - val_loss: {:.2f} - val_acc: {:.2f}%\n'
+        self._log('{:.2f}s - loss: {:.2f} - acc: {:.2f}% - val_loss: {:.2f} - val_acc: {:.2f}%\n'
                          .format(epoch_time, J_train, acc_train * 100, J_valid, acc_valid * 100))
         self.validation_cost_history.append(J_valid)
 
       else:
-        self.logger._log('{:.2f}s - loss: {:.2f} - acc: {:.2f}%\n'.format(epoch_time, J_train, acc_train * 100))
+        self._log('{:.2f}s - loss: {:.2f} - acc: {:.2f}%\n'.format(epoch_time, J_train, acc_train * 100))
 
-    self.logger._log('Total TRAIN time: {:.2f}s'.format(total_train_time))
+    self._log('Total TRAIN time: {:.2f}s'.format(total_train_time))
 
 
 
@@ -480,7 +479,7 @@ class NeuralNetwork:
     J_test = OutputLayer.J()
     accuracy = sum(y_preds == y_test) / (float(len(y_test)))
 
-    self.logger._log("Predicting ... test_loss: {:.2f} - test_acc: {:.2f}%".format(J_test, accuracy * 100))
+    self._log("Predicting ... test_loss: {:.2f} - test_acc: {:.2f}%".format(J_test, accuracy * 100))
 
     return y_preds
 
@@ -490,6 +489,11 @@ class NeuralNetwork:
     plt.xlabel('Epoch #')
     plt.ylabel('Cost Function')
     plt.show()
+    return
+  
+  def _log(self, str_msg, results=False, show_time=False):
+    self.logger.VerboseLog(str_msg, results, show_time)
+    return
 
 
 if __name__ == "__main__":

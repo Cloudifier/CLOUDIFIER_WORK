@@ -3,7 +3,31 @@
 Created on Tue Jan 23 08:38:57 2018
 
 @author: Andrei Ionut Damian
+
+
+Result 	Method 	Venue 	Details
+75.72% 	Fast and Accurate Deep Network Learning by Exponential Linear Units 	arXiv 2015 	Details
+75.7% 	Spatially-sparse convolutional neural networks 	arXiv 2014 	
+73.61% 	Fractional Max-Pooling 	arXiv 2015 	Details
+72.60% 	Scalable Bayesian Optimization Using Deep Neural Networks 	ICML 2015 	
+72.44% 	Competitive Multi-scale Convolution 	arXiv 2015 	
+72.34% 	All you need is a good init 	ICLR 2015 	Details
+71.14% 	Batch-normalized Maxout Network in Network 	arXiv 2015 	Details
+70.80% 	On the Importance of Normalisation Layers in Deep Learning with Piecewise Linear Activation Units 	arXiv 2015 	
+69.17% 	Learning Activation Functions to Improve Deep Neural Networks 	ICLR 2015 	Details
+69.12% 	Stacked What-Where Auto-encoders 	arXiv 2015 	
+68.53% 	Multi-Loss Regularized Deep Neural Network 	CSVT 2015 	Details
+68.40% 	Spectral Representations for Convolutional Neural Networks 	NIPS 2015 	
+68.25% 	Recurrent Convolutional Neural Network for Object Recognition 	CVPR 2015 	
+67.76% 	Training Very Deep Networks 	NIPS 2015 	Details
+67.68% 	Deep Convolutional Neural Networks as Generic Feature Extractors 	IJCNN 2015 	Details
+67.63% 	Generalizing Pooling Functions in Convolutional Neural Networks: Mixed, Gated, and Tree 	AISTATS 2016 	Details
+67.38% 	HD-CNN: Hierarchical Deep Convolutional Neural Network for Large Scale Visual Recognition 	ICCV 2015 	
+67.16% 	Universum Prescription: Regularization using Unlabeled Data 	arXiv 2015 	
+66.29% 	Striving for Simplicity: The All Convolutional Net 	ICLR 2014 	
+66.22% 	Deep Networks with Internal Selective Attention through Feedback Connections 	NIPS 2014
 """
+
 
 from keras.layers import (
                           Conv2D, 
@@ -31,6 +55,7 @@ __copyright__ = "(C) Cloudifier SRL"
 __project__   = "Cloudifier"  
 __module__    = "CloudifierNet"
 __reference__ = "Based on InceptionV3, ResNet and Xception architecures"
+
 
 import os
 
@@ -301,7 +326,7 @@ class CloudifierNet:
         last_volume = K.int_shape(input_tensor)[-3]
     else:
       last_volume = n_maps
-      skip_tensorx = Conv2D(last_volume, 
+      skip_tensor = Conv2D(last_volume, 
                             kernel_size=(1,1), 
                             strides=(1,1), 
                             activation=None,
@@ -311,14 +336,14 @@ class CloudifierNet:
       #skip_tensor = BatchNormalization(axis=bn_axis, scale=False, 
       #                                 name=name+'_res_bn')(skip_tensor)
 
-
+    x = input_tensor
     x = BatchNormalization(axis=bn_axis, name=name + '_scnv0_bn')(x)
     x = Activation(activ, name=name + '_scnv0_act')(x)
          
     x = SeparableConv2D(maps[0], (3, 3), 
                         padding='same', 
                         use_bias=False, 
-                        name=name + '_scnv1')(input_tensor)
+                        name=name + '_scnv1')(x)
     x = BatchNormalization(name=name + '_scnv1_bn')(x)
     x = Activation(activ, name=name + '_scnv1_act')(x)
     
@@ -349,7 +374,7 @@ class CloudifierNet:
       #                       name=name+'_out_bn')(x)
     
     
-    x = add([x, skip_tensor])
+    x = add([x, skip_tensor], name=name+'_out_add')
     
     # remove for gradiend flow optimization  - no activations between skips !
     #x = Activation(activ, name=name + '_fin_' + activ)(x) 
@@ -362,7 +387,7 @@ class CloudifierNet:
     x = self.conv2_bn(x, f=48, k=(3,3), s=(2,2), p='same', n='block1_c2')
     x = Conv2D(filters=64,
                kernel_size=(1,1),
-               stride=(1,1),
+               strides=(1,1),
                padding='valid',
                name='block1_c3')(x)
     return x
@@ -385,6 +410,10 @@ class CloudifierNet:
                            output_shape=K.int_shape(x)[1:],
                            arguments={'scale': scale},
                            name=name+'_fcn_as')
+    ###
+    ### MUST FINISH WITH TEAM !!!
+    ###
+    """
     result =  Conv2DTranspose(filters=,
                                  kernel_size=,
                                  strides=,
@@ -398,13 +427,18 @@ class CloudifierNet:
                                  strides=,
                                  padding=,)(layer)
       deconv_list.append(deconved)
+    """
+    ###
+    ### END TEAMWORK
+    ###
     return add(deconv_list, axis=self.channel_axis)
   
   def _build_network_v1(self, input_shape, n_classes, activ='relu', 
                         head_type=1, 
                         conv_head=False,
                         pooling='max', 
-                        simple_compile=False):
+                        simple_compile=False,
+                        direct_skip=False):
     """
     
     head_type = 0: No head, 1: classification head; 2: dense softmax
@@ -452,22 +486,23 @@ class CloudifierNet:
                         input_shape, 
                         n_classes,                         
                         activ='relu', include_head=True, 
-                        pooling='max', simple_compile=False):
+                        pooling='max', simple_compile=False,
+                        direct_skip=False):
     input_tensor = Input(input_shape)
     self.input_tensor = input_tensor
     
     ## When using SimpleSepResBlock:
     ## start with conv
     ## end with BN and activation !
-    x = self._start_block(self.input_tensor)    
+    x = self._start_block_v1(self.input_tensor)    
     
     # input must be simple conv
-    x = self.SimpleSepResBlock(x, n_maps=128, direct_skip=..)
-    x = self.SimpleSepResBlock(x, n_maps=256, gradual=True, direct_skip=..)
-    x = self.SimpleSepResBlock(x, n_maps=384, gradual=True, direct_skip=..)
-    x = self.SimpleSepResBlock(x, n_maps=512, gradual=True, direct_skip=..)
-    x = self.SimpleSepResBlock(x, n_maps=1024, gradual=True, direct_skip=..)
-    x = self.SimpleSepResBlock(x, n_maps=2048, gradual=True, direct_skip=..)
+    x = self.SimpleSepResBlock(x, n_maps=128, direct_skip=True)
+    x = self.SimpleSepResBlock(x, n_maps=256, gradual=True, direct_skip=True)
+    x = self.SimpleSepResBlock(x, n_maps=384, gradual=True, direct_skip=True)
+    x = self.SimpleSepResBlock(x, n_maps=512, gradual=True, direct_skip=True)
+    x = self.SimpleSepResBlock(x, n_maps=1024, gradual=True, direct_skip=True)
+    x = self.SimpleSepResBlock(x, n_maps=2048, gradual=True, direct_skip=True)
     # after output do BN and Activ
 
     
@@ -497,22 +532,23 @@ class CloudifierNet:
                         input_shape, 
                         n_classes,                         
                         activ='relu', include_head=True, 
-                        pooling='max', simple_compile=False):
+                        pooling='max', simple_compile=False,
+                        direct_skip=False):
     input_tensor = Input(input_shape)
     self.input_tensor = input_tensor
     
     ## When using SimpleSepResBlock:
     ## start with conv
     ## end with BN and activation !
-    x = self._start_block(self.input_tensor)    
+    x = self._start_block_v1(self.input_tensor)    
     
     # input must be simple conv
-    x = self.SimpleInceptResBlock(x, n_maps=128, direct_skip=..)
-    x = self.SimpleInceptResBlock(x, n_maps=256, gradual=True, direct_skip=..)
-    x = self.SimpleInceptResBlock(x, n_maps=384, gradual=True, direct_skip=..)
-    x = self.SimpleSepResBlock(x, n_maps=512, gradual=True, direct_skip=..)
-    x = self.SimpleSepResBlock(x, n_maps=1024, gradual=True, direct_skip=..)
-    x = self.SimpleSepResBlock(x, n_maps=2048, gradual=True, direct_skip=..)
+    x = self.SimpleInceptResBlock(x, n_maps=128, direct_skip=False)
+    x = self.SimpleInceptResBlock(x, n_maps=256, direct_skip=False)
+    x = self.SimpleInceptResBlock(x, n_maps=384, direct_skip=False)
+    x = self.SimpleSepResBlock(x, n_maps=512, gradual=True, direct_skip=False)
+    x = self.SimpleSepResBlock(x, n_maps=1024, gradual=True, direct_skip=False)
+    x = self.SimpleSepResBlock(x, n_maps=2048, gradual=True, direct_skip=False)
     # after output do BN and Activ
 
     
@@ -539,7 +575,56 @@ class CloudifierNet:
     return self.model
 
 
+  def _build_network_v4(self, 
+                        input_shape, 
+                        n_classes,                         
+                        activ='relu', include_head=True, 
+                        pooling='max', simple_compile=False,
+                        direct_skip=False):
+    input_tensor = Input(input_shape)
+    self.input_tensor = input_tensor
+    
+    ## When using SimpleSepResBlock:
+    ## start with conv
+    ## end with BN and activation !
+    x = self._start_block(self.input_tensor)    
+    
+    # input must be simple conv
+    x = self.SimpleInceptResBlock(x, n_maps=128, direct_skip=False)
+    x = self.SimpleInceptResBlock(x, n_maps=256, gradual=True, direct_skip=False)
+    x = self.SimpleInceptResBlock(x, n_maps=384, gradual=True, direct_skip=False)
+    x = self.SimpleSepResBlock(x, n_maps=512, gradual=True, direct_skip=False)
+    x = self.SimpleSepResBlock(x, n_maps=1024, gradual=True, direct_skip=False)
+    x = self.SimpleSepResBlock(x, n_maps=2048, gradual=True, direct_skip=False)
+    # after output do BN and Activ
+
+    
+    self.final_conv_layer = x
+    
+    if pooling == 'max':
+      x = GlobalMaxPooling2D()(x)
+    elif pooling == 'avg':
+      x = GlobalAveragePooling2D()(x)
+    
+    self.final_pool_layer = x
+    
+    if include_head:
+      x = Dense(n_classes, activation='softmax', name='readout')(x)
+    
+    self.final_out_layer = x
+        
+    self.model = Model(self.input_tensor, self.final_out_layer)
+    if simple_compile:
+      self.log(" Compiling...")
+      self.model.compile(optimizer='adam', loss='categorical_crossentropy', 
+                         metrics=['accuracy'])
+      self.log(" Done compiling.")
+    return self.model
+
 if __name__=='__main__':
+  cnet = CloudifierNet(n_classes=100, input_shape=(32,32,3), ver='v3', pooling='avg')
+  cnet.model.summary()
+  """
   from keras.datasets import cifar100
   from keras.datasets import cifar10
   from keras.datasets import mnist
@@ -587,7 +672,7 @@ if __name__=='__main__':
     ir, v, agg, res, metrics, _model, train_time = res
     cnet.log("Model {}({}) {}: {:.2f} {}: {:.2f}% train: {:.1f}s".format(
         v, agg, metrics[0], res[0], metrics[1], res[1]*100, train_time))
-    
+  """  
      
       
     

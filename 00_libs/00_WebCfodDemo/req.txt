@@ -1,0 +1,4 @@
+https://pypi.python.org/pypi/python-magic-bin/0.4.14
+pip install python_magic_bin-0.4.14-py2.py3-none-win_amd64.whl
+pip install ffmpy
+ffmpeg to C: and PATH

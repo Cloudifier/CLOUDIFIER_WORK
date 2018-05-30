@@ -1,0 +1,44 @@
+{
+  "BASE_FOLDER": "GoogleDrive",
+  "APP_FOLDER": "_cloudifier_data/00_WebCfodDemo",
+  "ALL_METHODS" : ["YOLO", "TFODAPI"],
+  "USED_METHOD" : "YOLO",
+  "CLASSES" : "coco_classes.txt",
+
+  
+  "TFODAPI_ALL_MODELS" : [
+			  "ssd_inc_v2_co_2017_11.pb",
+			  "faster_rcnn_inc2_co_2017_11.pb"
+			  ],
+  "TFODAPI_MODEL" : "faster_rcnn_inc2_co_2017_11.pb",
+  "TFODAPI_CLASSES_TENSOR_NAME" : "detection_classes",
+  "TFODAPI_SCORES_TENSOR_NAME" : "detection_scores",
+  "TFODAPI_BOXES_TENSOR_NAME" : "detection_boxes",
+  "TFODAPI_NUMDET_TENSOR_NAME" : "num_detections",
+  "TFODAPI_INPUT_TENSOR_NAME" : "image_tensor", 
+
+
+  "ANCHORS" : "yolo_anchors.txt",
+  "YOLO_MODEL" : "yolo.h5",
+  "YOLO_MODEL_SIZE" : 608,
+  "GRAPH_H" : "720",
+  "GRAPH_W" : "1280",
+  "YOLO_CLASSES_TENSOR_NAME" : "YOLO_OUTPUT_CLASSES",
+  "YOLO_SCORES_TENSOR_NAME" : "YOLO_OUTPUT_SCORES",
+  "YOLO_BOXES_TENSOR_NAME" : "YOLO_OUTPUT_BOXES",
+  "YOLO_INPUT_TENSOR_NAME" : "input_1", 
+
+  
+  "DLIB_FACE_MODEL" : "shape_predictor_68_face_landmarks.dat",
+  "DLIB_FACE_MODEL_SMALL" : "shape_predictor_5_face_landmarks.dat",
+  "DLIB_FACE_NET" : "dlib_face_recognition_resnet_model_v1.dat",
+
+  "FR_METHOD" : "dlib",
+
+  "FR_OUTPUT_FILE" : "faces.csv",
+
+
+  "TF_FACE_NET" : "fr_inception_ch1st.h5",
+  "TF_MODEL_CHANNELS" : "channels_first",
+  "TF_MODEL_INPUT_SIZE" : "96"
+}

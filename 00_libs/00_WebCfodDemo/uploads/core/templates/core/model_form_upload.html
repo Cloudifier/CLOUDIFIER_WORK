@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+
+  <br />
+
+  {% if not is_video and width %}
+  	<iframe class="my_class_name" width="{{ width }}" height="500" 
+  			src="{{ processed_file_url }}" frameborder="0">
+  	</iframe>
+  {% endif %}
+
+  {% if is_video %}
+  <div style="position:relative; width: 100%; height: 0; padding-bottom: 56.25%;">
+  	<video width="{{ width }}" height="500" controls>
+  	<source src="{{ processed_file_url }}" type="video/mp4">
+  	</video>
+  </div>
+  {% endif %}  
+
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+{% endblock %}

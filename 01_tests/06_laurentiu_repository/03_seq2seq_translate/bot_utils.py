@@ -253,8 +253,8 @@ class DataLoaderV1:
       tst_dec_out = [self.out_data_char[x][1:] for x in test_indices]
     
     if debug:
-      self.log("Got {} train_indices --> {}".format(train_size, train_indices))
-      self.log("Got {} test_indices --> {}".format(test_size, test_indices))
+      self.log("Got {} train_indices --> {}".format(train_size, train_indices[:10]))
+      self.log("Got {} test_indices --> {}".format(test_size, test_indices[:10]))
       
       train_index = 100
       test_index = 10

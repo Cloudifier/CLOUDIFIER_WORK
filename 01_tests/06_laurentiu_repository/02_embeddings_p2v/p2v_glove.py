@@ -179,7 +179,7 @@ class RecomP2VGlove:
         self.tf_focal_bias, self.tf_context_bias = self.__create_tf_graph_embeddings_layer()
 
       self.tf_boosted_embeddings = tf.add(self.tf_focal_embeddings, self.tf_context_embeddings,
-                                          name = "boosted_embeddings")
+                                          name = "boosted_embeddings")  ## try average
 
       tf_focal_embed = tf.nn.embedding_lookup(self.tf_focal_embeddings, self.tf_focal_input)
       tf_context_embed = tf.nn.embedding_lookup(self.tf_context_embeddings, self.tf_context_input)
@@ -373,7 +373,7 @@ class RecomP2VGlove:
 if __name__ == '__main__':
   ### Data fetch and exploration
   base_folder = "D:/Google Drive/_hyperloop_data/recom_compl_2014_2017/_data"
-  tran_folder = "summer"
+  tran_folder = "all"
   app_folder = os.path.join(base_folder, tran_folder)
   
   prods_filename = os.path.join(app_folder, 'ITEMS.csv')
@@ -383,7 +383,7 @@ if __name__ == '__main__':
   end = time()
   print('Dataset loaded in {:.2f}s.'.format(end - start))
   
-  newids = np.array(df_prods['IDE'].tolist())
+  newids = np.array(df_prods['IDE'].tolist()) - 1
   newids = list(newids)
   ids = df_prods['ITEM_ID'].tolist()
   names = df_prods['ITEM_NAME'].tolist()
@@ -391,20 +391,20 @@ if __name__ == '__main__':
   new_id2prod = dict(zip(newids, names))
 
 
-  r = RecomP2VGlove(nr_products = df_prods.shape[0], cooccurrence_cutoff = 1000)
-  r.Fit(epochs = 150, batch_size = 256)
+  r = RecomP2VGlove(nr_embeddings = 128,
+                    nr_products = df_prods.shape[0],
+                    cooccurrence_cutoff = 1000)
+  r.Fit(epochs=150, batch_size=256)
   
+  '''
   from recom_maps_utils import ProcessModel
   lowest_id = min(newids)
 
-  dict_model_results1 = ProcessModel(r, new_id2prod,
-                                     tsne_nr_products = None,
-                                     compute_norm_embeddings = True,
-                                     do_tsne_3D = False,
-                                     lowest_id = lowest_id)
-
+  
+  # dict_model_results has keys: 'embeddings', 'tsne2d', 'y_kmeans'
   dict_model_results2 = ProcessModel(r, new_id2prod,
                                      tsne_nr_products = None,
                                      compute_norm_embeddings = False,
                                      do_tsne_3D = False,
                                      lowest_id = lowest_id)
+  '''

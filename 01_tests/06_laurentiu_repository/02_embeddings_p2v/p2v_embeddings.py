@@ -644,7 +644,7 @@ if __name__ == '__main__':
   id2new_id = dict(zip(ids, newids))
   new_id2prod = dict(zip(newids, names))
 
-
+  """
   architecture = 'SKIP-GRAM'
   context_window = 2
   r = RecomP2VEmbeddings(nr_products = len(id2new_id),
@@ -656,7 +656,7 @@ if __name__ == '__main__':
 
   from recom_maps_utils import ProcessModel
   lowest_id = min(newids)
-  
+  """
   """
   dict_model_results1 = ProcessModel(r, new_id2prod,
                                      tsne_nr_products = None,

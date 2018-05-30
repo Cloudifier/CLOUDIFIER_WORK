@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Simple File Upload</title>
+
+    <script type="text/javascript" src="{% static 'js/bootstrap-fileprogress.js' %}"></script>
+    <!-- Latest compiled and minified CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </head>
+
+
+  <style>
+  	.my_class_name {
+	margin: 0 auto;
+	border: 10px outset #ddd;
+	}
+  </style>
+
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

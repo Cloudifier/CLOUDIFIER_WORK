@@ -111,8 +111,10 @@ class VideoCameraStream:
         cur_w = self.video.get(cv2.CAP_PROP_FRAME_WIDTH)
         self.log("New resolution W:{} H:{}".format(cur_w,cur_h))
       success, frame = self.video.read()
-      cv2.namedWindow("frame_win")
-      cv2.setMouseCallback("frame_win", self.click_event)
+      self.win_name = "frame_win"
+      cv2.namedWindow(self.win_name)
+      cv2.moveWindow(self.win_name, 1, 1)
+      cv2.setMouseCallback(self.win_name, self.click_event)
       self.H = frame.shape[0]
       self.W = frame.shape[1]
       if not success:
@@ -156,7 +158,7 @@ class VideoCameraStream:
           out_frame = self.process_func(frame)
         else:
           out_frame = frame
-        cv2.imshow("frame_win",out_frame)
+        cv2.imshow(self.win_name,out_frame)
       else:
         self.log("Error in OpenCV video stream!")
         total_errors += 1

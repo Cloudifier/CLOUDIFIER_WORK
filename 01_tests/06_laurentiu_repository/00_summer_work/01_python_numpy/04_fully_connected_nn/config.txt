@@ -1,0 +1,7 @@
+{
+  "BASE_FOLDER": "GoogleDrive",
+  "APP_FOLDER": "TEST_NN_FASHION_MNIST",
+  
+  "TRAIN_DF" : "_data/fashion-mnist_train.csv",
+  "TEST_DF"  : "_data/fashion-mnist_test.csv"
+}

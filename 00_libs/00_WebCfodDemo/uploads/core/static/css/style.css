@@ -1,0 +1,66 @@
+body {
+background-color:#152235;
+}
+
+.parentDiv { 
+position:absolute;
+padding-top:220px;
+padding-left:695px;
+display: flex;
+justify-content: right;
+align-items: right;
+z-index: 1;
+opacity: 100;
+}
+
+.button {
+    background-color: #1d4073;
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.my_class_name {
+background-repeat:no-repeat;
+background-position:center;
+float:right;
+padding-right:0px;
+background-image: url("imgs/Cloudifier.NET-vid-background.jpg");
+}
+
+iframe {
+margin-top:10px;
+margin-left:80px;
+padding-right:0px;
+}
+
+input {
+background-color:white;
+margin-top:10px;
+}
+
+table {
+margin-left:25px;
+margin-top:0px;
+padding:0px;
+}
+
+form {
+float:left;
+margin-top:10px;
+}
+
+button {
+float:left;
+margin-top:10px;
+}
+td {
+float:left;
+padding:0px;
+margin-top:10px;
+}
