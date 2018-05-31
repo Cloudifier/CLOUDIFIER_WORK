@@ -213,23 +213,24 @@ class EmbeddingsMaster:
     self._log("  Initializing Tensorflow graph ...")
     self.tf_graph = tf.Graph()    
     with self.tf_graph.as_default():
-      self.tf_train_prod_inputs, self.tf_train_user_inputs, self.tf_train_labels = self.__create_tf_graph_placeholders()
-      self.tf_prod_embeddings, self.tf_user_embeddings, self.tf_embed_context, prev_neurons_softmax = self.__create_tf_graph_embeddings_layer()
-      self.tf_sm_weights, self.tf_sm_biases = self.__create_tf_graph_softmax_layer(prev_neurons_softmax)
-
-      self.tf_loss = tf.reduce_mean(
-          tf.nn.sampled_softmax_loss(weights = self.tf_sm_weights,
-                         biases = self.tf_sm_biases,
-                         labels = self.tf_train_labels,
-                         inputs = self.tf_embed_context,
-                         num_true = self.num_true,
-                         num_sampled = self.FRAMEWORK["NUM_SAMPLED"],
-                         num_classes = self.nr_products), name='loss')
-      
-      self.learning_rate = tf.placeholder(tf.float32, shape = [])
-      optimizer = tf.train.AdamOptimizer(learning_rate = self.learning_rate)
-      self.train_step = optimizer.minimize(self.tf_loss)
-      self.init = tf.global_variables_initializer()
+      with tf.device('/gpu:1'):
+        self.tf_train_prod_inputs, self.tf_train_user_inputs, self.tf_train_labels = self.__create_tf_graph_placeholders()
+        self.tf_prod_embeddings, self.tf_user_embeddings, self.tf_embed_context, prev_neurons_softmax = self.__create_tf_graph_embeddings_layer()
+        self.tf_sm_weights, self.tf_sm_biases = self.__create_tf_graph_softmax_layer(prev_neurons_softmax)
+  
+        self.tf_loss = tf.reduce_mean(
+            tf.nn.sampled_softmax_loss(weights = self.tf_sm_weights,
+                           biases = self.tf_sm_biases,
+                           labels = self.tf_train_labels,
+                           inputs = self.tf_embed_context,
+                           num_true = self.num_true,
+                           num_sampled = self.FRAMEWORK["NUM_SAMPLED"],
+                           num_classes = self.nr_products), name='loss')
+        
+        self.learning_rate = tf.placeholder(tf.float32, shape = [])
+        optimizer = tf.train.AdamOptimizer(learning_rate = self.learning_rate)
+        self.train_step = optimizer.minimize(self.tf_loss)
+        self.init = tf.global_variables_initializer()
 
     self._log("  Done initializing Tensorflow graph.", show_time = True)
     return
