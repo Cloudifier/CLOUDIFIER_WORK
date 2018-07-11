@@ -90,7 +90,7 @@ def np_rect(left, top, right, bottom, np_img, color = (255,255,255),
 class VideoCameraStream:
   def __init__(self, logger = None, file_name = None,
                process_func = None, info_func = None, 
-               onclick_func = None, hd=1):
+               onclick_func = None, hd=1, camera=0):
     self.process_func = process_func
     self.onclick_func = onclick_func
     self.info_func = info_func
@@ -98,7 +98,7 @@ class VideoCameraStream:
     self.logger = logger
     self.log("Initializing VideoCameraStream v.{}".format(self.__version__))
     if file_name == None:
-      self.video = cv2.VideoCapture(0)
+      self.video = cv2.VideoCapture(camera)
       if hd==1:
         std_h = self.video.get(cv2.CAP_PROP_FRAME_HEIGHT)
         std_w = self.video.get(cv2.CAP_PROP_FRAME_WIDTH)

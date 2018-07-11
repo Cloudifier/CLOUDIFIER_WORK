@@ -28,6 +28,8 @@ from yad2k.models.keras_yolo import yolo_head, yolo_boxes_to_corners, preprocess
 
 from scipy.misc import imresize
 
+import cv2
+
 
 
 
@@ -269,7 +271,7 @@ class FastObjectDetector:
     img /= 255
     return np.expand_dims(img, 0)
 
-  
+
   def _person_callback(self, box, np_img):
     """
     callback function used when class is self.PERSON_CLASS 
@@ -287,7 +289,7 @@ class FastObjectDetector:
     DRAW_FACE_RECT = True
     FACE_LANDMARKS = True # 0: no, 1: full 2: only 5 feats
     DISPLAY_FACE = True
-    FACE_ID = True
+    FACE_ID = False
     
     self.logger.start_timer(" FaceGetInfo")
     res = self.face_engine.GetFaceInfo(np_pers_img, get_shape = FACE_LANDMARKS,
@@ -647,7 +649,7 @@ class FastObjectDetector:
     self.image_shape = image_shape
     self.yolo_outputs = yolo_head(self.yolo_model.output, 
                                   self.anchors, 
-                                  len(self.class_names))    
+                                  len(self.class_names))
     self.log("Preparing evaluation ...")
     self.tf_scores, self.tf_boxes, self.tf_classes = self.y9k_eval(yolo_outputs = self.yolo_outputs, 
                                                           image_shape = self.image_shape,
@@ -704,18 +706,71 @@ class FastObjectDetector:
   
 
 if __name__ == '__main__':
+  PROCESS_OFFLINE = False
+  ROTATE = True
+  
+  if not PROCESS_OFFLINE:
+    cfod = FastObjectDetector(score_threshold = 0.5)
+    vstrm = VideoCameraStream(logger = cfod.logger,
+                              process_func = cfod.predict_img, 
+                              info_func = cfod._DEBUG_INFO,
+                              onclick_func = cfod.on_click,
+                              hd=1,
+                              camera=0)
+    if vstrm.video != None:
+      video_frame_shape = (vstrm.H,vstrm.W) 
+      cfod.prepare(image_shape = video_frame_shape)
+      vstrm.play()
+      vstrm.shutdown()
+      if cfod.DEBUG:
+        cfod.show_fr_stats()
+      cfod.shutdown()
 
-  cfod = FastObjectDetector(score_threshold = 0.5)
-  vstrm = VideoCameraStream(logger = cfod.logger,
-                            process_func = cfod.predict_img, 
-                            info_func = cfod._DEBUG_INFO,
-                            onclick_func = cfod.on_click,
-                            hd=1)
-  if vstrm.video != None:
-    video_frame_shape = (vstrm.H,vstrm.W) 
-    cfod.prepare(image_shape = video_frame_shape)
-    vstrm.play()
-    vstrm.shutdown()
-    if cfod.DEBUG:
-      cfod.show_fr_stats()
-    cfod.shutdown()
+  else:
+    video_full_path = 'C:/Users/LaurentiuP/Desktop/test2.mp4'
+    
+    cfod = FastObjectDetector(score_threshold = 0.5)
+    FRAME_W, FRAME_H = 1280, 720
+    cfod.prepare(image_shape = (FRAME_H, FRAME_W))
+    
+    
+    video      = cv2.VideoCapture(video_full_path)
+    fourcc     = int(video.get(cv2.CAP_PROP_FOURCC))
+    fourcc     = cv2.VideoWriter_fourcc(*'XVID')
+    fps        = video.get(cv2.CAP_PROP_FPS)
+    frame_size = (FRAME_W, FRAME_H)
+    
+    video_full_path , _ = os.path.splitext(video_full_path) 
+    new_full_path = video_full_path + ".avi"
+    new_video = cv2.VideoWriter(new_full_path, fourcc , fps, frame_size)
+    
+    #win_name = "frame_win"
+    #cv2.namedWindow(win_name)
+    #cv2.moveWindow(win_name, 1, 1)
+    
+    while (video.isOpened()):
+        ret, frame = video.read()
+        if ret:
+            frame = cv2.resize(frame, (FRAME_W, FRAME_H))
+            if ROTATE:
+              (cW, cH) = (FRAME_W // 2, FRAME_H // 2)
+              m = cv2.getRotationMatrix2D((cW, cH), -90, 1)
+              frame = cv2.warpAffine(frame, m, (FRAME_W, FRAME_H))
+              
+              
+            #cv2.imshow(win_name,frame)
+            frame = cfod.predict_img(frame)
+        
+            new_video.write(frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        else:
+            break
+
+    video.release()
+    new_video.release()
+    cv2.destroyAllWindows()
+    
+    
+
+  

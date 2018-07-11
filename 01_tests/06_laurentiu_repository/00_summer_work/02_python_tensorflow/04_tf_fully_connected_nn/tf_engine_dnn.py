@@ -51,7 +51,10 @@ class TFNeuralNetwork:
     res = "Layers:"
     for i in range(len(self.descriptions)):
       res += "\n  " + self.descriptions[i]
-    self.logger._log(res)
+    self._log(res)
+
+  def _log(self, str_log):
+    self.logger.P(str_log)
 
   def OneHotMatrix(self, y, classes=10):
     n_obs = y.shape[0]
@@ -96,7 +99,7 @@ class TFNeuralNetwork:
     classes = len(np.unique(y_train))
     n_features = X_train.shape[1]
 
-    self.logger._log("Training tf_dnn model (initialized using xavier method)... epochs={}, alpha={:.2f}, batch_sz={}, beta={}, momentum={}, drop={}"
+    self._log("Training tf_dnn model (initialized using xavier method)... epochs={}, alpha={:.2f}, batch_sz={}, beta={}, momentum={}, drop={}"
       .format(epochs, learning_rate, batch_size, beta, momentum_speed, drop_keep))
 
     with self.graph.as_default():
@@ -127,21 +130,22 @@ class TFNeuralNetwork:
         train_step = tf.train.MomentumOptimizer(learning_rate, momentum_speed).minimize(cross_entropy)
 
       init = tf.global_variables_initializer()
-      saver = tf.train.Saver()
 
     model_size_MB = self.nr_weights * 4 / (1024 * 1024)
-    self.logger._log("Model capacity: {:,} weights, {:,.2f}MB"
+    self._log("Model capacity: {:,} weights, {:,.2f}MB"
                      .format(self.nr_weights, model_size_MB))
     if (model_size_MB > 4000):
-      self.logger._log("Model requires to much memory, please optimize!")
+      self._log("Model requires to much memory, please optimize!")
       return
 
-    sess = tf.Session(graph=self.graph)
-    sess.run(init)
+    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.33)
+
+    sess = tf.Session(graph=self.graph, config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=True))
+    sess.run(init, options=tf.RunOptions(report_tensor_allocations_upon_oom=True))
 
     n_batches = X_train.shape[0] // batch_size
     for epoch in range(epochs):
-      self.logger._log('Epoch {}/{}'.format(epoch + 1, epochs))
+      self._log('Epoch {}/{}'.format(epoch + 1, epochs))
       epoch_start_time = time()
 
       for i in range(n_batches):
@@ -151,18 +155,19 @@ class TFNeuralNetwork:
         _, loss, y_pred = sess.run([train_step, cross_entropy, tf_y_pred],
                                    feed_dict={tf_X_batch: X_batch,
                                               tf_y_batch: self.OneHotMatrix(y_batch),
-                                              tf_keep_prob : drop_keep})
+                                              tf_keep_prob : drop_keep},
+                                   options=tf.RunOptions(report_tensor_allocations_upon_oom=True))
 
         if i % 1000 == 0:
-          self.logger._log('   [TRAIN Minibatch: {}] loss: {:.2f}'.format(i, loss))
+          self._log('   [TRAIN Minibatch: {}] loss: {:.2f}'.format(i, loss))
           if self.VERBOSITY >= 10:
             n_to_slice = batch_size
             if n_to_slice > 10:
               n_to_slice = 10
             d1_slice = y_batch[:n_to_slice]
             d2_slice = y_pred[:n_to_slice]
-            self.logger._log('        yTrue:{}'.format(d1_slice.astype(int)))
-            self.logger._log('        yPred:{}'.format(d2_slice))
+            self._log('        yTrue:{}'.format(d1_slice.astype(int)))
+            self._log('        yPred:{}'.format(d2_slice))
 
       epoch_time = time() - epoch_start_time
       total_train_time += epoch_time
@@ -180,13 +185,13 @@ class TFNeuralNetwork:
                                                          tf_keep_prob : 1})
         self.validation_cost_history.append(loss_validation)
 
-        self.logger._log('{:.2f}s - loss: {:.2f} - acc: {:.2f}% - val_loss: {:.2f} - val_acc: {:.2f}%\n'
-                         .format(epoch_time, loss_train, acc_train * 100, loss_validation, acc_valid * 100))
+        self._log('{:.2f}s - loss: {:.2f} - acc: {:.2f}% - val_loss: {:.2f} - val_acc: {:.2f}%\n'
+                  .format(epoch_time, loss_train, acc_train * 100, loss_validation, acc_valid * 100))
       else:
-        self.logger._log('{:.2f}s - loss: {:.2f} - acc: {:.2f}%\n'.format(epoch_time, loss_train, acc_train * 100))
+        self._log('{:.2f}s - loss: {:.2f} - acc: {:.2f}%\n'.format(epoch_time, loss_train, acc_train * 100))
 
-    saver.save(sess, self.model_name)
-    self.logger._log('Total TRAIN time: {:.2f}s'.format(total_train_time))
+
+    self._log('Total TRAIN time: {:.2f}s'.format(total_train_time))
     sess.close()
 
 
@@ -208,7 +213,7 @@ class TFNeuralNetwork:
                                  feed_dict={tf_X: X_test,
                                             tf_y: self.OneHotMatrix(y_test),
                                             tf_keep_prob: 1})
-    self.logger._log("Predicting ... test_loss: {:.2f} - test_acc: {:.2f}%".format(loss, acc * 100))
+    self._log("Predicting ... test_loss: {:.2f} - test_acc: {:.2f}%".format(loss, acc * 100))
     sess.close()
 
     return y_pred

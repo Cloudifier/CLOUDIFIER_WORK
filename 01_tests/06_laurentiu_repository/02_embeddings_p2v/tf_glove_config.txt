@@ -1,7 +1,0 @@
-{
-  "BASE_FOLDER": "GoogleDrive",
-  "APP_FOLDER": "_hyperloop_data/recom_compl_2014_2017",
-  "MCO_CACHE": "_data/all/mco_f32.npz",
-  "AUXILIARY_NAME": "all",
-  "LOAD_MODEL": "_output/20180415_013358_GloVe_Emb_128_Window_4_Batch_256_all_Ep_150.h5"
-}

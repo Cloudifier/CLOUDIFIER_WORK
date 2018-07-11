@@ -1,0 +1,6 @@
+{
+  "BASE_FOLDER": "GoogleDrive",
+  "APP_FOLDER" : "_timmy_data/_churn_5_minutes",
+  
+  "DATASET"    : "_data/hyb_5min_ret"
+}
